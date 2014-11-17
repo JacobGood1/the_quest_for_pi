@@ -1,7 +1,7 @@
 library levels;
 
 import 'package:stagexl/stagexl.dart';
-import 'package:the_quest_for_pi_production/levels/level.dart';
+import 'package:the_quest_for_pi/levels/level.dart';
 import '../entities/entity.dart';
 
 part 'level1.dart';

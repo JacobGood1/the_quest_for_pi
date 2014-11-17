@@ -1,4 +1,4 @@
-name: the_quest_for_pi_production
+name: the_quest_for_pi
 dependencies:
   stagexl: 'any'
   game_loop: 'any'

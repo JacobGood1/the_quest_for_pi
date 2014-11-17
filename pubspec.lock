@@ -12,7 +12,7 @@ packages:
   barback:
     description: barback
     source: hosted
-    version: "0.15.2+2"
+    version: "0.15.0+1"
   bignum:
     description: bignum
     source: hosted
@@ -144,7 +144,7 @@ packages:
   stack_trace:
     description: stack_trace
     source: hosted
-    version: "1.1.1"
+    version: "1.0.2"
   stagexl:
     description: stagexl
     source: hosted

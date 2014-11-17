@@ -3,8 +3,8 @@ library entity;
 import 'dart:mirrors';
 import 'package:stagexl/stagexl.dart' show Sprite, Bitmap;
 
-import 'package:the_quest_for_pi_production/components/shared_component.dart';
-import 'package:the_quest_for_pi_production/entities/shared_entity.dart';
+import 'package:the_quest_for_pi/components/shared_component.dart';
+import 'package:the_quest_for_pi/entities/shared_entity.dart';
 import '../components/component.dart';
 import '../levels/level.dart' show resourceManager;
 

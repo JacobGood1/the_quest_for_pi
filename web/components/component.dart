@@ -3,7 +3,7 @@ library component;
 import 'dart:convert';
 
 import '../main.dart';
-import 'package:the_quest_for_pi_production/components/shared_component.dart';
+import 'package:the_quest_for_pi/components/shared_component.dart';
 
 part 'input_manager.dart';
 part 'player_movement.dart';
