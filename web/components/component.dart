@@ -1,12 +1,13 @@
 library component;
 
-import 'dart:convert';
+import 'dart:math';
 
 import '../main.dart';
 import 'package:the_quest_for_pi/components/shared_component.dart';
 
 part 'input_manager.dart';
 part 'player_movement.dart';
+part 'erratic_fly.dart';
 
 double _stageBoundX = canvas.width.toDouble(),
        _stageBoundY = canvas.height.toDouble();

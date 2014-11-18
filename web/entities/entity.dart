@@ -10,8 +10,13 @@ import '../components/component.dart';
 import '../levels/level.dart' show resourceManager;
 import '../main.dart' show websocketSend;
 
+//player
 part 'humanoids/humans/humans.dart';
 part 'player.dart';
+
+//flying creatures
+part 'flying_creatures/flying_creature.dart';
+part 'flying_creatures/bat.dart';
 
 List<Entity> entityManager = [];
 

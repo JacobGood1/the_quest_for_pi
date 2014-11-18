@@ -18,7 +18,7 @@ abstract class Level extends SharedLevel{
       resourceManager.addBitmapData(assetsToLoad[i], 'assets/images/${assetsToLoad[i]}.png');
     }
     resourceManager.load().then((result){
-      Timer waitTillWebSocketDone = new Timer(new Duration(seconds: 2), _webSocketDone);  //this could throw an error if websocket is not done in time!
+      Timer waitTillWebSocketDone = new Timer(new Duration(seconds: 0), _webSocketDone);  //this could throw an error if websocket is not done in time!
       //TODO change to async when feature becomes available to make it deterministic ^^
     });
   }

@@ -53,31 +53,6 @@ class WebsocketSetup {
     ws.onMessage.listen((MessageEvent message) {
       Map msg = websocketRead(message);
       clientHandler.handle(msg);
-
-
-      //print(message.data);
-      /*if(ID['clientID'] == ''){
-        var decoderRing = websocketRead(message);
-        ID['clientID'] = decoderRing['ID']['clientID'];
-
-        //get current clients connected
-        List<Map> existingEntities = JSON.decode(message.data)['existingClients'];
-        existingEntities.forEach((message){
-          entities.add(message);
-        });
-      } else {
-        List<Map> msg = websocketRead(message.data);
-        //print("printing ${msg}");
-        //ID['x'] = msg['x'];
-        msg.forEach((m){
-          //print("printing ${m['x']}");
-        });*/
-
-
-        //print(ID);
-      //}
-
-
     });
 
 
