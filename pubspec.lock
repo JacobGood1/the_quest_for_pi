@@ -129,6 +129,10 @@ packages:
     description: quiver
     source: hosted
     version: "0.18.2"
+  serialization:
+    description: serialization
+    source: hosted
+    version: "0.10.3"
   smoke:
     description: smoke
     source: hosted
@@ -160,7 +164,7 @@ packages:
   unittest:
     description: unittest
     source: hosted
-    version: "0.11.0+5"
+    version: "0.11.1"
   uri:
     description: uri
     source: hosted

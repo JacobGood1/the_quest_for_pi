@@ -7,13 +7,15 @@ import 'dart:convert';
 import 'package:vane/vane.dart';
 import 'package:game_loop/game_loop_isolate.dart';
 import 'package:uuid/uuid.dart';
+import 'package:the_quest_for_pi/globals.dart';
 
 part 'game.dart';
+part 'server_handler.dart';
 
 WebSocket webSocket;
 Uuid uuid = new Uuid();
 
-List<Map> clientsConnected = [];
+ServerHandler serverHandler = new ServerHandler();
 
 class Game extends Vane {
 
@@ -28,23 +30,10 @@ class Game extends Vane {
     ws.pingInterval = new Duration(seconds: 5);
     // Add all incoming message to the stream
     conn.onData((String msg) {
-
-      clientInput.add(msg);
       log.info(msg);
+      serverHandler.handle(JSON.decode(msg));
 
-      Map decoded_msg = JSON.decode(msg);
 
-      if(decoded_msg['clientID'] == ''){ //if clientID is '', this is a new client connection.
-        String id = uuid.v4();
-        websocketSend({'ID':{'clientID': id},
-                       'exisitingClients': clientsConnected}); //new connection is found, send a proper client ID as well as the existing entities within the server.
-
-        decoded_msg.remove('clientID');
-        decoded_msg.putIfAbsent('clientID', () => id);
-
-        print(decoded_msg);
-        clientsConnected.add(decoded_msg);
-      }
 
       //clientInput.clear();
     });

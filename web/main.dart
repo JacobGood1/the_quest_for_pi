@@ -1,8 +1,12 @@
+library client;
+
 import 'dart:html';
 import 'dart:convert';
 import 'package:stagexl/stagexl.dart';
 import 'package:the_quest_for_pi/globals.dart';
 import 'levels/level.dart';
+
+part 'client_handler.dart';
 
 CanvasElement canvas = querySelector('#stage')
   ..width = canvasWidth
@@ -13,15 +17,14 @@ GameLoop gameLoop = new GameLoop();
 
 WebSocket webSocket;
 
-Map entity = {'clientID': '',
-              'x': 0.0,
-              'y': 0.0};
+String ID = '';
 
-List<Map> entities = [entity];
+List<Map> entities = [ID];
+
+ClientHandler clientHandler = new ClientHandler();
+
 
 class GameLoop extends Animatable{
-
-
   bool advanceTime(num time) {
     currentLevel.updateSprites(time);
     return true;
@@ -42,21 +45,20 @@ class WebsocketSetup {
     ws = new WebSocket("ws://${uri.host}:${port}/ws");
     // Listen for Websocket events
 
-    ws.onOpen.listen((e) {
-      print("Connected");
-      webSocket = ws;
-      websocketSend(entity);
-    });
-    ws.onClose.listen((e)   => print("Disconnected"));
-    ws.onError.listen((e)   => print("Error"));
+    ws.onOpen.listen((e)  => clientHandler.onOpen(ws));
+    ws.onClose.listen((e) => clientHandler.onClose(ws));
+    ws.onError.listen((e) => clientHandler.onError(ws));
 
     // Collect messages from the stream
     ws.onMessage.listen((MessageEvent message) {
+      Map msg = websocketRead(message);
+      clientHandler.handle(msg);
+
+
       //print(message.data);
-      if(entity['clientID'] == ''){
-        var decoderRing = JSON.decode(message.data);
-        print(decoderRing.runtimeType);
-        entity['clientID'] = decoderRing['ID']['clientID'];
+      /*if(ID['clientID'] == ''){
+        var decoderRing = websocketRead(message);
+        ID['clientID'] = decoderRing['ID']['clientID'];
 
         //get current clients connected
         List<Map> existingEntities = JSON.decode(message.data)['existingClients'];
@@ -66,28 +68,20 @@ class WebsocketSetup {
       } else {
         List<Map> msg = websocketRead(message.data);
         //print("printing ${msg}");
-        //entity['x'] = msg['x'];
+        //ID['x'] = msg['x'];
         msg.forEach((m){
           //print("printing ${m['x']}");
-        });
+        });*/
 
 
-        //print(entity);
-      }
+        //print(ID);
+      //}
 
 
     });
 
 
   }
-}
-
-void websocketSend(Map<String, Object> map){
-  webSocket.send(JSON.encode(map));
-}
-
-List<Map> websocketRead(String msg){
-  return JSON.decode(msg);
 }
 
 Level currentLevel;
@@ -98,5 +92,6 @@ void main(){
   stage.juggler.add(gameLoop);
   var wsSetup = new WebsocketSetup();
   currentLevel = new Level1(stage);
+
 }
 

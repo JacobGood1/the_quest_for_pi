@@ -13,7 +13,7 @@ abstract class PlayerMovement implements PlayerComponentData {
     }
     else if(isKeyBeingPressed('d')){
       moveRight();
-      webSocket.send(JSON.encode({'client' : 'd'}));
+      //webSocketSend({'client' : 'd'});
     }
     else {
       velocity = new Vector(0.0, 0.0);

@@ -1,3 +1,5 @@
+library shared_entity;
+
 import '../components/shared_component.dart';
 import 'dart:mirrors';
 
@@ -6,6 +8,8 @@ final RegExp update = new RegExp(r"\_update[A-Z][a-z]*");
 final RegExp collision = new RegExp(r"\_collision[A-Z][a-z]*");
 
 abstract class SharedEntity implements SharedEntityData{
+  List <SharedEntity> _rulesSoFar = [];
+
   List<Symbol> componentUpdateFunctionList = [],
                componentCollisionCheckFunctionList = [];
 

@@ -1,7 +1,7 @@
 part of server;
 
 List clientInput = [];
-List serverEntities = [];
+List<Map> serverEntities = [];
 
 var x = 1;
 
@@ -24,9 +24,9 @@ class ServerState{
   ServerState(){
     serverLoop.onUpdate = ((serverLoop) {
       // Update game logic here.
-      clientsConnected.forEach((c){
+      /*clientsConnected.forEach((c){
         c['x'] = c['x'] += 0.1;
-      });
+      });*/
 
       reset += serverLoop.dt;
       if(reset >= SERVERTICK){
