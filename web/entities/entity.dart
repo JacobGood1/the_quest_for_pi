@@ -16,16 +16,9 @@ part 'player.dart';
 List<Entity> entityManager = [];
 
 abstract class Entity extends Sprite with SharedEntity{
-  List <Type> _rulesSoFar = [];
   Bitmap _appearance;
 
   Entity(String assetName, num startX, num startY){
-
-    if(!_rulesSoFar.contains(this.runtimeType)){  //add rules for serialization only if this object has not been used before
-      serialization.addRuleFor(this.runtimeType, constructor: "", fields: ["position"]);
-      _rulesSoFar.add(this.runtimeType);
-    }
-
     lookAtMe = reflect(this);
     if(!(assetName == '')){
       _appearance = new Bitmap(resourceManager.getBitmapData(assetName));

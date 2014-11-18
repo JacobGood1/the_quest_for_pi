@@ -129,10 +129,6 @@ packages:
     description: quiver
     source: hosted
     version: "0.18.2"
-  serialization:
-    description: serialization
-    source: hosted
-    version: "0.10.3"
   smoke:
     description: smoke
     source: hosted
