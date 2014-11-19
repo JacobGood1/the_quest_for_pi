@@ -37,8 +37,8 @@ class WebsocketSetup {
     // Initialize Websocket connection (9090 for during development locally,
     // otherwise use standard port 80 for production)
     Uri uri = Uri.parse(window.location.href);
-    var port = uri.port != 8080 ? 80 : 9090; //production
-    //var port = uri.port != 63342 ? 80 : 9090; //JACOB
+    //var port = uri.port != 8080 ? 80 : 9090; //production
+    var port = uri.port != 63342 ? 80 : 9090; //JACOB
 
     //var port = uri.port != 55125 ? 80 : 9090; //TRAVIS
 
