@@ -8,7 +8,7 @@ import 'levels/level.dart';
 
 part 'client_handler.dart';
 
-CanvasElement canvas = querySelector('#stage')
+CanvasElement canvas = (querySelector('#stage') as CanvasElement)
   ..width = canvasWidth
   ..height = canvasHeight;
 Stage stage = new Stage(canvas);
