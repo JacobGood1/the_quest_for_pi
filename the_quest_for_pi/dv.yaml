@@ -1,0 +1,10 @@
+server:
+- url: /ws
+  match: regex
+
+client:
+- url: /
+  match: postregex
+  dir: web
+
+
