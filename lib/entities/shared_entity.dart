@@ -26,7 +26,7 @@ abstract class SharedEntity{
          pivotX,  //TODO will have to figure out how to emulate these?!?! might be easy they just
          pivotY;
 
-  addAllComponentInformation(Object obj){
+  addAllComponentInformation(Object obj) {
     /* This reflects over every mixin, finding methods that begin with
     *  _init, _update, or collision.  _init gets called immediately acting like
     * a constructor. _update gets called every frame first before collision check, which
@@ -35,19 +35,19 @@ abstract class SharedEntity{
     InstanceMirror instanceMirror = reflect(obj);
     ClassMirror currentClass = instanceMirror.type;
     Map members;
-    while(currentClass.simpleName != #Object){
+    while (currentClass.simpleName != #Object) {
       members = currentClass.declarations;
-      for(var i in members.values){
-        if(!(null == init.firstMatch(i.simpleName.toString()))){
+      for (var i in members.values) {
+        if (!(null == init.firstMatch(i.simpleName.toString()))) {
           instanceMirror.invoke(i.simpleName, []);
         }
-        else if(!(null == update.firstMatch(i.simpleName.toString()))){
-          if(!(i.simpleName.toString().contains("Drag"))){
+        else if (!(null == update.firstMatch(i.simpleName.toString()))) {
+          if (!(i.simpleName.toString().contains("Drag"))) {
             componentUpdateFunctionList.add(i.simpleName);
           }
         }
-        else if(!(null == collision.firstMatch(i.simpleName.toString()))){
-            if(!(i.simpleName.toString().contains("Drag"))){
+        else if (!(null == collision.firstMatch(i.simpleName.toString()))) {
+            if (!(i.simpleName.toString().contains("Drag"))) {
               componentCollisionCheckFunctionList.add(i.simpleName);
             }
           }
@@ -55,6 +55,7 @@ abstract class SharedEntity{
       currentClass = currentClass.superclass;
     }
   }
+
 
   updateAllComponents(num time){
     //Update
@@ -67,14 +68,28 @@ abstract class SharedEntity{
       lookAtMe.invoke(componentCollisionCheckFunctionList[i], [time]);
     }
     //Finally, position the objects
-    //print(x);
     this..x = position.x
         ..y = position.y;
   }
 
   Map toJson(){
-    return {'x': x, 'y': y, 'type': this.runtimeType};
+    Map<String, Object> json = {};
+    ClassMirror currentClass = lookAtMe.type;
+    while (currentClass.simpleName != #Object){
+      for (var symbol in currentClass.declarations.values) {
+        if (symbol is VariableMirror) {
+          var v = symbol.simpleName;
+          if(!(v == #lookAtMe)
+             && !(v == #componentUpdateFunctionList)
+             && !(v == #componentCollisionCheckFunctionList)
+             && !(v == #_rulesSoFar)
+             && !(v == #keysBeingPressed)){
+            json[MirrorSystem.getName(v)] = lookAtMe.getField(v).reflectee.toString();
+          }
+        }
+      }
+      currentClass = currentClass.superclass;
+    }
+    return json;
   }
-
-
 }

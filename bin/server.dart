@@ -26,7 +26,6 @@ Map<StreamSubscription, String> clientWebsocketPointers = {};
 class Game extends Vane {
   @Route("/ws")
   Future main() {
-    webby = ws;
     ServerHandler serverHandler = new ServerHandler();
     // Start listening to websocket connection
     StreamSubscription conn = ws.listen(null);
@@ -45,14 +44,15 @@ class Game extends Vane {
     conn.onDone(() {
       serverHandler.connectionDone(close, conn);
     });
+    PhysicsState ps = new PhysicsState()..physicsLoop.start();
+    ServerState ss = new ServerState(ws)..serverLoop.start();
+
     return end;
   }
 }
 
 void main() {
   currentLevel = new Level1();
-  PhysicsState ps = new PhysicsState()..physicsLoop.start();
-  ServerState ss = new ServerState(webby)..serverLoop.start();
   serve();
 }
 

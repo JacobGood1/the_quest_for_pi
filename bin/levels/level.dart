@@ -15,7 +15,7 @@ part 'level1.dart';
 abstract class Level {
 
   void updateSprites(num time){
-    playerEntities.forEach((player) => player.updateAllComponents(time));
+    playerEntities.forEach((Player player) => player.updateAllComponents(time));
     serverEntities.forEach((entity) => entity.updateAllComponents(time));
   }
 }

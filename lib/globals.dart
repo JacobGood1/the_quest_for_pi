@@ -11,6 +11,7 @@ class MessageTypes{
   static String INPUT = 'input';
   static String NEW_ENTITY = 'newEntity';
   static String CLIENT_INPUT = 'clientInput';
+  static String SYNC_STATE = 'syncState';
 
   static getData(Map message){
     return message['data'];
@@ -56,6 +57,13 @@ class MessageTypes{
 
   static isCLIENT_INPUT(Map message){
     if(message['type'] == 'clientInput'){
+      return true;
+    }
+    return false;
+  }
+
+  static bool isSYNC_STATE(Map message){
+    if(message['type'] == 'syncState'){
       return true;
     }
     return false;

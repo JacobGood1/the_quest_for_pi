@@ -20,7 +20,7 @@ class ServerHandler{
     //TODO you have client inputs coming in now update the players and sync the state!
     else if(MessageTypes.isCLIENT_INPUT(message)){
       clientInput[MessageTypes.getID(message)] = MessageTypes.getData(message);
-      print(clientInput);
+
     }
     else{ //must be a server update message
 

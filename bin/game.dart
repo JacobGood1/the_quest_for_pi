@@ -43,14 +43,17 @@ class ServerState{
       if(reset >= SERVERTICK){
         reset = 0.0;
         if(ws != null){
-        //send all entity updates back to the client, this is authoritative
-
-        }
+          //send all entity updates back to the client, this is authoritative
+          var entityState = [];
+          playerEntities.forEach((Player player){
+            entityState.add(player.toJson());
+          });
+          //serverEntities.forEach((entity) => entityState.add())
+          websocketSend(ws, MessageTypes.SYNC_STATE, entityState);
+          }
       }
-
     });
   }
-
 }
 
 

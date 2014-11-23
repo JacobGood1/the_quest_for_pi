@@ -2,21 +2,25 @@ part of component;
 
 abstract class PlayerMovement implements SharedEntity, Movement{
   List<String> keysBeingPressed = [];
+  String ID;
   _updatePlayerMovement (double dt) {
-    if(isKeyBeingPressed('w')){
-      moveUp();
-    }
-    else if(isKeyBeingPressed('a')){
-      moveLeft();
-    }
-    else if(isKeyBeingPressed('s')){
-      moveDown();
-    }
-    else if(isKeyBeingPressed('d')){
-      moveRight();
-    }
-    else {
-      velocity = new Vector(0.0, 0.0);
+    keysBeingPressed = clientInput[ID];
+    if(keysBeingPressed != null){
+      if(isKeyBeingPressed('w')){
+        moveUp();
+      }
+      else if(isKeyBeingPressed('a')){
+        moveLeft();
+      }
+      else if(isKeyBeingPressed('s')){
+          moveDown();
+        }
+        else if(isKeyBeingPressed('d')){
+            moveRight();
+          }
+          else {
+            velocity = new Vector(0.0, 0.0);
+          }
     }
   }
 

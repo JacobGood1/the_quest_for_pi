@@ -29,8 +29,8 @@ class ClientHandler{
         print('another client connected');
       }
     }
-    else{
-      print('wut wut');
+    else if(MessageTypes.isSYNC_STATE(message)){
+
     }
   }
 

@@ -5,7 +5,4 @@ class Player extends Entity with PlayerMovement, Movement{
   Player(this.ID, x, y):super('black_mage',x,y) {
     movementSpeed = 100.0;
   }
-
-  update(num time){}
-
 }
