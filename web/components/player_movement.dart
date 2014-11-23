@@ -1,6 +1,6 @@
 part of component;
 
-abstract class PlayerMovement implements PlayerComponentData {
+abstract class PlayerMovement implements PlayerComponentData, SharedMovementData {
   _updatePlayerMovement (double dt) {
     if(isKeyBeingPressed('w')){
       moveUp();

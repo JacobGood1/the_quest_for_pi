@@ -6,7 +6,7 @@ class ClientHandler{
   onOpen(WebSocket ws){
     print("Connected");
     webSocket = ws;
-    websocketSend('clientID', '');
+    websocketSend(webSocket, MessageTypes.NEW_PLAYER, '', ID);
 
   }
 
@@ -18,29 +18,25 @@ class ClientHandler{
     print("Error");
   }
 
-  handle(Map message){
-    if(MessageTypes.isID(message)){
+  handleClient(Map message){
+    if(MessageTypes.isNEW_PLAYER(message)){
       if(firstTime){
         ID = MessageTypes.getData(message);
         firstTime = false;
       }
+      else{
+        entities.add(new Player(message[MessageTypes.CLIENT_ID],0.0 ,0.0));
+        print('another client connected');
+      }
     }
     else{
-      onMessageRecieved(message);
+      print('wut wut');
     }
   }
 
-  onMessageRecieved(Map message){
-    //all messages from the server are handled here!
-    print(ID);
-
-  }
-}
-
-void websocketSend(String type, Object data){
-  webSocket.send(JSON.encode({'type': type, 'data': data}));
 
 }
+
 
 Map websocketRead(MessageEvent msg){
   return JSON.decode(msg.data);

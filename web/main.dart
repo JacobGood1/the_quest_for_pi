@@ -5,8 +5,10 @@ import 'dart:convert';
 import 'package:stagexl/stagexl.dart';
 import 'package:the_quest_for_pi/globals.dart';
 import 'levels/level.dart';
+import 'entities/entity.dart' show Player, Entity;
 
 part 'client_handler.dart';
+
 
 CanvasElement canvas = (querySelector('#stage') as CanvasElement)
   ..width = canvasWidth
@@ -19,7 +21,9 @@ WebSocket webSocket;
 
 String ID = '';
 
-List<Map> entities = [ID];
+List<Entity> entities = [];
+
+List<String> currentClientKeys = [];
 
 ClientHandler clientHandler = new ClientHandler();
 
@@ -27,6 +31,9 @@ ClientHandler clientHandler = new ClientHandler();
 class GameLoop extends Animatable{
   bool advanceTime(num time) {
     currentLevel.updateSprites(time);
+    if(webSocket != null){
+      websocketSend(webSocket, MessageTypes.CLIENT_INPUT, currentClientKeys, ID);
+    }
     return true;
   }
 }
@@ -52,7 +59,7 @@ class WebsocketSetup {
     // Collect messages from the stream
     ws.onMessage.listen((MessageEvent message) {
       Map msg = websocketRead(message);
-      clientHandler.handle(msg);
+      clientHandler.handleClient(msg);
     });
 
 

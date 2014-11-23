@@ -4,3 +4,4 @@ dependencies:
   game_loop: 'any'
   vane: '>=0.6.0 <0.7.0'
   uuid: "any"
+  serialization: "any"

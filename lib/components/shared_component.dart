@@ -12,8 +12,12 @@ abstract class SharedComponentData{
          velocity;
 
   double movementSpeed;
+}
+
+abstract class SharedMovementData{
   void moveUp();
   void moveLeft();
   void moveDown();
   void moveRight();
 }
+

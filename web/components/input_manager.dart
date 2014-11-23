@@ -1,8 +1,10 @@
 part of component;
 
+
+
 abstract class InputManager implements ComponentData {
   String currentKey = '';
-  Set currentActiveKey = new Set();
+  Set<String> currentActiveKeys = new Set();
   Map _keyDecipher;
 
   Map<String,bool> keysPressed = {'d': false, 'w': false, 'a': false, 's': false};
@@ -10,19 +12,20 @@ abstract class InputManager implements ComponentData {
     _keyDecipher = new Map.fromIterables(new List.generate(26, (int index) => index + 65), "abcdefghijklmnopqrstuvwxyz".split(""));
     stage.onKeyDown.listen((e) {
       keysPressed[_keyDecipher[e.keyCode]] = true;
-      currentActiveKey.add(_keyDecipher[e.keyCode]);
-
+      currentActiveKeys.add(_keyDecipher[e.keyCode]);
+      currentClientKeys = currentActiveKeys.toList();
     });
     stage.onKeyUp.listen((e) {
       keysPressed[_keyDecipher[e.keyCode]] = false;
-      currentActiveKey.remove(_keyDecipher[e.keyCode]);
+      currentActiveKeys.remove(_keyDecipher[e.keyCode]);
+      currentClientKeys = currentActiveKeys.toList();
     });
 
   }
 
   _updateInputProcessor(double dt){
     if(isAnyKeyDown()){
-      currentKey = currentActiveKey.last;
+      currentKey = currentActiveKeys.last;
     }
     else{
       currentKey = '';
@@ -43,7 +46,7 @@ abstract class InputManager implements ComponentData {
   }
 
   bool isAnyKeyDown(){
-    return !currentActiveKey.isEmpty;
+    return !currentActiveKeys.isEmpty;
   }
 }
 

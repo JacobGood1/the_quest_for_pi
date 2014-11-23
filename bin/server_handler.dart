@@ -1,33 +1,50 @@
 part of server;
 
+
+
+//TODO remove clientID on disconnect and remove it from the entities
+
+
 class ServerHandler{
-  bool firstTime = true;
+  //incoming messages are handled here!
+  handle(WebSocket ws, StreamSubscription conn, Map message){  //TODO CLEAN THIS CRAP UP
+    if(MessageTypes.isNEW_PLAYER(message)){  //if the client is new
+      var clientID = uuid.v4(),
+      player = new Player(clientID, 0.0, 0.0);//generate an id for the client
+      websocketSend(ws, MessageTypes.NEW_PLAYER, clientID);
+      clientIDs.add(clientID);
+      playerEntities.add(player);
+      clients[clientID] = player;
+      clientWebsocketPointers[conn] = clientID;
+    }
+    //TODO you have client inputs coming in now update the players and sync the state!
+    else if(MessageTypes.isCLIENT_INPUT(message)){
+      clientInput[MessageTypes.getID(message)] = MessageTypes.getData(message);
 
-  handle(Map message){
-    if(message['clientID'] == ''){ //if the client has no id, it must be a new client.
-                                   //generate an id for the client
-      var genClient = IDSetup();
-      websocketSend(genClient);
-    } else {
-      onMessageRecieved(message);
+    }
+    else{ //must be a server update message
+
+      //print(message[MessageTypes.CLIENT_ID]);
+      //print('reciving null input');
     }
   }
 
-  onMessageRecieved(Map message){
-    //all messages from the client are handled here!
+  //when connection closes go here!
+  connectionDone(close, conn){
+    String clientID = clientWebsocketPointers[conn];  //remove all references to players!
 
-    if(MessageTypes.isNEW_PLAYER(message)){
-      var data = MessageTypes.getData(message);
-
+    clientWebsocketPointers.remove(conn);
+    clientInput.remove(clientID);
+    clientIDs.remove(clientID);
+    for(Player player in playerEntities){
+      if(player.ID == clientID){
+        playerEntities.remove(player);
+        break;
+      }
     }
-
+    clients.remove(clientID);
+    close();
   }
-}
-
-
-Map IDSetup(){
-  String id = uuid.v4();
-  return {'type': 'clientID', 'data': id};//{'clientID': id};
 }
 
 

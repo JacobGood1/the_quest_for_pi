@@ -2,12 +2,13 @@ library shared_entity;
 
 import '../components/shared_component.dart';
 import 'dart:mirrors';
+import 'dart:convert';
 
 final RegExp init = new RegExp(r"\_init[A-Z][a-z]*");
 final RegExp update = new RegExp(r"\_update[A-Z][a-z]*");
 final RegExp collision = new RegExp(r"\_collision[A-Z][a-z]*");
 
-abstract class SharedEntity implements SharedEntityData{
+abstract class SharedEntity{
   List <SharedEntity> _rulesSoFar = [];
 
   List<Symbol> componentUpdateFunctionList = [],
@@ -20,6 +21,10 @@ abstract class SharedEntity implements SharedEntityData{
   Vector velocity = new Vector(0.0,0.0),
          position = new Vector(0.0,0.0);
 
+  double x,
+         y,
+         pivotX,  //TODO will have to figure out how to emulate these?!?! might be easy they just
+         pivotY;
 
   addAllComponentInformation(Object obj){
     /* This reflects over every mixin, finding methods that begin with
@@ -66,11 +71,10 @@ abstract class SharedEntity implements SharedEntityData{
     this..x = position.x
         ..y = position.y;
   }
-}
 
-abstract class SharedEntityData{
-  double x,
-         y,
-         pivotX,
-         pivotY;
+  Map toJson(){
+    return {'x': x, 'y': y, 'type': this.runtimeType};
+  }
+
+
 }

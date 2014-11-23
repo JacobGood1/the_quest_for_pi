@@ -1,6 +1,6 @@
 library levels;
 
-import 'package:stagexl/stagexl.dart';
+import 'package:stagexl/stagexl.dart' show Stage, ResourceManager;
 import 'dart:convert';
 import 'package:the_quest_for_pi/globals.dart' show MessageTypes, objectToMessage, serialization, messageToObject;
 import 'package:the_quest_for_pi/levels/level.dart';
@@ -11,6 +11,7 @@ import '../main.dart' show ID, websocketSend, webSocket;
 part 'level1.dart';
 
 ResourceManager resourceManager = new ResourceManager();
+
 
 abstract class Level extends SharedLevel{
   Level(List<String> assetsToLoad){
