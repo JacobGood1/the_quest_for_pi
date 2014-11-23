@@ -21,7 +21,7 @@ class ServerHandler{
     else if(MessageTypes.isCLIENT_INPUT(message)){
       clientInput[MessageTypes.getID(message)] = MessageTypes.getData(message);
 
-    }//
+    }
     else{ //must be a server update message
 
       //print(message[MessageTypes.CLIENT_ID]);
