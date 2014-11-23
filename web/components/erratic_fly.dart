@@ -1,6 +1,6 @@
 part of component;
 
-abstract class ErraticFly implements ComponentData, SharedMovementData{
+abstract class ErraticFly implements ComponentData{
   Random _rng = new Random();
 
   _updateErraticFly(time){

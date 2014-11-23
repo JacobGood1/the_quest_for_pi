@@ -12,6 +12,7 @@ class Vector{
     }
   }
 
+  //TODO FIX FGT.
   operator +(Vector other) => new Vector(x + other.x, y + other.y);
   operator -(Vector other) => new Vector(x - other.x, y - other.y);
   operator *(Vector other) => new Vector(x * other.x, y * other.y);

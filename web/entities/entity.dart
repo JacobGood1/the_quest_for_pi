@@ -1,6 +1,7 @@
 library entity;
 
 import 'dart:mirrors';
+import 'dart:math' show Rectangle;
 import 'package:stagexl/stagexl.dart' show Sprite, Bitmap;
 
 import 'package:the_quest_for_pi/globals.dart';
@@ -18,10 +19,16 @@ part 'player.dart';
 part 'flying_creatures/flying_creature.dart';
 part 'flying_creatures/bat.dart';
 
-List<Entity> entityManager = [];
+//terrain
+part 'terrain/terrain.dart';
+part'terrain/bush.dart';
 
 abstract class Entity extends Sprite with SharedEntity{
+
   Bitmap _appearance;
+
+  Map swapScreen = {'currentScreen' : 'Level_1', //TODO Level_1 hardcoded for now
+                    'swapScreen' : 'Battle'};
 
   Entity(String assetName, num startX, num startY){
     lookAtMe = reflect(this);
@@ -31,11 +38,21 @@ abstract class Entity extends Sprite with SharedEntity{
       pivotY = _appearance.height / 2;
 
       this.addChild(_appearance);
-      entityManager.add(this);
+      SharedEntity.entityManager.add(this);
     }
 
     position = new Vector(startX, startY);
     addAllComponentInformation(this);
+  }
+
+  SharedEntity attachEntity(){
+    SharedEntity.entityManager.add(this);
+    return this;
+  }
+
+  SharedEntity detachEntity(){
+    SharedEntity.entityManager.remove(this);
+    return this;
   }
 }
 
