@@ -3,25 +3,25 @@ library server;
 import 'dart:io';
 import 'dart:async';
 import 'dart:convert';
+import 'entities/entity.dart';
+import 'dart:mirrors'; //TODO delete this test code when done
 
 import 'package:vane/vane.dart';
 import 'package:game_loop/game_loop_isolate.dart';
-import 'package:uuid/uuid.dart';
-import 'package:the_quest_for_pi/globals.dart';
+import 'globals.dart';
+import 'game_world/game_world.dart';
 
 
-import 'entities/entity.dart';
-import 'levels/level.dart';
-
-part 'game.dart';
 part 'server_handler.dart';
 
 
-Uuid uuid = new Uuid();
 
-WebSocket webby;
 
-Map<StreamSubscription, String> clientWebsocketPointers = {};
+PhysicsState ps;
+ServerState ss;
+
+StreamController pingClients = new StreamController.broadcast();
+
 
 class Game extends Vane {
   @Route("/ws")
@@ -33,8 +33,11 @@ class Game extends Vane {
     ws.pingInterval = new Duration(seconds: 5);
     // Add all incoming message to the stream
     conn.onData((String msg) {
-      //log.info(msg); //TODO log something later?  give the logger to the handler?
       serverHandler.handle(ws, conn, JSON.decode(msg));
+    });
+
+    pingClients.stream.listen((msg){
+      ws.add(msg);
     });
 
     // On error, log warning
@@ -44,15 +47,14 @@ class Game extends Vane {
     conn.onDone(() {
       serverHandler.connectionDone(close, conn);
     });
-    PhysicsState ps = new PhysicsState()..physicsLoop.start();
-    ServerState ss = new ServerState(ws)..serverLoop.start();
-
     return end;
   }
 }
 
+
 void main() {
-  currentLevel = new Level1();
+  GameWorld.initWorld();
+  PhysicsState ps = new PhysicsState()..physicsLoop.start();
+  ServerState ss = new ServerState()..serverLoop.start();
   serve();
 }
-

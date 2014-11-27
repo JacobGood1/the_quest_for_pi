@@ -1,4 +1,4 @@
-part of entity;
+part of server_entity;
 
 
 

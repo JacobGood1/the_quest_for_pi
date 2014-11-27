@@ -1,13 +1,13 @@
-library component;
+library component_server;
 
 import 'dart:math';
-
-
-import 'package:the_quest_for_pi/components/shared_component.dart';
-import 'package:the_quest_for_pi/entities/shared_entity.dart';
 import '../entities/entity.dart';
-import '../server.dart';
+import '../globals.dart';
 
-part 'player_movement.dart';
+//physics
+part 'physics/collision_AABB.dart';
+part 'physics/movement.dart';
+part 'physics/player_movement.dart';
+
+//flying movements
 part 'erratic_fly.dart';
-

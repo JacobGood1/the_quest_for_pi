@@ -1,10 +1,10 @@
-part of component;
+part of component_server;
 
-abstract class PlayerMovement implements SharedEntity, Movement{
+abstract class PlayerMovement implements Entity, Movement{
   List<String> keysBeingPressed = [];
   String ID;
   _updatePlayerMovement (double dt) {
-    keysBeingPressed = clientInput[ID];
+    //keysBeingPressed = clientInput[ID];
     if(keysBeingPressed != null){
       if(isKeyBeingPressed('w')){
         moveUp();

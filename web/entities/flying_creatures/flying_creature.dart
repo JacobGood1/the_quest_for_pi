@@ -1,9 +1,11 @@
-part of entity;
+part of client_entity;
 
-//TODO fix drawing code stagexl fail drawing bs!
 
-abstract class FlyingCreature extends Entity with ErraticFly, Movement, Collision_AABB{
+abstract class FlyingCreature extends Entity with Movement, Collision_AABB{
   int hp;
-
-  FlyingCreature(String asset, double x, double y):super(asset, x, y);
+  FlyingCreature(String type, double x, double y):super(type,x, y){
+    componentInitFunctionList.addAll([initMovement, initCollisionAABB]);
+    initAllComponents();
+    componentUpdateFunctionList.addAll([updateMovement, updateCollisionAABB]);
+  }
 }

@@ -1,29 +1,13 @@
-library component;
+library component_client;
 
 import 'dart:math';
-import 'package:stagexl/stagexl.dart' show Shape, Color;
-import '../main.dart';
-import 'package:the_quest_for_pi/components/shared_component.dart';
 import '../entities/entity.dart';
+import '../../bin/globals.dart';
 
-part 'collider_AABB_debug.dart';
-part 'input_manager.dart';
+//physics
+part 'physics/collision_AABB.dart';
+part 'physics/movement.dart';
 part 'player_movement.dart';
+
+//flying
 part 'erratic_fly.dart';
-
-double _stageBoundX = canvas.width.toDouble(),
-       _stageBoundY = canvas.height.toDouble();
-
-//var ws = webSocket;
-
-abstract class ComponentData implements Entity{
-}
-
-/*
-abstract class PlayerComponentData implements ComponentData{
-       bool isKeyBeingPressed(String key);
-       bool areAnyOfTheseKeysActive(List<String> keys);
-       bool isAnyKeyDown();
-}
-
-*/

@@ -1,7 +1,7 @@
-part of client_entity;
+part of server_entity;
 
 abstract class Terrain extends Entity with Collision_AABB{
-  Terrain(String type, double x, double y):super(type,x,y){
+  Terrain(double x, double y):super(x,y){
     componentInitFunctionList.add(initCollisionAABB);
     initAllComponents();
     componentUpdateFunctionList.add(updateCollisionAABB);

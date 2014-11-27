@@ -1,13 +1,9 @@
-part of component;
+part of component_server;
 
-abstract class ErraticFly implements SharedEntity, Movement{
+abstract class ErraticFly implements Entity, Movement{
   Random _rng = new Random();
 
-  _updateErraticFly(time){
-    erratic_fly();
-  }
-
-  void erratic_fly() {
+  void updateErraticFly(num time) {
     int x = this._rng.nextInt(4);
     var movements = [moveLeft, moveRight, moveDown, moveUp];
     movements[x]();

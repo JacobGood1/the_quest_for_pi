@@ -1,4 +1,4 @@
-part of shared_component;
+part of component_server;
 
 abstract class Movement implements Collision_AABB{
   double lastPosition_x;
@@ -16,11 +16,7 @@ abstract class Movement implements Collision_AABB{
     velocity.y = movementSpeed;
   }
 
-  _initMovement(){
-    //
-  }
-
-  _updateMovement(num dt){
+  updateMovement(num dt){
     //store last position
     lastPosition_x = position.x;
     lastPosition_y = position.y;

@@ -1,8 +1,11 @@
-part of entity;
+part of server_entity;
 
 
-abstract class FlyingCreature extends Entity with ErraticFly, Movement{
+abstract class FlyingCreature extends Entity with ErraticFly, Movement, Collision_AABB{
   int hp;
-
-  FlyingCreature(String asset, double x, double y):super(asset, x, y);
+  FlyingCreature(double x, double y):super(x, y){
+    componentInitFunctionList.add(initCollisionAABB);
+    initAllComponents();
+    componentUpdateFunctionList.addAll([updateErraticFly, updateMovement, updateCollisionAABB]);
+  }
 }

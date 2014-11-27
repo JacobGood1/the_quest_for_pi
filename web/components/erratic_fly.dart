@@ -1,6 +1,6 @@
-part of component;
+part of component_client;
 
-abstract class ErraticFly implements ComponentData{
+abstract class ErraticFly implements Entity, Movement{
   Random _rng = new Random();
 
   _updateErraticFly(time){

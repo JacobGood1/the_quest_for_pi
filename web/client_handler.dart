@@ -1,13 +1,17 @@
 part of client;
 
+//var port = uri.port != 8080 ? 80 : 9090; //production
+var port = uri.port != 63342 ? 80 : 9090; //JACOB
+//var port = uri.port != 55125 ? 80 : 9090; //TRAVIS
+
+
 class ClientHandler{
   bool firstTime = true;
 
   onOpen(WebSocket ws){
     print("Connected");
     webSocket = ws;
-    websocketSend(webSocket, MessageTypes.NEW_PLAYER, '', ID);
-
+    webSocketSendToServer(webSocket,MessageTypes.NEW_CLIENT, '', ID);
   }
 
   onClose(WebSocket ws){
@@ -17,27 +21,25 @@ class ClientHandler{
   onError(WebSocket ws){
     print("Error");
   }
-
-  handleClient(Map message){
-    if(MessageTypes.isNEW_PLAYER(message)){
+  //CLIENT_HANDLE
+  handleClient(Map message) {
+    Map messageData = message['data'];
+    String messageType = message['type'];
+    if(MessageTypes.isNEW_CLIENT(message)){
       if(firstTime){
-        ID = MessageTypes.getData(message);
+        new GameWorld(messageData);
         firstTime = false;
       }
-      else{
-        entities.add(new Player(message[MessageTypes.CLIENT_ID],0.0 ,0.0));
-        print('another client connected');
+    }
+    if(MessageTypes.isSYNC_STATE(message)){
+      //TODO make this lerp instead of insta update
+      if(GameWorld.isGameWorldReady){
+        List otherGameWorldEntities = (messageData['entityManager'] as List).map((entity) => makeNewObjectFromJSON(entity)).toList();
+        GameWorld.clearEntities();
+
+        otherGameWorldEntities.forEach((entity) => GameWorld.addEntity(entity));
+
       }
     }
-    else if(MessageTypes.isSYNC_STATE(message)){
-
-    }
   }
-
-
-}
-
-
-Map websocketRead(MessageEvent msg){
-  return JSON.decode(msg.data);
 }

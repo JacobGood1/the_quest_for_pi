@@ -1,15 +1,15 @@
-part of shared_component;
+part of component_server;
 
-abstract class Collision_AABB implements SharedEntity{
+abstract class Collision_AABB implements BaseEntity{
   Rectangle collider = new Rectangle(0.0, 0.0, 0.0, 0.0);
   double direction_x = 0.0;
   double direction_y = 0.0;
   double lastPosition_x, lastPosition_y;
 
-  _initCollisionAABB(){
+  initCollisionAABB(){
     collider = new Rectangle(position.x, position.y, size, size);
   }
-  _updateCollisionAABB(time){
+  updateCollisionAABB(time){
     //print("$this $isColliding");
     this.collider = new Rectangle(position.x, position.y, size, size);
   }
@@ -81,7 +81,7 @@ abstract class Collision_AABB implements SharedEntity{
     });
     */
 
-    SharedEntity.entityManager.forEach((e){ //SharedEntity.entityManager.forEach
+    entityManager.forEach((e){ //SharedEntity.entityManager.forEach
       //print(this.distance2(e.collider));
       if (e != this) {
         //check x axis collision first
@@ -131,7 +131,7 @@ abstract class Collision_AABB implements SharedEntity{
 
 
 
-    SharedEntity.entityManager.forEach((e) {
+    entityManager.forEach((e) {
       //SharedEntity.entityManager.forEach
       //print(this.distance2(e.collider));
       if (e != this) {
