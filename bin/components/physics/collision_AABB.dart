@@ -1,6 +1,6 @@
 part of component_server;
 
-abstract class Collision_AABB implements BaseEntity{
+abstract class Collision_AABB implements Entity{
   Rectangle collider = new Rectangle(0.0, 0.0, 0.0, 0.0);
   double direction_x = 0.0;
   double direction_y = 0.0;
@@ -81,7 +81,7 @@ abstract class Collision_AABB implements BaseEntity{
     });
     */
 
-    entityManager.forEach((e){ //SharedEntity.entityManager.forEach
+    entityManager.forEach((e){ //SharedEntity.entityManager.forEach  //TODO Travis this code is only handling entities and not players
       //print(this.distance2(e.collider));
       if (e != this) {
         //check x axis collision first

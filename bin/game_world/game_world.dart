@@ -1,8 +1,7 @@
 library server_game_world;
 
 import '../entities/entity.dart';
-import '../globals.dart' as g;
-import 'dart:convert';  //TODO delete this test code when done
+import 'package:the_quest_for_pi/base_entity.dart';
 
 class GameWorld{
   static var entitySize = 64.0;

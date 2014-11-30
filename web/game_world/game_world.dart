@@ -3,11 +3,9 @@ library game_world_client;
 import '../entities/entity.dart';
 import 'dart:html';
 import 'package:stagexl/stagexl.dart';
-import 'dart:mirrors';
 import '../main.dart';
 import 'input_manager.dart';
-import '../../bin/globals.dart' as g;
-import 'dart:convert';  //TODO delete this test code when done
+import 'package:the_quest_for_pi/globals.dart' as g;
 
 
 CanvasElement canvas = (querySelector('#stage') as CanvasElement)

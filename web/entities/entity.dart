@@ -1,13 +1,10 @@
 library client_entity;
 
-import '../../bin/entities/entity.dart' as e show BaseEntity;
 import 'package:stagexl/stagexl.dart' show Sprite, Bitmap;
-import 'dart:mirrors';
 import '../components/component.dart';
-import '../../bin/globals.dart' as g;
-//import '../entities/entity.dart' as client;  //DELETE
+import 'package:the_quest_for_pi/base_entity.dart' as e show BaseEntity;
 import '../game_world/game_world.dart';
-
+import 'package:the_quest_for_pi/globals.dart' as g;
 //player
 part '../entities/player.dart';
 
@@ -33,4 +30,5 @@ abstract class Entity extends Sprite with e.BaseEntity{  //must be instantiated 
   void updatePositionsClient(){
     this..x = position.x ..y = position.y;
   }
+
 }

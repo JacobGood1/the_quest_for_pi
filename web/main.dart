@@ -2,9 +2,7 @@ library client;
 
 import 'dart:html';
 import 'dart:convert';
-import 'package:stagexl/stagexl.dart';
-import '../bin/globals.dart';
-import 'entities/entity.dart';
+import 'package:the_quest_for_pi/globals.dart';
 import 'game_world/game_world.dart';
 part 'client_handler.dart';
 

@@ -7,9 +7,8 @@ import 'entities/entity.dart';
 
 import 'package:vane/vane.dart';
 import 'package:game_loop/game_loop_isolate.dart';
-import 'globals.dart';
 import 'game_world/game_world.dart';
-
+import 'package:the_quest_for_pi/globals.dart';
 
 part 'server_handler.dart';
 

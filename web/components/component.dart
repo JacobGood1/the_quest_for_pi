@@ -2,7 +2,7 @@ library client_component;
 
 import 'dart:math';
 import '../entities/entity.dart';
-import '../../bin/globals.dart';
+import 'package:the_quest_for_pi/globals.dart';
 import 'package:stagexl/stagexl.dart';
 
 //physics
