@@ -2,9 +2,8 @@ part of component_server;
 
 abstract class PlayerMovement implements Entity, Movement{
   List<String> keysBeingPressed = [];
-  String ID;
-  _updatePlayerMovement (double dt) {
-    //keysBeingPressed = clientInput[ID];
+  updatePlayerMovement (double dt) {
+    print('werking ID $ID');
     if(keysBeingPressed != null){
       if(isKeyBeingPressed('w')){
         moveUp();
@@ -29,10 +28,6 @@ abstract class PlayerMovement implements Entity, Movement{
       return key == keysBeingPressed.last;
     }
     return false;
-  }
-
-  void currentKeys(List<String> keys){
-    keysBeingPressed = keys;
   }
 
 }

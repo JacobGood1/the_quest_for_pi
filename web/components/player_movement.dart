@@ -1,4 +1,4 @@
-part of component_client;
+part of client_component;
 
 abstract class PlayerMovement implements Entity, Movement{
   List<String> keysBeingPressed = [];

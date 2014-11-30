@@ -4,10 +4,10 @@ import '../entities/entity.dart';
 import 'dart:html';
 import 'package:stagexl/stagexl.dart';
 import 'dart:mirrors';
+import '../main.dart';
+import 'input_manager.dart';
 import '../../bin/globals.dart' as g;
 import 'dart:convert';  //TODO delete this test code when done
-
-
 
 
 CanvasElement canvas = (querySelector('#stage') as CanvasElement)
@@ -18,11 +18,10 @@ RenderLoop loop = new RenderLoop();
 GameLoop gameLoop = new GameLoop();
 
 class GameLoop extends Animatable{
-  bool pause = false;
   bool advanceTime(num time) {
-    if(!pause){
-      GameWorld.entityManager.forEach((Entity entity) => entity.updateAllComponents(time));
-    }
+    InputManager.updateInputProcessor(time);
+    clientHandler.outgoingMessage(g.MessageTypes.CLIENT_INPUT, InputManager.currentActiveKeys.toString());
+    GameWorld.entityManager.forEach((Entity entity) => entity.updateAllComponents(time));
     return true;
   }
 }
@@ -36,6 +35,7 @@ class GameWorld{
   static List<Entity> entityManager = [];
   
   GameWorld(Map messageFromServerData){
+    new InputManager(stage);
     List entities = messageFromServerData['entityManager'] as List;
     List<List> assets = messageFromServerData['assets'];
     assets.forEach((List asset) => resourceManager.addBitmapData(asset[0], asset[1]));
@@ -71,8 +71,6 @@ class GameWorld{
     stage.addChild(e);
   }
 
-
-  static set pause(bool isPause) => gameLoop.pause = isPause;
   Map toJson() {
     return {'playerEntities' : playerEntities.map((e) => e.toJson).toList(),
             'entityManager'  : GameWorld.entityManager.map((e) => e.toJson).toList()};
@@ -86,5 +84,7 @@ makeNewObjectFromJSON(Map entity){
     return new Bush(posX,posY);
   }else if(type == 'Bat'){
     return new Bat(posX, posY);
+  }else if(type == 'Player'){
+    return new Player(posX, posY);
   }
 }

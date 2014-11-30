@@ -9,10 +9,6 @@ import 'game_world/game_world.dart';
 part 'client_handler.dart';
 
 
-
-
-
-
 WebSocket webSocket;
 String ID = '';
 
@@ -38,7 +34,7 @@ class WebsocketSetup {
 
     // Collect messages from the stream
     ws.onMessage.listen((MessageEvent message) {
-      clientHandler.handleClient(JSON.decode(message.data));
+      clientHandler.incomingMessage(JSON.decode(message.data));
     });
   }
 }

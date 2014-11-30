@@ -22,24 +22,29 @@ class ClientHandler{
     print("Error");
   }
   //CLIENT_HANDLE
-  handleClient(Map message) {
+  incomingMessage(Map message) {
     Map messageData = message['data'];
     String messageType = message['type'];
     if(MessageTypes.isNEW_CLIENT(message)){
       if(firstTime){
         new GameWorld(messageData);
+        ID = messageData['NEW_PLAYER_ID'];
         firstTime = false;
       }
-    }
-    if(MessageTypes.isSYNC_STATE(message)){
+    } else if(MessageTypes.isSYNC_STATE(message)){
       //TODO make this lerp instead of insta update
       if(GameWorld.isGameWorldReady){
+        //get the server entities
         List otherGameWorldEntities = (messageData['entityManager'] as List).map((entity) => makeNewObjectFromJSON(entity)).toList();
+        //clear the entities from the client
         GameWorld.clearEntities();
-
+        //add the entities from the server
         otherGameWorldEntities.forEach((entity) => GameWorld.addEntity(entity));
-
       }
     }
+  }
+  outgoingMessage(String messageType, String data){  //id should be automatic
+
+    webSocketSendToServer(webSocket, messageType, data, ID);
   }
 }

@@ -1,4 +1,4 @@
-part of component_client;
+part of client_component;
 
 abstract class Movement implements Entity, Collision_AABB{
   double lastPosition_x;

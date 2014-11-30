@@ -1,4 +1,4 @@
-part of component_client;
+part of client_component;
 
 
 //TODO revise code to work with new system TRAVIS
