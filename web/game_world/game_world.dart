@@ -31,7 +31,7 @@ class GameWorld{
   static ResourceManager resourceManager = new ResourceManager();
   var entitySize = 64.0;
   var entityOffset = 32.0; //size / 2.0;
-  List playerEntities = [], assets = [];
+  static List playerEntities = [], assets = [];
   static List<Entity> entityManager = [];
   
   GameWorld(Map messageFromServerData){
@@ -51,6 +51,18 @@ class GameWorld{
 
   void updateEntities(num time){
     GameWorld.entityManager.forEach((entity) => entity.updateAllComponents(time));
+  }
+  static void removePlayer(String id){
+    for(var i = 0; i < GameWorld.playerEntities.length; i++){
+      Player player = GameWorld.playerEntities[i];
+      print(player.ID);
+      if(player.ID == id){
+        print('found');
+        GameWorld.playerEntities.remove(player);
+        stage.removeChild(player);
+        break;
+      }
+    }
   }
   static void clearEntities(){
     if(stage.numChildren != 0){

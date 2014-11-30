@@ -26,13 +26,14 @@ class ServerState{
 
 class ServerHandler{
   final RegExp keyCipher = new RegExp(r'[a-z]');
+  Map clients = {};
   //incoming messages are handled here!
   //SERVER_HANDLE
   handle(WebSocket ws, StreamSubscription conn, Map message){
     if(MessageTypes.isNEW_CLIENT(message)){ //new client so make a new player and give the map that players ID
       Player np = new Player(50.0,50.0);
-      GameWorld.addEntity(np);
       GameWorld.addPlayer(np);
+      clients[conn] = np.ID;   //get a pointer to the subscription so we can remove it when done
       webSocketSendToClient(pingClients,MessageTypes.NEW_CLIENT, {'NEW_PLAYER_ID': np.ID}..addAll(GameWorld.toJson()));
     } else if(MessageTypes.isCLIENT_INPUT(message)){
       String keysFromClient = MessageTypes.getData(message);
@@ -47,6 +48,11 @@ class ServerHandler{
   }
   //when connection closes go here!
   connectionDone(close, conn){
+    //remove the client from the server and tell all other client to also remove the client
+    var id = clients[conn];
+    GameWorld.removePlayer(id);
+    clients.remove(conn);
+    webSocketSendToClient(pingClients, MessageTypes.CLOSE_CONNECTION,{MessageTypes.CLIENT_ID : id});
     close();
   }
 }

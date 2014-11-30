@@ -4,7 +4,6 @@ import 'dart:io';
 import 'dart:async';
 import 'dart:convert';
 import 'entities/entity.dart';
-import 'dart:mirrors'; //TODO delete this test code when done
 
 import 'package:vane/vane.dart';
 import 'package:game_loop/game_loop_isolate.dart';

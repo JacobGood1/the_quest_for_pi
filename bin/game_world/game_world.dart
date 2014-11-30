@@ -1,7 +1,6 @@
 library server_game_world;
 
 import '../entities/entity.dart';
-import 'dart:mirrors'; //DELETE
 import '../globals.dart' as g;
 import 'dart:convert';  //TODO delete this test code when done
 
@@ -40,8 +39,6 @@ class GameWorld{
 
   static initWorld(){
     buildWorld();
-    //GameWorld.addEntity(new Bat(50.0,50.0));
-    //GameWorld.addEntity(new Player(50.0,50.0));  //DELETE
   }
 
 
@@ -75,6 +72,16 @@ class GameWorld{
   static void addPlayer(Entity e){
     GameWorld.playerEntities.add(e);
     stageAddChild(e);
+  }
+
+  static void removePlayer(String id){
+    for(var i = 0; i < GameWorld.playerEntities.length; i++){
+      Player player = GameWorld.playerEntities[i];
+      if(player.ID == id){
+        GameWorld.playerEntities.remove(player);
+        break;
+      }
+    }
   }
 
   static void addEntity(Entity e){

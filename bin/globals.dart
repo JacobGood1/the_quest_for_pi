@@ -39,7 +39,7 @@ class MessageTypes{
     return false;
   }
 
-  static isCLOSE_CONNECTION(Map message){
+  static isCLOSE_CONNECTION(Map message){  //DELETE may not need the close connection type!
     if(message['type'] == 'closeConnection'){
       return true;
     }

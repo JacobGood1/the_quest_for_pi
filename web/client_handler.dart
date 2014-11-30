@@ -35,16 +35,19 @@ class ClientHandler{
       //TODO make this lerp instead of insta update
       if(GameWorld.isGameWorldReady){
         //get the server entities
+        List otherGameWorldPlayerEntities = (messageData['playerEntities'] as List).map((entity) => makeNewObjectFromJSON(entity)).toList();
         List otherGameWorldEntities = (messageData['entityManager'] as List).map((entity) => makeNewObjectFromJSON(entity)).toList();
         //clear the entities from the client
         GameWorld.clearEntities();
         //add the entities from the server
         otherGameWorldEntities.forEach((entity) => GameWorld.addEntity(entity));
+        otherGameWorldPlayerEntities.forEach((entity) => GameWorld.addEntity(entity));
       }
+    } else if(MessageTypes.isCLOSE_CONNECTION(message)){
+      GameWorld.removePlayer(MessageTypes.getID(MessageTypes.getData(message)));
     }
   }
   outgoingMessage(String messageType, String data){  //id should be automatic
-
     webSocketSendToServer(webSocket, messageType, data, ID);
   }
 }

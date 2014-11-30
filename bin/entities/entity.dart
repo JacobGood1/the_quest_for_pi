@@ -73,8 +73,6 @@ abstract class BaseEntity{
   }
 }
 
-//TODO assets might be messed up so remember to check for errors
-
 abstract class Entity extends BaseEntity {
   Entity(double x, double y) {
     position = new Vector(x,y);
