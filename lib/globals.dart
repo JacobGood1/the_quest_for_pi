@@ -102,7 +102,9 @@ class Vector{
   Vector copy(){
     return new Vector(this.x, this.y);
   }
-
+  bool isZero(){
+    return (x == 0.0 && y == 0.0);
+  }
   void zero(){
     x = 0.0;
     y = 0.0;

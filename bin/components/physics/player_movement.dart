@@ -1,9 +1,13 @@
-part of component_server;
+part of server_component;
 
-abstract class PlayerMovement implements Entity, Movement{
-  List<String> keysBeingPressed = [];
+abstract class PlayerMovementData{
+  bool isAnyKeyDown();
+  bool isKeyBeingPressed(String x);
+}
+
+abstract class PlayerMovement implements Movement, PlayerMovementData{
   updatePlayerMovement (double dt) {
-    if(keysBeingPressed != null){
+    if(isAnyKeyDown()){
       if(isKeyBeingPressed('w')){
         moveUp();
       } else if(isKeyBeingPressed('a')){
@@ -15,15 +19,9 @@ abstract class PlayerMovement implements Entity, Movement{
       } else {
         velocity = new Vector(0.0, 0.0);
       }
+    } else {
+      velocity = new Vector(0.0, 0.0);
     }
   }
-
-  bool isKeyBeingPressed(String key){
-    if(!keysBeingPressed.isEmpty){
-      return key == keysBeingPressed.last;
-    }
-    return false;
-  }
-
 }
 

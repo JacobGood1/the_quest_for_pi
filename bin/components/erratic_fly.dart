@@ -1,4 +1,4 @@
-part of component_server;
+part of server_component;
 
 abstract class ErraticFly implements Entity, Movement{
   Random _rng = new Random();

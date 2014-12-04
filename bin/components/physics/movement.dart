@@ -1,4 +1,4 @@
-part of component_server;
+part of server_component;
 
 abstract class Movement implements Collision_AABB{
   double lastPosition_x;
@@ -17,6 +17,11 @@ abstract class Movement implements Collision_AABB{
   }
 
   updateMovement(num dt){
+    if(lastPosition_x != position.x || lastPosition_y != position.y){
+      hasChangedSinceLastInvocation = true;
+    } else{
+      hasChangedSinceLastInvocation = false;
+    }
     //store last position
     lastPosition_x = position.x;
     lastPosition_y = position.y;

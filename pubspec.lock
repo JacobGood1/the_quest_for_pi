@@ -100,7 +100,7 @@ packages:
   more:
     description: more
     source: hosted
-    version: "1.3.2"
+    version: "1.3.3"
   observe:
     description: observe
     source: hosted

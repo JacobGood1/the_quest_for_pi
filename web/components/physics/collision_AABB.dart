@@ -12,10 +12,20 @@ abstract class EntityData{
 }
 
 abstract class Collision_AABB implements EntityData{
+  Shape debugShape = new Shape();
+
   Rectangle collider = new Rectangle(0.0, 0.0, 0.0, 0.0);
   double direction_x = 0.0;
   double direction_y = 0.0;
   double lastPosition_x, lastPosition_y;
+
+  debugDrawCollider(){
+    //debugShape.graphics.clear();
+    debugShape.graphics.rect(collider.topLeft.x, collider.topLeft.y, collider.width, collider.height);
+    debugShape.graphics.strokeColor(Color.Red);
+    stage.addChild(debugShape);
+  }
+
 
   initCollisionAABB(){
     collider = new Rectangle(position.x, position.y, size, size);

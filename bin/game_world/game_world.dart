@@ -3,6 +3,9 @@ library server_game_world;
 import '../entities/entity.dart';
 import 'package:the_quest_for_pi/base_entity.dart';
 
+//this will find the exact date of a DateTime.now() string by parsing out all the numbers
+final RegExp dateTimeParse = new RegExp(r'([0-9]{4})\-([0-9]{2})\-([0-9]{2}) ([0-9]+)\:([0-9]+)\:([0-9]+)\.([0-9]*)');
+
 class GameWorld{
   static var entitySize = 64.0;
   static var entityOffset = 32.0; //size / 2.0;
@@ -91,7 +94,17 @@ class GameWorld{
   static void stageAddChild(e){}
 
   static Map toJson() {
-    return {'playerEntities' : playerEntities.map((Entity e) => e.toJson()).toList(),
+    var time = {};
+    var dateTimeParsed = dateTimeParse.firstMatch(new DateTime.now().toString());
+    time = {'year'   : dateTimeParsed.group(1),
+           'month'   : dateTimeParsed.group(2),
+             'day'   : dateTimeParsed.group(3),
+            'hour'   : dateTimeParsed.group(4),
+          'minute'   : dateTimeParsed.group(5),
+          'second'   : dateTimeParsed.group(6),
+        'millisecond': dateTimeParsed.group(7)};
+    return {'time' : time,
+            'playerEntities' : playerEntities.map((Entity e) => e.toJson()).toList(),
             'entityManager'  : GameWorld.entityManager.map((e) => e.toJson()).toList(),
             'assets': assets};
   }

@@ -1,5 +1,5 @@
 part of client_entity;
 
 class Bush extends Terrain {
-  Bush(double x, double y) : super('Bush',x,y);
+  Bush(String ID, double x, double y) : super('Bush', x, y, ID);
 }

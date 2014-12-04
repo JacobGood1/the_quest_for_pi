@@ -1,38 +1,24 @@
 part of client_component;
 
 abstract class PlayerMovement implements Entity, Movement{
-  List<String> keysBeingPressed = [];
-  String ID;
-  _updatePlayerMovement (double dt) {
-    //keysBeingPressed = clientInput[ID];
-    if(keysBeingPressed != null){
-      if(isKeyBeingPressed('w')){
+  updatePlayerMovement (double dt) {
+    if(InputManager.isAnyKeyDown() != null){
+      if(InputManager.isKeyBeingPressed('w')){
         moveUp();
       }
-      else if(isKeyBeingPressed('a')){
+      else if(InputManager.isKeyBeingPressed('a')){
         moveLeft();
       }
-      else if(isKeyBeingPressed('s')){
+      else if(InputManager.isKeyBeingPressed('s')){
           moveDown();
         }
-        else if(isKeyBeingPressed('d')){
+        else if(InputManager.isKeyBeingPressed('d')){
             moveRight();
           }
           else {
             velocity = new Vector(0.0, 0.0);
           }
     }
-  }
-
-  bool isKeyBeingPressed(String key){
-    if(!keysBeingPressed.isEmpty){
-      return key == keysBeingPressed.last;
-    }
-    return false;
-  }
-
-  void currentKeys(List<String> keys){
-    keysBeingPressed = keys;
   }
 
 }

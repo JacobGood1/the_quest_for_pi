@@ -1,4 +1,4 @@
-part of component_server;
+part of server_component;
 
 abstract class Collision_AABB implements Entity{
   Rectangle collider = new Rectangle(0.0, 0.0, 0.0, 0.0);

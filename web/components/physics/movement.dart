@@ -16,10 +16,6 @@ abstract class Movement implements Entity, Collision_AABB{
     velocity.y = movementSpeed;
   }
 
-  initMovement(){
-    //
-  }
-
   updateMovement(num dt){
     //store last position
     lastPosition_x = position.x;

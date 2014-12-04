@@ -16,13 +16,19 @@ RenderLoop loop = new RenderLoop();
 GameLoop gameLoop = new GameLoop();
 
 class GameLoop extends Animatable{
-  bool advanceTime(num time) {
+  bool advanceTime (num time) {
     InputManager.updateInputProcessor(time);
     clientHandler.outgoingMessage(g.MessageTypes.CLIENT_INPUT, InputManager.currentActiveKeys.toString());
+    for(Entity player in GameWorld.entityManager){
+      if(player.ID == ID){
+        player.updateAllComponents(time);
+      }
+    }
     GameWorld.entityManager.forEach((Entity entity) => entity.updateAllComponents(time));
     return true;
   }
 }
+
 
 class GameWorld{
   static bool isGameWorldReady = false;
@@ -37,6 +43,9 @@ class GameWorld{
     List entities = messageFromServerData['entityManager'] as List;
     List<List> assets = messageFromServerData['assets'];
     assets.forEach((List asset) => resourceManager.addBitmapData(asset[0], asset[1]));
+    resourceManager
+      ..addTextureAtlas('mageAnimation0', 'assets/animations/wizard0.json', TextureAtlasFormat.JSONARRAY)
+      ..addTextureAtlas('mageAnimation1', 'assets/animations/wizard1.json', TextureAtlasFormat.JSONARRAY);
     resourceManager.load().then((_) {
       isGameWorldReady = true;
       entities.forEach((Map entity) => GameWorld.addEntity(makeNewObjectFromJSON(entity)));
@@ -67,6 +76,7 @@ class GameWorld{
       stage.removeChildren(0,stage.numChildren - 1);
     }
     GameWorld.entityManager.clear();
+    GameWorld.playerEntities.clear();
   }
 
   void addEntities(List<Entity> e){
@@ -80,6 +90,10 @@ class GameWorld{
     GameWorld.entityManager.add(e);
     stage.addChild(e);
   }
+  static void addPlayerEntity(Entity e){
+    GameWorld.playerEntities.add(e);
+    stage.addChild(e);
+  }
 
   Map toJson() {
     return {'playerEntities' : playerEntities.map((e) => e.toJson).toList(),
@@ -87,14 +101,15 @@ class GameWorld{
   }
 }
 makeNewObjectFromJSON(Map entity){
-  String type = entity['type'];
+  String type = entity['type'],
+           id = entity['ID'];
   double posX = entity['positionX'],
          posY = entity['positionY'];
   if(type == 'Bush'){
-    return new Bush(posX,posY);
+    return new Bush(id, posX,posY);
   }else if(type == 'Bat'){
-    return new Bat(posX, posY);
+    return new Bat(id, posX, posY);
   }else if(type == 'Player'){
-    return new Player(posX, posY);
+    return new Player(id, posX, posY, entity['currentAnimationFrame'], entity['currentAnimationState']);
   }
 }

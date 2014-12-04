@@ -5,6 +5,7 @@ import 'package:the_quest_for_pi/globals.dart';
 import '../game_world/game_world.dart' show GameWorld;
 import '../components/component.dart';
 import 'package:uuid/uuid.dart';
+import '../game_world/input_manager.dart';
 
 //flying creatures
 part '../entities/flying_creatures/flying_creature.dart';

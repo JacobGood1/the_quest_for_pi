@@ -31,7 +31,7 @@ class ServerHandler{
   //SERVER_HANDLE
   handle(WebSocket ws, StreamSubscription conn, Map message){
     if(MessageTypes.isNEW_CLIENT(message)){ //new client so make a new player and give the map that players ID
-      Player np = new Player(50.0,50.0);
+      Player np = new Player(200.0,200.0);
       GameWorld.addPlayer(np);
       clients[conn] = np.ID;   //get a pointer to the subscription so we can remove it when done
       webSocketSendToClient(pingClients,MessageTypes.NEW_CLIENT, {'NEW_PLAYER_ID': np.ID}..addAll(GameWorld.toJson()));
@@ -41,7 +41,7 @@ class ServerHandler{
         if(MessageTypes.getID(message) == player.ID){
           List matches = keyCipher.allMatches(keysFromClient).toList(),
                currentKeys = new List.generate(matches.length,(i) => matches[i][0]);
-          player.keysBeingPressed = currentKeys;
+          player.currentActiveKeys = currentKeys;
         }
       }
     }

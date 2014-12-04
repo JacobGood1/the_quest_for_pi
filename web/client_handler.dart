@@ -7,6 +7,8 @@ var port = uri.port != 63342 ? 80 : 9090; //JACOB
 
 class ClientHandler{
   bool firstTime = true;
+  DateTime serverTime, serverLastTime = new DateTime(0,0,0,0,0,0,0);
+  Duration clientTime;
 
   onOpen(WebSocket ws){
     print("Connected");
@@ -32,16 +34,20 @@ class ClientHandler{
         firstTime = false;
       }
     } else if(MessageTypes.isSYNC_STATE(message)){
-      //TODO make this lerp instead of insta update
       if(GameWorld.isGameWorldReady){
+        serverTime = parseTime(messageData['time']);
+        clientTime = serverTime.difference(serverLastTime);
+
         //get the server entities
         List otherGameWorldPlayerEntities = (messageData['playerEntities'] as List).map((entity) => makeNewObjectFromJSON(entity)).toList();
         List otherGameWorldEntities = (messageData['entityManager'] as List).map((entity) => makeNewObjectFromJSON(entity)).toList();
+
         //clear the entities from the client
         GameWorld.clearEntities();
         //add the entities from the server
-        otherGameWorldEntities.forEach((entity) => GameWorld.addEntity(entity));
-        otherGameWorldPlayerEntities.forEach((entity) => GameWorld.addEntity(entity));
+        otherGameWorldEntities.forEach((entity) => GameWorld.addPlayerEntity(entity));
+        otherGameWorldPlayerEntities.forEach((entity) => GameWorld.addEntity(entity)); //TODO make this lerp instead of insta update
+        serverLastTime = serverTime;
       }
     } else if(MessageTypes.isCLOSE_CONNECTION(message)){
       GameWorld.removePlayer(MessageTypes.getID(MessageTypes.getData(message)));
@@ -49,5 +55,10 @@ class ClientHandler{
   }
   outgoingMessage(String messageType, String data){  //id should be automatic
     webSocketSendToServer(webSocket, messageType, data, ID);
+  }
+
+  DateTime parseTime(Map time){
+    time.forEach((k,v) => time[k] = int.parse(v));
+    return new DateTime(time['year'], time['month'], time['day'], time['hour'], time['minute'], time['second'], time['millisecond']);
   }
 }

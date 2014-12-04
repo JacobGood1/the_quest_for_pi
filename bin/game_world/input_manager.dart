@@ -1,18 +1,11 @@
-part of server_entity;
+library input_manager;
 
-class Player extends Entity with PlayerMovement, Movement, Collision_AABB, WizardAnimation{
+abstract class InputManager {
   String currentKey = '';
   List<String> currentActiveKeys = [];
   Map _keyDecipher = new Map.fromIterables(new List.generate(26, (int index) => index + 65), "abcdefghijklmnopqrstuvwxyz".split(""));
   Map<String,bool> keysPressed = {'d': false, 'w': false, 'a': false, 's': false};
 
-  Player(x, y):super(x,y) {
-    componentInitFunctionList.add(initCollisionAABB);
-    initAllComponents();
-    componentUpdateFunctionList.addAll([updateMovement, updatePlayerMovement,updateCollisionAABB, updateInputProcessor, updateWizardAnimation]);
-    movementSpeed = 100.0;
-    type = 'Player';
-  }
 
   updateInputProcessor(double dt){
     if(isAnyKeyDown()){
@@ -36,6 +29,7 @@ class Player extends Entity with PlayerMovement, Movement, Collision_AABB, Wizar
     return false;
   }
   bool isAnyKeyDown(){
-    return currentActiveKeys.isNotEmpty;
+    return !currentActiveKeys.isEmpty;
   }
 }
+
