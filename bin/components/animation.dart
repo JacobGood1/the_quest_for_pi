@@ -10,7 +10,6 @@ class AnimationStates {
   WALKING_E = 'walking_e',
   WALKING_W = 'walking_w';
 }
-//testing
 abstract class WizardAnimation implements InputManager, Entity{
   double _animationSwitchWizardAnimation = 0.0;
   updateWizardAnimation(num time){
