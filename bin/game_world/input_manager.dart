@@ -15,8 +15,13 @@ abstract class InputManager {
       currentKey = '';
     }
   }
-
   bool isKeyBeingPressed(String key){
+    if(currentActiveKeys.isNotEmpty){
+      return currentActiveKeys.contains(key);
+    }
+    return false;
+  }
+  bool isTheLastKeyHeld(String key){
     return currentKey == key;
   }
 
@@ -28,8 +33,9 @@ abstract class InputManager {
     }
     return false;
   }
+
   bool isAnyKeyDown(){
-    return !currentActiveKeys.isEmpty;
+    return currentActiveKeys.isNotEmpty;
   }
 }
 

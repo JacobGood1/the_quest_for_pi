@@ -34,4 +34,19 @@ abstract class Entity extends Sprite with e.BaseEntity{  //must be instantiated 
     this..x = position.x ..y = position.y;
   }
   get entityManager => GameWorld.entityManager;
+
+  void extractData(Map entity){
+    String type = entity['type'],
+    id = entity['ID'];
+    double posX = entity['positionX'],
+    posY = entity['positionY'];
+
+    this
+      ..ID = id
+      ..position.x = posX
+      ..position.y = posY
+      ..currentAnimationFrame = entity['currentAnimationFrame']
+      ..currentAnimationState = entity['currentAnimationState']
+      ..currentSoundState = entity['currentSoundState'];
+  }
 }

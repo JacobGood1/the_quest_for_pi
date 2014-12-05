@@ -32,22 +32,54 @@ class ClientHandler{
         new GameWorld(messageData);
         ID = messageData['NEW_PLAYER_ID'];
         firstTime = false;
+      }else{
+        var newPlayerID = messageData['NEW_PLAYER_ID'];
+        List serverPlayers = messageData['playerEntities'] as List;
+        for(Map player in serverPlayers){
+          if(player['ID'] == newPlayerID){
+            GameWorld.addPlayerEntity(makeNewObjectFromJSON(player));
+          }
+        }
       }
+
+
     } else if(MessageTypes.isSYNC_STATE(message)){
       if(GameWorld.isGameWorldReady){
-        serverTime = parseTime(messageData['time']);
+        List serverPlayers = messageData['playerEntities'] as List;
+        List serverEntities = messageData['entityManager'] as List;
+        double dt = messageData['dt'];
+
+        for(var i = 0; i < serverPlayers.length; i++){
+          var sp = serverPlayers[i], id = sp['ID'], isDead = sp['isDead'];
+
+          for(Player player in GameWorld.playerEntities){
+            if(player.ID == id){
+              if(isDead){
+                GameWorld.playerEntities.remove(player);  //TODO might not work alters a list while looping
+                break;
+              }
+              player.extractData(sp);
+              player.updateAllComponents(dt);
+
+              break;
+            }
+          }
+        }
+
+
+        /*serverTime = parseTime(messageData['time']);
         clientTime = serverTime.difference(serverLastTime);
 
         //get the server entities
         List otherGameWorldPlayerEntities = (messageData['playerEntities'] as List).map((entity) => makeNewObjectFromJSON(entity)).toList();
-        List otherGameWorldEntities = (messageData['entityManager'] as List).map((entity) => makeNewObjectFromJSON(entity)).toList();
+        List otherGameWorldEntities = (messageData['entityManager'] as List).map((entity) => makeNewObjectFromJSON(entity)).toList();*/
 
         //clear the entities from the client
-        GameWorld.clearEntities();
+        /*GameWorld.clearEntities();
         //add the entities from the server
         otherGameWorldEntities.forEach((entity) => GameWorld.addPlayerEntity(entity));
         otherGameWorldPlayerEntities.forEach((entity) => GameWorld.addEntity(entity)); //TODO make this lerp instead of insta update
-        serverLastTime = serverTime;
+        serverLastTime = serverTime;*/
       }
     } else if(MessageTypes.isCLOSE_CONNECTION(message)){
       GameWorld.removePlayer(MessageTypes.getID(MessageTypes.getData(message)));

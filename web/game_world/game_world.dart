@@ -17,14 +17,9 @@ GameLoop gameLoop = new GameLoop();
 
 class GameLoop extends Animatable{
   bool advanceTime (num time) {
-    InputManager.updateInputProcessor(time);
-    clientHandler.outgoingMessage(g.MessageTypes.CLIENT_INPUT, InputManager.currentActiveKeys.toString());
-    for(Entity player in GameWorld.entityManager){
-      if(player.ID == ID){
-        player.updateAllComponents(time);
-      }
+    if(GameWorld.isGameWorldReady) {
+      clientHandler.outgoingMessage(g.MessageTypes.CLIENT_INPUT, InputManager.currentActiveKeys.toString());
     }
-    GameWorld.entityManager.forEach((Entity entity) => entity.updateAllComponents(time));
     return true;
   }
 }
@@ -37,21 +32,27 @@ class GameWorld{
   var entityOffset = 32.0; //size / 2.0;
   static List playerEntities = [], assets = [];
   static List<Entity> entityManager = [];
-  
+  static List<Map> serverEntities = [], serverPlayers = [];
   GameWorld(Map messageFromServerData){
     new InputManager(stage);
+
     List entities = messageFromServerData['entityManager'] as List;
+    List players = messageFromServerData['playerEntities'] as List;
+
     List<List> assets = messageFromServerData['assets'];
     assets.forEach((List asset) => resourceManager.addBitmapData(asset[0], asset[1]));
     resourceManager
       ..addTextureAtlas('mageAnimation0', 'assets/animations/wizard0.json', TextureAtlasFormat.JSONARRAY)
-      ..addTextureAtlas('mageAnimation1', 'assets/animations/wizard1.json', TextureAtlasFormat.JSONARRAY);
+      ..addTextureAtlas('mageAnimation1', 'assets/animations/wizard1.json', TextureAtlasFormat.JSONARRAY)
+      ..addTextureAtlas('goblin', 'assets/animations/gobby.json', TextureAtlasFormat.JSONARRAY)
+      ..addSound('footstep', 'assets/sounds/footstep.wav');
     resourceManager.load().then((_) {
-      isGameWorldReady = true;
       entities.forEach((Map entity) => GameWorld.addEntity(makeNewObjectFromJSON(entity)));
+      players.forEach((Map entity) {GameWorld.addPlayerEntity(makeNewObjectFromJSON(entity));});
       stage.focus=stage;
       loop.addStage(stage);
       stage.juggler.add(gameLoop);
+      isGameWorldReady = true;
     });
   }
 
@@ -62,9 +63,7 @@ class GameWorld{
   static void removePlayer(String id){
     for(var i = 0; i < GameWorld.playerEntities.length; i++){
       Player player = GameWorld.playerEntities[i];
-      print(player.ID);
       if(player.ID == id){
-        print('found');
         GameWorld.playerEntities.remove(player);
         stage.removeChild(player);
         break;
@@ -94,7 +93,7 @@ class GameWorld{
     GameWorld.playerEntities.add(e);
     stage.addChild(e);
   }
-
+  static get getStage => stage;
   Map toJson() {
     return {'playerEntities' : playerEntities.map((e) => e.toJson).toList(),
             'entityManager'  : GameWorld.entityManager.map((e) => e.toJson).toList()};
@@ -110,6 +109,12 @@ makeNewObjectFromJSON(Map entity){
   }else if(type == 'Bat'){
     return new Bat(id, posX, posY);
   }else if(type == 'Player'){
-    return new Player(id, posX, posY, entity['currentAnimationFrame'], entity['currentAnimationState']);
+    return new Player(
+        id,
+        posX,
+        posY,
+        entity['currentAnimationFrame'],
+        entity['currentAnimationState'],
+        entity['currentSoundState']);
   }
 }

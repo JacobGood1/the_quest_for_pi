@@ -98,6 +98,7 @@ class Vector{
   operator -(Vector other) => new Vector(x - other.x, y - other.y);
   operator *(num scalar) => new Vector(x * scalar, y * scalar);
   operator /(Vector other) => new Vector(x / other.x, y / other.y);
+  operator ==(Vector other) => this.x == other.x && this.y == other.y;
 
   Vector copy(){
     return new Vector(this.x, this.y);

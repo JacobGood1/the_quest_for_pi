@@ -16,3 +16,6 @@ part 'erratic_fly.dart';
 
 //animation
 part 'animation.dart';
+
+//sounds
+part 'sound.dart';

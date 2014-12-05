@@ -12,16 +12,23 @@ class AnimationStates {
 }
 abstract class WizardAnimation implements InputManager, Entity{
   double _animationSwitchWizardAnimation = 0.0;
+  Vector _lastWizardAnimationPosition;
+  initWizardAnimation(){
+   _lastWizardAnimationPosition = position.copy();
+  }
+
   updateWizardAnimation(num time){
-    if(!isAnyKeyDown()){
+    if(position == _lastWizardAnimationPosition){
       currentAnimationState = AnimationStates.IDLE_S;
-    } else if(isKeyBeingPressed('s')){
+      _animationSwitchWizardAnimation = 0.0;
+      currentAnimationFrame = 0;
+    } else if(position.y > _lastWizardAnimationPosition.y){
       currentAnimationState = AnimationStates.WALKING_S;
-    } else if(isKeyBeingPressed('w')){
+    } else if(position.y < _lastWizardAnimationPosition.y){
       currentAnimationState = AnimationStates.WALKING_N;
-    } else if(isKeyBeingPressed('a')){
+    } else if(position.x < _lastWizardAnimationPosition.x){
       currentAnimationState = AnimationStates.WALKING_W;
-    }else if(isKeyBeingPressed('d')){
+    }else if(position.x > _lastWizardAnimationPosition.x){
       currentAnimationState = AnimationStates.WALKING_E;
     }
 
@@ -33,5 +40,6 @@ abstract class WizardAnimation implements InputManager, Entity{
         currentAnimationFrame = 0;
       }
     }
+    _lastWizardAnimationPosition = position.copy();
   }
 }

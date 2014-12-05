@@ -15,15 +15,14 @@ abstract class BaseEntity{
   double movementSpeed,
   size = 64.0;
 
-  bool isColliding = false, _hasBeenInvoked = false, hasChangedSinceLastInvocation = false, hasDied = false;
+  bool isColliding = false, _hasBeenInvoked = false, hasChangedSinceLastInvocation = false, isDead = false;
   Set collidingWith = new Set();
 
   Vector velocity = new Vector(0.0,0.0),
   position;
 
   int currentAnimationFrame = 0;
-
-  String ID, type, currentAnimationState = '';
+  String ID, type, currentAnimationState = '', currentSoundState = '';
   void initAllComponents(){
     for(var i = 0; i < componentInitFunctionList.length; i++){
       componentInitFunctionList[i]();
@@ -50,7 +49,9 @@ abstract class BaseEntity{
         'positionY': this.position.y,
         'type': this.type,
         'currentAnimationState': this.currentAnimationState,
-        'currentAnimationFrame': this.currentAnimationFrame
+        'currentAnimationFrame': this.currentAnimationFrame,
+        'currentSoundState': this.currentSoundState,
+        'isDead': this.isDead
     };
   }
 }

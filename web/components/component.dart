@@ -5,8 +5,8 @@ import '../entities/entity.dart';
 import 'package:the_quest_for_pi/globals.dart';
 import '../game_world/input_manager.dart';
 import '../game_world/game_world.dart'show GameWorld, stage;
-import 'package:stagexl/stagexl.dart' show Bitmap, BitmapData,
-TextureAtlas, Sprite, TransitionFunction, FlipBook, Shape, Color;
+import 'package:stagexl/stagexl.dart';
+import 'dart:async';
 
 //physics
 part 'physics/collision_AABB.dart';
@@ -18,3 +18,6 @@ part 'erratic_fly.dart';
 
 //animation
 part 'animation.dart';
+
+//sound
+part 'sound.dart';

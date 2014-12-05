@@ -6,23 +6,26 @@ class PhysicsState{
     physicsLoop.onUpdate = ((physicsLoop) {
       GameWorld.playerEntities.forEach((Player player) => player.updateAllComponents(physicsLoop.dt));
       GameWorld.entityManager.forEach((Entity entity) => entity.updateAllComponents(physicsLoop.dt));
+      webSocketSendToClient(pingClients, MessageTypes.SYNC_STATE, {'dt': physicsLoop.dt}..addAll(GameWorld.toJson()));
     });
   }
 }
-class ServerState{
+
+/*class ServerState{
   double SERVERTICK = 0.045,
   reset = 0.0;
   GameLoopIsolate serverLoop = new GameLoopIsolate();
   ServerState(){
     serverLoop.onUpdate = ((serverLoop) {
+
       reset += serverLoop.dt;
       if(reset >= SERVERTICK){
         reset = 0.0;
-        webSocketSendToClient(pingClients, MessageTypes.SYNC_STATE, GameWorld.toJson());
+        //webSocketSendToClient(pingClients, MessageTypes.SYNC_STATE, GameWorld.toJson());
       }
     });
   }
-}
+}*/
 
 class ServerHandler{
   final RegExp keyCipher = new RegExp(r'[a-z]');

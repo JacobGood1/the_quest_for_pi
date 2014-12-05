@@ -4,6 +4,7 @@ import 'dart:html';
 import 'dart:convert';
 import 'package:the_quest_for_pi/globals.dart';
 import 'game_world/game_world.dart';
+import 'entities/entity.dart';
 part 'client_handler.dart';
 
 

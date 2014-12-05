@@ -1,13 +1,14 @@
 part of client_entity;
 
-class Player extends Entity with PlayerMovement, Movement, Collision_AABB, WizardAnimation{
-  Player(String ID, x, y, int animeFrame, String animeState):super('Player',x,y, ID){
+class Player extends Entity with PlayerMovement, Movement, Collision_AABB, WizardAnimation, FootStep{
+  Player(String ID, x, y, int animeFrame, String animeState, String soundState):super('Player',x,y, ID){
     componentInitFunctionList.addAll([initWizardAnimation]);
     initAllComponents();
-    componentUpdateFunctionList.addAll([updateWizard]);
+    componentUpdateFunctionList.addAll([updateWizard, updateFootStep]);
     movementSpeed = 100.0;
     type = 'Player';
     currentAnimationFrame = animeFrame;
     currentAnimationState = animeState;
+    currentSoundState = soundState;
   }
 }
