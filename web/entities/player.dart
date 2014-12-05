@@ -6,7 +6,6 @@ class Player extends Entity with PlayerMovement, Movement, Collision_AABB, Wizar
     initAllComponents();
     componentUpdateFunctionList.addAll([updateWizard, updateFootStep]);
     movementSpeed = 100.0;
-    type = 'Player';
     currentAnimationFrame = animeFrame;
     currentAnimationState = animeState;
     currentSoundState = soundState;

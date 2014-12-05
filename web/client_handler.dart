@@ -65,6 +65,22 @@ class ClientHandler{
             }
           }
         }
+        for(var i = 0; i < serverEntities.length; i++){
+          var sp = serverEntities[i], id = sp['ID'], isDead = sp['isDead'];
+
+          for(Entity entity in GameWorld.entityManager){
+            if(entity.ID == id){
+              if(isDead){
+                GameWorld.entityManager.remove(entity);  //TODO might not work alters a list while looping
+                break;
+              }
+              entity.extractData(sp);
+              entity.updateAllComponents(dt);
+
+              break;
+            }
+          }
+        }
 
 
         /*serverTime = parseTime(messageData['time']);

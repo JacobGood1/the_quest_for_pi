@@ -13,7 +13,7 @@ import 'package:the_quest_for_pi/globals.dart';
 part 'server_handler.dart';
 
 PhysicsState ps;
-ServerState ss;
+//ServerState ss;
 
 StreamController pingClients = new StreamController.broadcast();
 

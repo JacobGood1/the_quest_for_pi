@@ -17,6 +17,9 @@ part 'terrain/bush.dart';
 part 'flying_creatures/flying_creature.dart';
 part 'flying_creatures/bat.dart';
 
+//goblin
+part 'goblins/goblin.dart';
+
 abstract class Entity extends Sprite with e.BaseEntity{  //must be instantiated after the resource manager is done loading!
   Bitmap idleStillPic;
   Entity(String type, double posX, double posY, String ID){

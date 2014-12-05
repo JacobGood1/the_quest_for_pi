@@ -94,6 +94,7 @@ class Vector{
     }
   }
 
+
   operator +(Vector other) => new Vector(x + other.x, y + other.y);
   operator -(Vector other) => new Vector(x - other.x, y - other.y);
   operator *(num scalar) => new Vector(x * scalar, y * scalar);
@@ -112,6 +113,15 @@ class Vector{
   }
   Vector negate(){
     return new Vector(x * -1, y * -1);
+  }
+
+  Vector normalize(){
+    double mag = magnitude();
+    return new Vector(x / mag, y / mag);
+  }
+
+  double magnitude(){
+    return sqrt(x * x + y * y);
   }
 
   toString(){

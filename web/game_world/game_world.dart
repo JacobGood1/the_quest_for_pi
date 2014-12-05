@@ -32,7 +32,6 @@ class GameWorld{
   var entityOffset = 32.0; //size / 2.0;
   static List playerEntities = [], assets = [];
   static List<Entity> entityManager = [];
-  static List<Map> serverEntities = [], serverPlayers = [];
   GameWorld(Map messageFromServerData){
     new InputManager(stage);
 
@@ -110,6 +109,14 @@ makeNewObjectFromJSON(Map entity){
     return new Bat(id, posX, posY);
   }else if(type == 'Player'){
     return new Player(
+        id,
+        posX,
+        posY,
+        entity['currentAnimationFrame'],
+        entity['currentAnimationState'],
+        entity['currentSoundState']);
+  }else if(type == 'Goblin'){
+    return new Goblin(
         id,
         posX,
         posY,

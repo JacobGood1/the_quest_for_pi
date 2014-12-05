@@ -3,7 +3,7 @@ library server_component;
 import 'dart:math';
 import '../entities/entity.dart';
 import 'package:the_quest_for_pi/globals.dart';
-import 'package:the_quest_for_pi/base_entity.dart';
+import '../game_world/game_world.dart' show GameWorld;
 import '../game_world/input_manager.dart';
 
 //physics
@@ -19,3 +19,6 @@ part 'animation.dart';
 
 //sounds
 part 'sound.dart';
+
+//AI
+part 'AI/sit_still_run_to_player_if_close.dart';

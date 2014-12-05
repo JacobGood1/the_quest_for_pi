@@ -18,6 +18,8 @@ part 'player.dart';
 part 'terrain/terrain.dart';
 part 'terrain/bush.dart';
 
+//goblins
+part 'humanoids/goblins/goblin.dart';
 
 Uuid uuid = new Uuid();
 

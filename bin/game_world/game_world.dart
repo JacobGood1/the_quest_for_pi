@@ -2,9 +2,11 @@ library server_game_world;
 
 import '../entities/entity.dart';
 import 'package:the_quest_for_pi/base_entity.dart';
+import 'dart:math';
 
 //this will find the exact date of a DateTime.now() string by parsing out all the numbers
 final RegExp dateTimeParse = new RegExp(r'([0-9]{4})\-([0-9]{2})\-([0-9]{2}) ([0-9]+)\:([0-9]+)\:([0-9]+)\.([0-9]*)');
+final Random rng = new Random();
 
 class GameWorld{
   static var entitySize = 64.0;
@@ -13,10 +15,11 @@ class GameWorld{
 
   static List<BaseEntity> entityManager = [];
 
-  static List<List> assets = //add new assets here!
+  static List<List<String>> assets = //add new assets here!
   //class   //assetName
   [['Bush','bush'],  //TODO possibly make objects add their own asset?
    ['Bat','bat'],
+   ['Goblin', 'goblin'],
    ['Player', 'black_mage']]
     .map((list) => [list[0],'assets/images/${list[1]}.png']).toList();
 
@@ -41,8 +44,17 @@ class GameWorld{
 
   static initWorld(){
     buildWorld();
+    generateEnemies(3);
   }
 
+  static generateEnemies(num numberOfEnemies){
+    var x,y, offset = 200;
+    for(var i = 0; i < numberOfEnemies; i++){
+      x = rng.nextInt(600);
+      y = rng.nextInt(600);
+      entityManager.add(new Goblin(x + offset.toDouble(),y + offset.toDouble()));
+    }
+  }
 
   void updateEntities(num time){
     GameWorld.entityManager.forEach((BaseEntity entity) => entity.updateAllComponents(time));
