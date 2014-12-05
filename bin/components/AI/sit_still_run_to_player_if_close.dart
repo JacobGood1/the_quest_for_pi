@@ -15,7 +15,7 @@ abstract class SitStillRunToPlayerIfClose implements Movement, Entity{
         }
       }
     });
-
+    //push
     moveToward(closestPlayer);
 
 
