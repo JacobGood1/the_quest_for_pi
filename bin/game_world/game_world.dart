@@ -2,7 +2,10 @@ library server_game_world;
 
 import '../entities/entity.dart';
 import 'package:the_quest_for_pi/base_entity.dart';
+import 'package:the_quest_for_pi/globals.dart' show canvasHeight,canvasWidth, Vector;
 import 'dart:math';
+
+part 'combat_world.dart';
 
 //this will find the exact date of a DateTime.now() string by parsing out all the numbers
 final RegExp dateTimeParse = new RegExp(r'([0-9]{4})\-([0-9]{2})\-([0-9]{2}) ([0-9]+)\:([0-9]+)\:([0-9]+)\.([0-9]*)');
@@ -11,9 +14,11 @@ final Random rng = new Random();
 class GameWorld{
   static var entitySize = 64.0;
   static var entityOffset = 32.0; //size / 2.0;
-  static List playerEntities = [];
+  static List<Player> playerEntities = [];  //contains the player and the current world they are in!
+  static List<Entity> entities = [];
 
-  static List<BaseEntity> entityManager = [];
+
+
 
   static List<List<String>> assets = //add new assets here!
   //class   //assetName
@@ -52,12 +57,12 @@ class GameWorld{
     for(var i = 0; i < numberOfEnemies; i++){
       x = rng.nextInt(600);
       y = rng.nextInt(600);
-      entityManager.add(new Goblin(x + offset.toDouble(),y + offset.toDouble()));
+      entities.add(new Goblin(x + offset.toDouble(),y + offset.toDouble()));
     }
   }
 
   void updateEntities(num time){
-    GameWorld.entityManager.forEach((BaseEntity entity) => entity.updateAllComponents(time));
+    GameWorld.entities.forEach((BaseEntity entity) => entity.updateAllComponents(time));
   }
 
   static void buildWorld(){
@@ -78,7 +83,7 @@ class GameWorld{
 
   static void addEntities(List<Entity> e){
     e.forEach((Entity e){
-      GameWorld.entityManager.add(e);
+      GameWorld.entities.add(e);
       stageAddChild(e);
     });
   }
@@ -99,7 +104,7 @@ class GameWorld{
   }
 
   static void addEntity(Entity e){
-    GameWorld.entityManager.add(e);
+    GameWorld.entities.add(e);
     stageAddChild(e);
   }
 
@@ -117,7 +122,7 @@ class GameWorld{
         'millisecond': dateTimeParsed.group(7)};
     return {'time' : time,
             'playerEntities' : playerEntities.map((Entity e) => e.toJson()).toList(),
-            'entityManager'  : GameWorld.entityManager.map((e) => e.toJson()).toList(),
+            'entityManager'  : GameWorld.entities.map((e) => e.toJson()).toList(),
             'assets': assets};
   }
 }

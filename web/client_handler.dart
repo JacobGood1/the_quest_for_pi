@@ -49,7 +49,7 @@ class ClientHandler{
         List serverEntities = messageData['entityManager'] as List;
         double dt = messageData['dt'];
 
-        for(var i = 0; i < serverPlayers.length; i++){
+        /*for(var i = 0; i < serverPlayers.length; i++){
           var sp = serverPlayers[i], id = sp['ID'], isDead = sp['isDead'];
 
           for(Player player in GameWorld.playerEntities){
@@ -59,14 +59,20 @@ class ClientHandler{
                 break;
               }
               player.extractData(sp);
-              player.updateAllComponents(dt);
-
+              //this will mutate the clients to reflect the server objects
+              if(player.inCombat){
+                player.updateAllCombatModeComponents(dt);
+              } else{
+                player.updateAllComponents(dt);
+              }
               break;
             }
           }
-        }
-        for(var i = 0; i < serverEntities.length; i++){
-          var sp = serverEntities[i], id = sp['ID'], isDead = sp['isDead'];
+        }*/
+        updateEntities(serverPlayers,GameWorld.playerEntities,dt);
+        updateEntities(serverEntities,GameWorld.entityManager,dt);
+        /*for(var i = 0; i < serverEntities.length; i++){  //TODO make some kind of death animation or game over type of thing!
+          var se = serverEntities[i], id = se['ID'], isDead = se['isDead'];
 
           for(Entity entity in GameWorld.entityManager){
             if(entity.ID == id){
@@ -74,13 +80,13 @@ class ClientHandler{
                 GameWorld.entityManager.remove(entity);  //TODO might not work alters a list while looping
                 break;
               }
-              entity.extractData(sp);
+              entity.extractData(se);
               entity.updateAllComponents(dt);
 
               break;
             }
           }
-        }
+        }*/
 
 
         /*serverTime = parseTime(messageData['time']);
@@ -105,6 +111,27 @@ class ClientHandler{
     webSocketSendToServer(webSocket, messageType, data, ID);
   }
 
+  void updateEntities(List serverEntities, List clientEntities, dt){
+    for(var i = 0; i < serverEntities.length; i++){
+      var se = serverEntities[i], id = se['ID'], isDead = se['isDead'];
+      for(Entity entity in clientEntities){
+        if(entity.ID == id){
+          if(isDead){
+            clientEntities.remove(entity);  //TODO might not work alters a list while looping
+            break;
+          }
+          entity.extractData(se);
+          //this will mutate the clients to reflect the server objects
+          if(entity.inCombat){
+            entity.updateAllCombatModeComponents(dt);
+          } else{
+            entity.updateAllComponents(dt);
+          }
+          break;
+        }
+      }
+    }
+  }
   DateTime parseTime(Map time){
     time.forEach((k,v) => time[k] = int.parse(v));
     return new DateTime(time['year'], time['month'], time['day'], time['hour'], time['minute'], time['second'], time['millisecond']);

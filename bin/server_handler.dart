@@ -2,30 +2,27 @@ part of server;
 
 class PhysicsState{
   GameLoopIsolate physicsLoop = new GameLoopIsolate();
-  PhysicsState(){
+  PhysicsState(){  //send only one message entity!
     physicsLoop.onUpdate = ((physicsLoop) {
-      GameWorld.playerEntities.forEach((Player player) => player.updateAllComponents(physicsLoop.dt));
-      GameWorld.entityManager.forEach((Entity entity) => entity.updateAllComponents(physicsLoop.dt));
-      webSocketSendToClient(pingClients, MessageTypes.SYNC_STATE, {'dt': physicsLoop.dt}..addAll(GameWorld.toJson()));
+      GameWorld.playerEntities.forEach((Player player) {
+        if(player.inCombat){
+          player.updateAllCombatModeComponents(physicsLoop.dt);
+        } else{
+          player.updateAllComponents(physicsLoop.dt);
+        }
+      });
+      GameWorld.entities.forEach((Entity entity) {
+        if(entity.inCombat){
+          entity.updateAllCombatModeComponents(physicsLoop.dt);
+        } else{
+          entity.updateAllComponents(physicsLoop.dt);
+        }
+      });
+      print(GameWorld.entities);
+      webSocketSendToClient(pingClients, MessageTypes.SYNC_STATE, GameWorld.toJson()..addAll({'dt': physicsLoop.dt}));
     });
   }
 }
-
-/*class ServerState{
-  double SERVERTICK = 0.045,
-  reset = 0.0;
-  GameLoopIsolate serverLoop = new GameLoopIsolate();
-  ServerState(){
-    serverLoop.onUpdate = ((serverLoop) {
-
-      reset += serverLoop.dt;
-      if(reset >= SERVERTICK){
-        reset = 0.0;
-        //webSocketSendToClient(pingClients, MessageTypes.SYNC_STATE, GameWorld.toJson());
-      }
-    });
-  }
-}*/
 
 class ServerHandler{
   final RegExp keyCipher = new RegExp(r'[a-z]');

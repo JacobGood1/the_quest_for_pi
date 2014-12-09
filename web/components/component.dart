@@ -21,3 +21,7 @@ part 'animation.dart';
 
 //sound
 part 'sound.dart';
+
+//combat
+part 'combat/combat.dart';
+part 'combat/health_bar.dart';

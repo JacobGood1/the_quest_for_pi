@@ -28,7 +28,30 @@ abstract class Entity extends BaseEntity {
     position = new Vector(x,y);
     ID = uuid.v4();
   }
-  get entityManager => GameWorld.entityManager;
+  get entityManager => GameWorld.entities;
+
+  void addToJson(List<List> attributes){ //place a tuple with a String and a
+    attributes.forEach((a) => additionalJSONInformation.addAll(a));
+  }
+
+  Map toJson(){  //TODO check to see if this works later on, might be buggy
+    var additionToReturn = additionalJSONInformation.map((List vals) => {vals[0]: vals[1]()}).toList();
+    var toReturn =
+    {
+        'ID': this.ID,
+        'positionX': this.position.x,
+        'positionY': this.position.y,
+        'type': this.type,
+        'currentAnimationState': this.currentAnimationState,
+        'currentAnimationFrame': this.currentAnimationFrame,
+        'currentSoundState': this.currentSoundState,
+        'isDead': this.isDead,
+        'inCombat': this.inCombat
+    };
+
+    additionToReturn.forEach((Map map) => toReturn.addAll(map));
+    return toReturn;
+  }
 }
 
 

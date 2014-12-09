@@ -6,6 +6,7 @@ int canvasWidth = 1000, canvasHeight = 1000;
 
 
 class MessageTypes{
+  static String PLAYER_ENTERED_INSTANCE = 'player_entered_instance';
   static String NEW_CLIENT = 'newClient';
   static String CLIENT_ID = 'clientID';
   static String NEW_PLAYER = 'newPlayer';
@@ -24,6 +25,13 @@ class MessageTypes{
   }
 
   static bool isCLIENT_ID(Map message){
+    if(message['type'] == 'player_entered_instance'){
+      return true;
+    }
+    return false;
+  }
+
+  static bool isPLAYER_ENTERED_INSTANCE(Map message){
     if(message['type'] == 'clientID'){
       return true;
     }

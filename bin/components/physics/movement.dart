@@ -18,6 +18,12 @@ abstract class Movement implements Collision_AABB{
   void moveToward(Entity other){
     velocity = (other.position - this.position).normalize() * movementSpeed;
   }
+  void moveAway(Entity other){
+    velocity = (other.position - this.position).normalize() * -movementSpeed;
+  }
+  void stopMoving(){
+    velocity = new Vector(0.0,0.0);
+  }
 
   updateMovement(num dt){
     if(lastPosition_x != position.x || lastPosition_y != position.y){

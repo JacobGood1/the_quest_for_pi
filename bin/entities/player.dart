@@ -1,16 +1,16 @@
 part of server_entity;
 
-class Player extends Entity with PlayerMovement, Movement, Collision_AABB, WizardAnimation, FootStep{
+class Player extends Entity with PlayerMovement, Movement, Collision_AABB, WalkingAnimation, FootStep, HealthBar, Combat{
   String currentKey = '';
   List<String> currentActiveKeys = [];
   Map _keyDecipher = new Map.fromIterables(new List.generate(26, (int index) => index + 65), "abcdefghijklmnopqrstuvwxyz".split(""));
   Map<String,bool> keysPressed = {'d': false, 'w': false, 'a': false, 's': false};
 
   Player(x, y):super(x,y) {
-    componentInitFunctionList.addAll([initCollisionAABB, initWizardAnimation]);
+    componentInitFunctionList.addAll([initCollisionAABB, initWalkingAnimation]);
     initAllComponents();
-    componentUpdateFunctionList.addAll([updateMovement, updatePlayerMovement,updateCollisionAABB, updateInputProcessor, updateWizardAnimation, updateFootStep]);
-    movementSpeed = 100.0;
+    componentUpdateFunctionList.addAll([updateMovement, updatePlayerMovement,updateCollisionAABB, updateInputProcessor, updateWalkingAnimation, updateFootStep]);
+    movementSpeed = 300.0;
     type = 'Player';
   }
 
