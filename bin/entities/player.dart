@@ -7,7 +7,7 @@ class Player extends Entity with PlayerMovement, Movement, Collision_AABB, Walki
   Map<String,bool> keysPressed = {'d': false, 'w': false, 'a': false, 's': false};
 
   Player(x, y):super(x,y) {
-    componentInitFunctionList.addAll([initCollisionAABB, initWalkingAnimation]);
+    componentInitFunctionList.addAll([initCollisionAABB, initWalkingAnimation, initCombat]);
     initAllComponents();
     componentUpdateFunctionList.addAll([updateMovement, updatePlayerMovement,updateCollisionAABB, updateInputProcessor, updateWalkingAnimation, updateFootStep]);
     movementSpeed = 300.0;

@@ -2,7 +2,7 @@ library server_entity;
 
 import 'package:the_quest_for_pi/base_entity.dart';
 import 'package:the_quest_for_pi/globals.dart';
-import '../game_world/game_world.dart' show GameWorld;
+import '../game_world/game_world.dart' show GameWorld, CombatGameWorld;
 import '../components/component.dart';
 import 'package:uuid/uuid.dart';
 import '../game_world/input_manager.dart';
@@ -21,14 +21,18 @@ part 'terrain/bush.dart';
 //goblins
 part 'humanoids/goblins/goblin.dart';
 
+//props
+part 'props/combat_star.dart';
+
 Uuid uuid = new Uuid();
 
-abstract class Entity extends BaseEntity {
+class Entity extends BaseEntity {
+  CombatGameWorld inWhatInstance;
+
   Entity(double x, double y) {
     position = new Vector(x,y);
     ID = uuid.v4();
   }
-  get entityManager => GameWorld.entities;
 
   void addToJson(List<List> attributes){ //place a tuple with a String and a
     attributes.forEach((a) => additionalJSONInformation.addAll(a));
@@ -51,6 +55,17 @@ abstract class Entity extends BaseEntity {
 
     additionToReturn.forEach((Map map) => toReturn.addAll(map));
     return toReturn;
+  }
+
+  @override
+  String toString(){
+    return"""
+    ID: ${this.ID},
+    positionX: ${this.position.x},
+    positionY: ${this.position.y},
+    type: ${this.type},
+    isDead: ${this.isDead},
+    inCombat: ${this.inCombat}""";
   }
 }
 

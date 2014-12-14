@@ -6,13 +6,17 @@ int canvasWidth = 1000, canvasHeight = 1000;
 
 
 class MessageTypes{
-  static String PLAYER_ENTERED_INSTANCE = 'player_entered_instance';
+  static String NEW_INSTANCE = 'newInstance';
+  static String COMBAT_SYNC_STATE = 'combatSyncState';
+  static String PLAYERS_ENTERED_INSTANCE = 'players_entered_instance';
+  static String ENTITIES_ENTERED_INSTANCE = 'entities_entered_instance';
   static String NEW_CLIENT = 'newClient';
   static String CLIENT_ID = 'clientID';
   static String NEW_PLAYER = 'newPlayer';
   static String CLOSE_CONNECTION = 'closeConnection';
   static String INPUT = 'input';
   static String NEW_ENTITY = 'newEntity';
+  static String NEW_ENTITIES = 'newEntities';
   static String CLIENT_INPUT = 'clientInput';
   static String SYNC_STATE = 'syncState';
 
@@ -24,15 +28,42 @@ class MessageTypes{
     return message['clientID'];
   }
 
-  static bool isCLIENT_ID(Map message){
-    if(message['type'] == 'player_entered_instance'){
+  static bool isNEW_INSTANCE(Map message){
+    if(message['type'] == 'newInstance'){
       return true;
     }
     return false;
   }
 
-  static bool isPLAYER_ENTERED_INSTANCE(Map message){
+  static bool isNEW_ENTITIES(Map message){
+    if(message['type'] == 'newEntities'){
+      return true;
+    }
+    return false;
+  }
+
+  static bool isCOMBAT_SYNC_STATE(Map message){
+    if(message['type'] == 'combatSyncState'){
+      return true;
+    }
+    return false;
+  }
+
+  static bool isCLIENT_ID(Map message){
     if(message['type'] == 'clientID'){
+      return true;
+    }
+    return false;
+  }
+
+  static bool isPLAYERS_ENTERED_INSTANCE(Map message){
+    if(message['type'] == 'players_entered_instance'){
+      return true;
+    }
+    return false;
+  }
+  static bool isENTITIES_ENTERED_INSTANCE(Map message){
+    if(message['type'] == 'entities_entered_instance'){
       return true;
     }
     return false;
@@ -59,7 +90,7 @@ class MessageTypes{
   }
 
   static isNEW_ENTITY(Map message){
-    if(message['type'] == 'entity'){
+    if(message['type'] == 'newEntity'){
       return true;
     }
     return false;
@@ -161,8 +192,12 @@ void webSocketSendToServer(webSocket, String typeOfMessage, String data, String 
   webSocket.send(JSON.encode(genMessage(typeOfMessage, data, ID)));
 }
 
-void webSocketSendToClient(pingClients,String typeOfMessage, Map data){
+void webSocketSendToClients(pingClients,String typeOfMessage, Map data){
   pingClients.sink.add(JSON.encode(genMessage(typeOfMessage,data)));  //JSON encode maybe?
+}
+
+void webSocketSendToClient(pingClients, String ID,String typeOfMessage, Map data){
+  pingClients.sink.add(JSON.encode(genMessage(typeOfMessage,data,ID)));  //JSON encode maybe?
 }
 
 

@@ -2,21 +2,26 @@ part of client_component;
 
 abstract class WizardAnimation implements Sprite, Entity{
   static final TextureAtlas
-  _textureAtlas = GameWorld.resourceManager.getTextureAtlas('mageAnimation0');
+    _textureAtlas1 = main.currentGameWorld.resourceManager.getTextureAtlas('mageAnimation0');
+
+  static final TextureAtlas
+    _textureAtlas2 = main.currentGameWorld.resourceManager.getTextureAtlas('mageAnimation1');
 
   static final List<BitmapData>
-  _walkSouthBitmapData = _textureAtlas.getBitmapDatas('walking s000'),
-  _walkEastBitmapData = _textureAtlas.getBitmapDatas('walking e000'),
-  _walkNorthBitmapData = _textureAtlas.getBitmapDatas('walking n000'),
-  _walkWestBitmapData = _textureAtlas.getBitmapDatas('walking w000'),
-  _idleWizardAnimation = _textureAtlas.getBitmapDatas('idle 0000');
+    _walkSouthBitmapData = _textureAtlas1.getBitmapDatas('walking s000'),
+    _walkEastBitmapData = _textureAtlas1.getBitmapDatas('walking e000'),
+    _walkNorthBitmapData = _textureAtlas1.getBitmapDatas('walking n000'),
+    _walkWestBitmapData = _textureAtlas1.getBitmapDatas('walking w000'),
+    _idleWizardAnimation = _textureAtlas1.getBitmapDatas('idle 000'),  //TODO turn back to IDLE when done
+    _idleWizardCombatAnimation = _textureAtlas1.getBitmapDatas('idle 0002');
 
   final FlipBook
-  flipBookWizardAnimationIdle      = new FlipBook(_idleWizardAnimation),
-  flipBookWizardAnimationWalkSouth = new FlipBook(_walkSouthBitmapData),
-  flipBookWizardAnimationWalkNorth = new FlipBook(_walkNorthBitmapData),
-  flipBookWizardAnimationWalkEast  = new FlipBook(_walkEastBitmapData),
-  flipBookWizardAnimationWalkWest  = new FlipBook(_walkWestBitmapData);
+  flipBookWizardAnimationIdle       = new FlipBook(_idleWizardAnimation),
+  flipBookWizardAnimationIdleCombat = new FlipBook(_idleWizardCombatAnimation),
+  flipBookWizardAnimationWalkSouth  = new FlipBook(_walkSouthBitmapData),
+  flipBookWizardAnimationWalkNorth  = new FlipBook(_walkNorthBitmapData),
+  flipBookWizardAnimationWalkEast   = new FlipBook(_walkEastBitmapData),
+  flipBookWizardAnimationWalkWest   = new FlipBook(_walkWestBitmapData);
 
 
 
@@ -33,6 +38,9 @@ abstract class WizardAnimation implements Sprite, Entity{
       case 'idle_s':
         _wizardIdle();
         break;
+      case 'idle_combat':
+        _wizardIdleCombat();
+        break;
       case 'walking_n':
         _wizardWalkNorth();
         break;
@@ -47,6 +55,9 @@ abstract class WizardAnimation implements Sprite, Entity{
 
   void _wizardIdle() {
     _handleAnimation(flipBookWizardAnimationIdle);
+  }
+  void _wizardIdleCombat() {
+    _handleAnimation(flipBookWizardAnimationIdleCombat);
   }
   void _wizardWalkSouth(){
     _handleAnimation(flipBookWizardAnimationWalkSouth);
@@ -82,21 +93,23 @@ abstract class WizardAnimation implements Sprite, Entity{
 
 abstract class GoblinAnimation implements Sprite, Entity{
   static final TextureAtlas
-  _textureAtlas = GameWorld.resourceManager.getTextureAtlas('goblin');
+  _textureAtlas = main.currentGameWorld.resourceManager.getTextureAtlas('goblin');
 
   static final List<BitmapData>
   _walkSouthBitmapData = _textureAtlas.getBitmapDatas('goblin walk s00'),
   _walkEastBitmapData = _textureAtlas.getBitmapDatas('goblin walk e00'),
   _walkNorthBitmapData = _textureAtlas.getBitmapDatas('goblin walk n00'),
   _walkWestBitmapData = _textureAtlas.getBitmapDatas('goblin walk w000'),
-  _idleGoblinAnimation = _textureAtlas.getBitmapDatas('green gnome treffer s000');
+  _idleGoblinAnimation = _textureAtlas.getBitmapDatas('green gnome treffer s000'),
+  _idleGoblinCombatAnimation = _textureAtlas.getBitmapDatas('green gnome treffer e000');
 
   final FlipBook
-  flipBookGoblinAnimationIdle      = new FlipBook(_idleGoblinAnimation),
-  flipBookGoblinAnimationWalkSouth = new FlipBook(_walkSouthBitmapData),
-  flipBookGoblinAnimationWalkNorth = new FlipBook(_walkNorthBitmapData),
-  flipBookGoblinAnimationWalkEast  = new FlipBook(_walkEastBitmapData),
-  flipBookGoblinAnimationWalkWest  = new FlipBook(_walkWestBitmapData);
+  flipBookGoblinAnimationIdle       = new FlipBook(_idleGoblinAnimation),
+  flipBookGoblinAnimationIdleCombat = new FlipBook(_idleGoblinCombatAnimation),
+  flipBookGoblinAnimationWalkSouth  = new FlipBook(_walkSouthBitmapData),
+  flipBookGoblinAnimationWalkNorth  = new FlipBook(_walkNorthBitmapData),
+  flipBookGoblinAnimationWalkEast   = new FlipBook(_walkEastBitmapData),
+  flipBookGoblinAnimationWalkWest   = new FlipBook(_walkWestBitmapData);
 
 
 
@@ -108,40 +121,46 @@ abstract class GoblinAnimation implements Sprite, Entity{
 
     switch (currentAnimationState){
       case 'walking_s':
-        _wizardWalkSouth();
+        _goblinWalkSouth();
+        break;
+      case 'idle_combat':
+        _goblinIdleCombat();
         break;
       case 'idle_s':
-        _wizardIdle();
+        _goblinIdle();
         break;
       case 'walking_n':
-        _wizardWalkNorth();
+        _goblinWalkNorth();
         break;
       case 'walking_e':
-        _wizardWalkEast();
+        _goblinWalkEast();
         break;
       case 'walking_w':
-        _wizardWalkWest();
+        _goblinWalkWest();
         break;
     }
   }
 
-  void _wizardIdle() {
+  void _goblinIdle() {
     _handleAnimation(flipBookGoblinAnimationIdle);
   }
-  void _wizardWalkSouth(){
+  void _goblinWalkSouth(){
     _handleAnimation(flipBookGoblinAnimationWalkSouth);
 
   }
-  void _wizardWalkWest() {
+  void _goblinWalkWest() {
     _handleAnimation(flipBookGoblinAnimationWalkWest);
   }
 
-  void _wizardWalkEast() {
+  void _goblinWalkEast() {
     _handleAnimation(flipBookGoblinAnimationWalkEast);
   }
 
-  void _wizardWalkNorth() {
+  void _goblinWalkNorth() {
     _handleAnimation(flipBookGoblinAnimationWalkNorth);
+  }
+  void _goblinIdleCombat(){
+    _handleAnimation(flipBookGoblinAnimationIdleCombat);
   }
 
   void _handleAnimation(FlipBook anime){  //TODO if you ever add another display object to this sprite this will explode DONT FORGET

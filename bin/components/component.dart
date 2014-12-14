@@ -4,6 +4,7 @@ import 'dart:math';
 import '../entities/entity.dart';
 import 'package:the_quest_for_pi/globals.dart';
 import '../game_world/game_world.dart' show GameWorld;
+import '../server.dart' show PhysicsState, pingClients, gameWorld;
 
 //physics
 part 'physics/collision_AABB.dart';
@@ -27,6 +28,10 @@ part 'AI/space_out.dart';
 part 'combat/health_bar.dart';
 part 'combat/combat.dart';
 
-double distanceToAI(Vector self, Vector other){
-  return (other.x - self.x) * (other.x - self.x) + (other.y - self.y) * (other.y - self.y);
+double distanceTo(Entity entity, Entity otherEntity){
+  return
+    (otherEntity.position.x - entity.position.x) *
+    (otherEntity.position.x - entity.position.x) +
+    (otherEntity.position.y - entity.position.y) *
+    (otherEntity.position.y - entity.position.y);
 }

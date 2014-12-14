@@ -5,6 +5,7 @@ class Goblin extends Entity with GoblinAnimation, FootStep{
     componentInitFunctionList.addAll([initGoblinAnimation]);
     initAllComponents();
     componentUpdateFunctionList.addAll([updateGoblinAnimation]);
+    componentCombatModeFunctionList.addAll([updateGoblinAnimation]);
     movementSpeed = 100.0;
     currentAnimationFrame = animeFrame;
     currentAnimationState = animeState;

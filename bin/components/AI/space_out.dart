@@ -7,10 +7,10 @@ abstract class SpaceOut implements Movement, Entity{
     if(_timerSpaceOut >= 0.45){
       Entity closestEntity = new Goblin(0.0,0.0);
       double closestEnemyDistance;
-      GameWorld.entities.forEach((Entity entity) {
+      gameWorld.entities.forEach((Entity entity) {
         if(entity.type != 'Bush' && this.type != 'Bush'){
           if(this.ID != entity.ID){
-            var distance = distanceToAI(this.position, entity.position);
+            var distance = distanceTo(this, entity);
             if(closestEnemyDistance == null){
               closestEnemyDistance = distance;
               closestEntity = entity;

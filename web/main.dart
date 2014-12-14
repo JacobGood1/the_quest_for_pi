@@ -1,10 +1,11 @@
 library client;
 
+import 'dart:async';
 import 'dart:html';
 import 'dart:convert';
 import 'package:the_quest_for_pi/globals.dart';
-import 'game_world/game_world.dart';
-import 'entities/entity.dart';
+import 'game_world/game_world_container.dart' ;
+
 part 'client_handler.dart';
 
 
@@ -15,6 +16,7 @@ List<String> currentClientKeys = [];
 
 ClientHandler clientHandler = new ClientHandler();
 
+GameWorldContainer currentGameWorld;
 
 Uri uri;
 

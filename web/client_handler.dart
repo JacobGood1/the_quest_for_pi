@@ -29,109 +29,80 @@ class ClientHandler{
     String messageType = message['type'];
     if(MessageTypes.isNEW_CLIENT(message)){
       if(firstTime){
-        new GameWorld(messageData);
+        currentGameWorld = new GameWorld(messageData);
         ID = messageData['NEW_PLAYER_ID'];
         firstTime = false;
       }else{
-        var newPlayerID = messageData['NEW_PLAYER_ID'];
-        List serverPlayers = messageData['playerEntities'] as List;
-        for(Map player in serverPlayers){
-          if(player['ID'] == newPlayerID){
-            GameWorld.addPlayerEntity(makeNewObjectFromJSON(player));
+        //if it is the main game world then do not add the player, we are in an instance
+        if(currentGameWorld is GameWorld){
+          var newPlayerID = messageData['NEW_PLAYER_ID'];
+          List serverPlayers = messageData['playerEntities'] as List;
+          for(Map player in serverPlayers){
+            if(player['ID'] == newPlayerID){
+              currentGameWorld.addPlayerEntity(makeNewObjectFromJSON(player));
+            }
           }
         }
       }
 
 
     } else if(MessageTypes.isSYNC_STATE(message)){
-      if(GameWorld.isGameWorldReady){
-        List serverPlayers = messageData['playerEntities'] as List;
-        List serverEntities = messageData['entityManager'] as List;
-        double dt = messageData['dt'];
-
-        /*for(var i = 0; i < serverPlayers.length; i++){
-          var sp = serverPlayers[i], id = sp['ID'], isDead = sp['isDead'];
-
-          for(Player player in GameWorld.playerEntities){
-            if(player.ID == id){
-              if(isDead){
-                GameWorld.playerEntities.remove(player);  //TODO might not work alters a list while looping
-                break;
+      //client needs to find the world its id is in and sync itself accordingly
+      GameWorldContainer prevGameWorld = currentGameWorld;
+      var messageData;
+      if(currentGameWorld != null){
+        var gameWorldFromServer;
+        if(currentGameWorld.isGameWorldReady){
+          (message['data'] as Map).forEach((k,v) {
+            (v['playerEntities'] as List<Map>).forEach((player) {
+              if(player['ID'] == ID){
+                gameWorldFromServer = k;
+                messageData = v;
               }
-              player.extractData(sp);
-              //this will mutate the clients to reflect the server objects
-              if(player.inCombat){
-                player.updateAllCombatModeComponents(dt);
-              } else{
-                player.updateAllComponents(dt);
-              }
-              break;
+            });
+          });
+
+
+
+          //TODO sometimes dt goes null find out why
+          double dt = messageData['dt'];
+
+
+          if(gameWorldFromServer == 'MainWorld'){
+            if(!(prevGameWorld is GameWorld)){
+              //must have left an instance rebuild the world
+              currentGameWorld = new GameWorld(messageData);
+            }
+          } else if(gameWorldFromServer == 'CombatWorld'){
+            //TODO add update logic specific for this world to see if we can locate the startup error!
+            if(!(prevGameWorld is CombatGameWorld)){
+              //must have left an instance rebuild the world
+              currentGameWorld = new CombatGameWorld(messageData);  //TODO this bug might have to do with server not switching the combat werld right?
             }
           }
-        }*/
-        updateEntities(serverPlayers,GameWorld.playerEntities,dt);
-        updateEntities(serverEntities,GameWorld.entityManager,dt);
-        /*for(var i = 0; i < serverEntities.length; i++){  //TODO make some kind of death animation or game over type of thing!
-          var se = serverEntities[i], id = se['ID'], isDead = se['isDead'];
-
-          for(Entity entity in GameWorld.entityManager){
-            if(entity.ID == id){
-              if(isDead){
-                GameWorld.entityManager.remove(entity);  //TODO might not work alters a list while looping
-                break;
-              }
-              entity.extractData(se);
-              entity.updateAllComponents(dt);
-
-              break;
-            }
-          }
-        }*/
 
 
-        /*serverTime = parseTime(messageData['time']);
-        clientTime = serverTime.difference(serverLastTime);
 
-        //get the server entities
-        List otherGameWorldPlayerEntities = (messageData['playerEntities'] as List).map((entity) => makeNewObjectFromJSON(entity)).toList();
-        List otherGameWorldEntities = (messageData['entityManager'] as List).map((entity) => makeNewObjectFromJSON(entity)).toList();*/
 
-        //clear the entities from the client
-        /*GameWorld.clearEntities();
-        //add the entities from the server
-        otherGameWorldEntities.forEach((entity) => GameWorld.addPlayerEntity(entity));
-        otherGameWorldPlayerEntities.forEach((entity) => GameWorld.addEntity(entity)); //TODO make this lerp instead of insta update
-        serverLastTime = serverTime;*/
+        currentGameWorld.updateEntities(messageData['entities'], messageData['playerEntities'], dt);
+
+
+
+        }
       }
-    } else if(MessageTypes.isCLOSE_CONNECTION(message)){
-      GameWorld.removePlayer(MessageTypes.getID(MessageTypes.getData(message)));
+
+    }else if(MessageTypes.isNEW_ENTITY(message)){
+      currentGameWorld.addEntity(makeNewObjectFromJSON(message['data']));
+    } else if(MessageTypes.isENTITIES_ENTERED_INSTANCE(message)){
+
+    }else if(MessageTypes.isCLOSE_CONNECTION(message)){
+      currentGameWorld.removePlayer(MessageTypes.getID(MessageTypes.getData(message)));
     }
   }
   outgoingMessage(String messageType, String data){  //id should be automatic
     webSocketSendToServer(webSocket, messageType, data, ID);
   }
 
-  void updateEntities(List serverEntities, List clientEntities, dt){
-    for(var i = 0; i < serverEntities.length; i++){
-      var se = serverEntities[i], id = se['ID'], isDead = se['isDead'];
-      for(Entity entity in clientEntities){
-        if(entity.ID == id){
-          if(isDead){
-            clientEntities.remove(entity);  //TODO might not work alters a list while looping
-            break;
-          }
-          entity.extractData(se);
-          //this will mutate the clients to reflect the server objects
-          if(entity.inCombat){
-            entity.updateAllCombatModeComponents(dt);
-          } else{
-            entity.updateAllComponents(dt);
-          }
-          break;
-        }
-      }
-    }
-  }
   DateTime parseTime(Map time){
     time.forEach((k,v) => time[k] = int.parse(v));
     return new DateTime(time['year'], time['month'], time['day'], time['hour'], time['minute'], time['second'], time['millisecond']);

@@ -2,11 +2,7 @@ library base_entity;
 
 
 import 'globals.dart';
-import 'package:uuid/uuid.dart';
 
-
-
-Uuid uuid = new Uuid();
 
 abstract class BaseEntity{
   List<Function> componentInitFunctionList = [],
@@ -14,11 +10,12 @@ abstract class BaseEntity{
                  componentInstanceInitFunctionList = [],
                  componentCombatModeFunctionList = [],
                  componentCollisionCheckFunctionList = [];
+
   List additionalJSONInformation = [];
   double movementSpeed,
   size = 64.0;
-
-  bool isColliding = false, _hasBeenInvoked = false, hasChangedSinceLastInvocation = false, isDead = false, inCombat = false;
+  var inWhatInstance;
+  bool isColliding = false, _hasBeenInvoked = false, hasChangedSinceLastInvocation = false, isDead = false, inCombat = false, inInstance = false;
   Set collidingWith = new Set();
 
   Vector velocity = new Vector(0.0,0.0),

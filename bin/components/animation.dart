@@ -5,6 +5,7 @@ class AnimationStates {
   //TODO turn this into an enum when the proper time comes
   static String
   IDLE_S = 'idle_s',
+  IDLE_COMBAT = 'idle_combat',
   WALKING_S = 'walking_s',
   WALKING_N = 'walking_n',
   WALKING_E = 'walking_e',

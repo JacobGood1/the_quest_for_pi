@@ -1,7 +1,7 @@
 {"frames": [
 
 {
-	"filename": "rennt s0000.bmp",
+	"filename": "hop s0000.bmp",
 	"frame": {"x":2,"y":2,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -10,7 +10,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "rennt s0001.bmp",
+	"filename": "hop s0001.bmp",
 	"frame": {"x":2,"y":100,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -19,7 +19,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "rennt s0002.bmp",
+	"filename": "hop s0002.bmp",
 	"frame": {"x":2,"y":198,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -28,7 +28,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "rennt s0003.bmp",
+	"filename": "hop s0003.bmp",
 	"frame": {"x":2,"y":296,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -37,7 +37,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "rennt s0004.bmp",
+	"filename": "hop s0004.bmp",
 	"frame": {"x":2,"y":394,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -46,7 +46,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "rennt s0005.bmp",
+	"filename": "hop s0005.bmp",
 	"frame": {"x":2,"y":492,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -55,7 +55,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "rennt s0006.bmp",
+	"filename": "hop s0006.bmp",
 	"frame": {"x":2,"y":590,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -64,7 +64,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "rennt s0007.bmp",
+	"filename": "hop s0007.bmp",
 	"frame": {"x":2,"y":688,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -73,7 +73,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "rennt se0000.bmp",
+	"filename": "hop se0000.bmp",
 	"frame": {"x":2,"y":786,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -82,7 +82,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "rennt se0001.bmp",
+	"filename": "hop se0001.bmp",
 	"frame": {"x":2,"y":884,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -91,7 +91,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "rennt se0002.bmp",
+	"filename": "hop se0002.bmp",
 	"frame": {"x":100,"y":2,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -100,7 +100,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "rennt se0003.bmp",
+	"filename": "hop se0003.bmp",
 	"frame": {"x":100,"y":100,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -109,7 +109,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "rennt se0004.bmp",
+	"filename": "hop se0004.bmp",
 	"frame": {"x":100,"y":198,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -118,7 +118,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "rennt se0005.bmp",
+	"filename": "hop se0005.bmp",
 	"frame": {"x":100,"y":296,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -127,7 +127,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "rennt se0006.bmp",
+	"filename": "hop se0006.bmp",
 	"frame": {"x":100,"y":394,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -136,7 +136,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "rennt se0007.bmp",
+	"filename": "hop se0007.bmp",
 	"frame": {"x":100,"y":492,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -145,7 +145,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "rennt sw0000.bmp",
+	"filename": "hop sw0000.bmp",
 	"frame": {"x":100,"y":590,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -154,7 +154,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "rennt sw0001.bmp",
+	"filename": "hop sw0001.bmp",
 	"frame": {"x":100,"y":688,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -163,7 +163,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "rennt sw0002.bmp",
+	"filename": "hop sw0002.bmp",
 	"frame": {"x":100,"y":786,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -172,7 +172,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "rennt sw0003.bmp",
+	"filename": "hop sw0003.bmp",
 	"frame": {"x":100,"y":884,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -181,7 +181,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "rennt sw0004.bmp",
+	"filename": "hop sw0004.bmp",
 	"frame": {"x":198,"y":2,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -190,7 +190,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "rennt sw0005.bmp",
+	"filename": "hop sw0005.bmp",
 	"frame": {"x":198,"y":100,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -199,7 +199,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "rennt sw0006.bmp",
+	"filename": "hop sw0006.bmp",
 	"frame": {"x":198,"y":198,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -208,7 +208,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "rennt sw0007.bmp",
+	"filename": "hop sw0007.bmp",
 	"frame": {"x":198,"y":296,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -217,7 +217,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "rennt w0000.bmp",
+	"filename": "hop w0000.bmp",
 	"frame": {"x":198,"y":394,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -226,7 +226,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "rennt w0001.bmp",
+	"filename": "hop w0001.bmp",
 	"frame": {"x":198,"y":492,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -235,7 +235,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "rennt w0002.bmp",
+	"filename": "hop w0002.bmp",
 	"frame": {"x":198,"y":590,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -244,7 +244,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "rennt w0003.bmp",
+	"filename": "hop w0003.bmp",
 	"frame": {"x":198,"y":688,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -253,7 +253,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "rennt w0004.bmp",
+	"filename": "hop w0004.bmp",
 	"frame": {"x":198,"y":786,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -262,7 +262,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "rennt w0005.bmp",
+	"filename": "hop w0005.bmp",
 	"frame": {"x":198,"y":884,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -271,7 +271,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "rennt w0006.bmp",
+	"filename": "hop w0006.bmp",
 	"frame": {"x":296,"y":2,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -280,7 +280,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "rennt w0007.bmp",
+	"filename": "hop w0007.bmp",
 	"frame": {"x":296,"y":100,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -793,7 +793,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "treffer e0001.bmp",
+	"filename": "damage taken e0001.bmp",
 	"frame": {"x":1080,"y":198,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -802,7 +802,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "treffer e0002.bmp",
+	"filename": "damage taken e0002.bmp",
 	"frame": {"x":1178,"y":198,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -811,7 +811,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "treffer e0003.bmp",
+	"filename": "damage taken e0003.bmp",
 	"frame": {"x":1276,"y":198,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -820,7 +820,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "treffer e0004.bmp",
+	"filename": "damage taken e0004.bmp",
 	"frame": {"x":688,"y":296,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -829,7 +829,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "treffer e0005.bmp",
+	"filename": "damage taken e0005.bmp",
 	"frame": {"x":688,"y":394,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -838,7 +838,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "treffer e0006.bmp",
+	"filename": "damage taken e0006.bmp",
 	"frame": {"x":1178,"y":198,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -847,7 +847,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "treffer e0007.bmp",
+	"filename": "damage taken e0007.bmp",
 	"frame": {"x":688,"y":492,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -856,7 +856,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "treffer n0001.bmp",
+	"filename": "damage taken n0001.bmp",
 	"frame": {"x":688,"y":590,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -865,7 +865,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "treffer n0002.bmp",
+	"filename": "damage taken n0002.bmp",
 	"frame": {"x":688,"y":688,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -874,7 +874,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "treffer n0003.bmp",
+	"filename": "damage taken n0003.bmp",
 	"frame": {"x":688,"y":786,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -883,7 +883,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "treffer n0004.bmp",
+	"filename": "damage taken n0004.bmp",
 	"frame": {"x":688,"y":884,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -892,7 +892,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "treffer n0005.bmp",
+	"filename": "damage taken n0005.bmp",
 	"frame": {"x":786,"y":296,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -901,7 +901,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "treffer n0006.bmp",
+	"filename": "damage taken n0006.bmp",
 	"frame": {"x":884,"y":296,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -910,7 +910,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "treffer n0007.bmp",
+	"filename": "damage taken n0007.bmp",
 	"frame": {"x":982,"y":296,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -919,7 +919,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "treffer ne0001.bmp",
+	"filename": "damage taken ne0001.bmp",
 	"frame": {"x":1080,"y":296,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -928,7 +928,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "treffer ne0002.bmp",
+	"filename": "damage taken ne0002.bmp",
 	"frame": {"x":1178,"y":296,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -937,7 +937,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "treffer ne0003.bmp",
+	"filename": "damage taken ne0003.bmp",
 	"frame": {"x":1276,"y":296,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -946,7 +946,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "treffer ne0004.bmp",
+	"filename": "damage taken ne0004.bmp",
 	"frame": {"x":786,"y":394,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -955,7 +955,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "treffer ne0005.bmp",
+	"filename": "damage taken ne0005.bmp",
 	"frame": {"x":786,"y":492,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -964,7 +964,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "treffer ne0006.bmp",
+	"filename": "damage taken ne0006.bmp",
 	"frame": {"x":786,"y":590,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -973,7 +973,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "treffer ne0007.bmp",
+	"filename": "damage taken ne0007.bmp",
 	"frame": {"x":786,"y":688,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -982,7 +982,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "treffer nw0001.bmp",
+	"filename": "damage taken nw0001.bmp",
 	"frame": {"x":786,"y":786,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -991,7 +991,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "treffer nw0002.bmp",
+	"filename": "damage taken nw0002.bmp",
 	"frame": {"x":786,"y":884,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -1000,7 +1000,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "treffer nw0003.bmp",
+	"filename": "damage taken nw0003.bmp",
 	"frame": {"x":884,"y":394,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -1009,7 +1009,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "treffer nw0004.bmp",
+	"filename": "damage taken nw0004.bmp",
 	"frame": {"x":982,"y":394,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -1018,7 +1018,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "treffer nw0005.bmp",
+	"filename": "damage taken nw0005.bmp",
 	"frame": {"x":1080,"y":394,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -1027,7 +1027,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "treffer nw0006.bmp",
+	"filename": "damage taken nw0006.bmp",
 	"frame": {"x":786,"y":884,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -1036,7 +1036,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "treffer nw0007.bmp",
+	"filename": "damage taken nw0007.bmp",
 	"frame": {"x":1178,"y":394,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -1045,7 +1045,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "treffer s0001.bmp",
+	"filename": "damage taken s0001.bmp",
 	"frame": {"x":1276,"y":394,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -1054,7 +1054,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "treffer s0002.bmp",
+	"filename": "damage taken s0002.bmp",
 	"frame": {"x":884,"y":492,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -1063,7 +1063,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "treffer s0003.bmp",
+	"filename": "damage taken s0003.bmp",
 	"frame": {"x":884,"y":590,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -1072,7 +1072,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "treffer s0004.bmp",
+	"filename": "damage taken s0004.bmp",
 	"frame": {"x":884,"y":688,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -1081,7 +1081,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "treffer s0005.bmp",
+	"filename": "damage taken s0005.bmp",
 	"frame": {"x":884,"y":786,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -1090,7 +1090,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "treffer s0006.bmp",
+	"filename": "damage taken s0006.bmp",
 	"frame": {"x":884,"y":884,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -1099,7 +1099,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "treffer s0007.bmp",
+	"filename": "damage taken s0007.bmp",
 	"frame": {"x":982,"y":492,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -1108,7 +1108,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "treffer se0001.bmp",
+	"filename": "damage taken se0001.bmp",
 	"frame": {"x":1080,"y":492,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -1117,7 +1117,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "treffer se0002.bmp",
+	"filename": "damage taken se0002.bmp",
 	"frame": {"x":1178,"y":492,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -1126,7 +1126,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "treffer se0003.bmp",
+	"filename": "damage taken se0003.bmp",
 	"frame": {"x":1276,"y":492,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -1135,7 +1135,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "treffer se0004.bmp",
+	"filename": "damage taken se0004.bmp",
 	"frame": {"x":982,"y":590,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -1144,7 +1144,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "treffer se0005.bmp",
+	"filename": "damage taken se0005.bmp",
 	"frame": {"x":982,"y":688,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -1153,7 +1153,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "treffer se0006.bmp",
+	"filename": "damage taken se0006.bmp",
 	"frame": {"x":1178,"y":492,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -1162,7 +1162,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "treffer se0007.bmp",
+	"filename": "damage taken se0007.bmp",
 	"frame": {"x":982,"y":786,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -1171,7 +1171,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "treffer sw0001.bmp",
+	"filename": "damage taken sw0001.bmp",
 	"frame": {"x":982,"y":884,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -1180,7 +1180,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "treffer sw0002.bmp",
+	"filename": "damage taken sw0002.bmp",
 	"frame": {"x":1080,"y":590,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -1189,7 +1189,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "treffer sw0003.bmp",
+	"filename": "damage taken sw0003.bmp",
 	"frame": {"x":1178,"y":590,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -1198,7 +1198,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "treffer sw0004.bmp",
+	"filename": "damage taken sw0004.bmp",
 	"frame": {"x":1276,"y":590,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -1207,7 +1207,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "treffer sw0005.bmp",
+	"filename": "damage taken sw0005.bmp",
 	"frame": {"x":1080,"y":688,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -1216,7 +1216,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "treffer sw0006.bmp",
+	"filename": "damage taken sw0006.bmp",
 	"frame": {"x":1080,"y":590,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -1225,7 +1225,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "treffer sw0007.bmp",
+	"filename": "damage taken sw0007.bmp",
 	"frame": {"x":1080,"y":786,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -1234,7 +1234,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "treffer w0001.bmp",
+	"filename": "damage taken w0001.bmp",
 	"frame": {"x":1080,"y":884,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -1243,7 +1243,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "treffer w0002.bmp",
+	"filename": "damage taken w0002.bmp",
 	"frame": {"x":1178,"y":688,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -1252,7 +1252,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "treffer w0003.bmp",
+	"filename": "damage taken w0003.bmp",
 	"frame": {"x":1276,"y":688,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -1261,7 +1261,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "treffer w0004.bmp",
+	"filename": "damage taken w0004.bmp",
 	"frame": {"x":1178,"y":786,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -1270,7 +1270,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "treffer w0005.bmp",
+	"filename": "damage taken w0005.bmp",
 	"frame": {"x":1178,"y":884,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -1279,7 +1279,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "treffer w0006.bmp",
+	"filename": "damage taken w0006.bmp",
 	"frame": {"x":1276,"y":786,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -1288,7 +1288,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "treffer w0007.bmp",
+	"filename": "damage taken w0007.bmp",
 	"frame": {"x":1276,"y":884,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
