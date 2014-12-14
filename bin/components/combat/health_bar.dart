@@ -1,7 +1,13 @@
 part of server_component;
 
+
 abstract class HealthBar implements Entity{
   int health = 100;
+
+
+  initHealthBar(){
+    addToJson(['health',health]);
+  }
 
   increaseHealth(int howMuch) {
     health += howMuch;

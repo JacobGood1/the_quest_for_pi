@@ -9,6 +9,8 @@ List<Entity> entitiesToRemove = [];
 List<Entity> entitiesToAddToGameWorld = [];
 List<GameWorldContainer> worldsToAdd = [];
 
+SlowPrint slowPrint = new SlowPrint();
+
 collidesWith(List<Entity> ent, String type){
   for(var i = 0; i < ent.length; i++){
     if(ent[i].type == type){
@@ -183,6 +185,8 @@ class PhysicsState{
             )
         );
       }*/
+
+
         //TODO syncstate as a single message to the clients, i send all the worlds the client figures out what effing world it needs to go to!
         webSocketSendToClients(pingClients, MessageTypes.SYNC_STATE, makeWorldsIntoJSON(physicsLoop.dt));  //TODO get client to handle the new syncstate, sends multiplae states!
       });
@@ -191,6 +195,8 @@ class PhysicsState{
   }
 }
 //TODO players on the client can just search for their ID in player entities and make that world their world!  rebuild world on leaving and entering!
+int combatWorldCounter = 0;
+
 Map makeWorldsIntoJSON(dt){
   return
     new Map.fromIterable(
@@ -199,7 +205,8 @@ Map makeWorldsIntoJSON(dt){
           if(world is GameWorld){
             return 'MainWorld';
           } else{
-            return 'CombatWorld';
+            combatWorldCounter++;
+            return 'CombatWorld${combatWorldCounter}';
           }
         },
         value: (GameWorldContainer world) => world.toJson()..addAll({'dt': dt}));

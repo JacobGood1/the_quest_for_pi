@@ -51,7 +51,7 @@ class ClientHandler{
       GameWorldContainer prevGameWorld = currentGameWorld;
       var messageData;
       if(currentGameWorld != null){
-        var gameWorldFromServer;
+        String gameWorldFromServer;
         if(currentGameWorld.isGameWorldReady){
           (message['data'] as Map).forEach((k,v) {
             (v['playerEntities'] as List<Map>).forEach((player) {
@@ -62,8 +62,6 @@ class ClientHandler{
             });
           });
 
-
-
           //TODO sometimes dt goes null find out why
           double dt = messageData['dt'];
 
@@ -73,7 +71,7 @@ class ClientHandler{
               //must have left an instance rebuild the world
               currentGameWorld = new GameWorld(messageData);
             }
-          } else if(gameWorldFromServer == 'CombatWorld'){
+          } else if(gameWorldFromServer.contains('CombatWorld')){
             //TODO add update logic specific for this world to see if we can locate the startup error!
             if(!(prevGameWorld is CombatGameWorld)){
               //must have left an instance rebuild the world
@@ -81,13 +79,9 @@ class ClientHandler{
             }
           }
 
-
-
-
-        currentGameWorld.updateEntities(messageData['entities'], messageData['playerEntities'], dt);
-
-
-
+          currentGameWorld
+            ..updateEntities(messageData['entities'], messageData['playerEntities'], dt)
+            ..drawHealthBars();
         }
       }
 

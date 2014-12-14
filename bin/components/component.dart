@@ -23,10 +23,11 @@ part 'sound.dart';
 //AI
 part 'AI/sit_still_run_to_player_if_close.dart';
 part 'AI/space_out.dart';
+part 'AI/goblin_combat.dart';
 
 //Combat
 part 'combat/health_bar.dart';
-part 'combat/combat.dart';
+
 
 double distanceTo(Entity entity, Entity otherEntity){
   return

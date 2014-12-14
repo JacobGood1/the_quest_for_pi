@@ -10,7 +10,9 @@ import 'package:stagexl/stagexl.dart'
     TextureAtlasFormat,
     Bitmap,
     RenderLoop,
-    FlipBook;
+    FlipBook,
+    Shape,
+    Color;
 import '../main.dart';
 import 'input_manager.dart';
 import 'package:the_quest_for_pi/globals.dart' as g;
@@ -64,6 +66,8 @@ abstract class GameWorldContainer{
   void removePlayer(String id);
   void addEntity(Entity e);
   void updateEntities(List<Map>serverEntities, List<Map>serverPlayers, num dt);
+  Shape healthLine = new Shape();
+  bool _hasAddedHealthBarGameWorldContainer = false;
 
   GameWorldContainer(){
     stage = new Stage(canvas);
@@ -74,6 +78,36 @@ abstract class GameWorldContainer{
     stage.focus=stage;
     loop.addStage(stage);
     stage.juggler.add(gameLoop);
+  }
+
+  drawHealthBars(){ //TODO get entity draw line working as well
+    if(!_hasAddedHealthBarGameWorldContainer){
+      stage.addChild(healthLine);
+      _hasAddedHealthBarGameWorldContainer = false;
+    }
+    healthLine.graphics.clear();
+    entities.forEach((Entity ent) {
+      if(ent is Goblin){
+        Goblin gobby = ent;
+        healthLine.graphics
+          ..beginPath()
+          ..moveTo(gobby.position.x + 10,gobby.position.y - 5)
+          ..fillColor(Color.Red)
+          ..lineTo(gobby.position.x + gobby.health / 2, gobby.position.y - 5)
+          ..strokeColor(Color.Red)
+          ..closePath();
+      }
+
+    });
+    playerEntities.forEach((Player player) {
+      healthLine.graphics
+        ..beginPath()
+        ..moveTo(player.position.x + 10,player.position.y - 5)
+        ..fillColor(Color.Red)
+        ..lineTo(player.position.x + player.health / 2, player.position.y - 5)
+        ..strokeColor(Color.Red)
+        ..closePath();
+    });
   }
 
   //this will make client side entities then add them to the client

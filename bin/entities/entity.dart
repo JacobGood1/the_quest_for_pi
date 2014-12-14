@@ -35,11 +35,11 @@ class Entity extends BaseEntity {
   }
 
   void addToJson(List<List> attributes){ //place a tuple with a String and a
-    attributes.forEach((a) => additionalJSONInformation.addAll(a));
+    additionalJSONInformation.add([attributes[0], attributes[1]]);
   }
 
   Map toJson(){  //TODO check to see if this works later on, might be buggy
-    var additionToReturn = additionalJSONInformation.map((List vals) => {vals[0]: vals[1]()}).toList();
+    var additionToReturn = additionalJSONInformation.map((List vals) => {vals[0]: vals[1]}).toList();
     var toReturn =
     {
         'ID': this.ID,

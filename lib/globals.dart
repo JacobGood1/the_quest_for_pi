@@ -5,6 +5,17 @@ int spriteWidth = 50, spriteHeight = 50;
 int canvasWidth = 1000, canvasHeight = 1000;
 
 
+class SlowPrint{
+  double speed = 0.0;
+  slowPrint(message,dt){
+    speed += dt;
+    if(speed >= 0.500){
+      print(message);
+      speed = 0.0;
+    }
+  }
+}
+
 class MessageTypes{
   static String NEW_INSTANCE = 'newInstance';
   static String COMBAT_SYNC_STATE = 'combatSyncState';
