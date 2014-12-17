@@ -17,7 +17,7 @@ abstract class HealthBar implements Entity{
   }
   reduceHealth(int howMuch){
     health -= howMuch;
-    if (health >= 0) {
+    if (health <= 0) {
       health = 0;
     }
   }

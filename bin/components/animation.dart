@@ -4,6 +4,7 @@ part of server_component;
 class AnimationStates {
   //TODO turn this into an enum when the proper time comes
   static String
+  ATTACKING = 'attacking',
   IDLE_S = 'idle_s',
   IDLE_COMBAT = 'idle_combat',
   WALKING_S = 'walking_s',

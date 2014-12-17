@@ -47,8 +47,7 @@ abstract class Collision_AABB implements Entity{
 
 
 
-    gameWorld.entities.forEach((e){ //SharedEntity.entityManager.forEach  //TODO Travis this code is only handling entities and not players
-      //print(this.distance2(e.collider));
+    MAIN_WORLD.entities.forEach((e){
 
 
           if (e != this) {
@@ -78,7 +77,7 @@ abstract class Collision_AABB implements Entity{
 
 
 
-    gameWorld.entities.forEach((e) {
+    MAIN_WORLD.entities.forEach((e) {
       //SharedEntity.entityManager.forEach
       //print(this.distance2(e.collider));
 
@@ -126,12 +125,10 @@ abstract class Collision_AABB implements Entity{
     if(e is CombatStar){
       if(!(this is CombatStar)){
 
-        //(e as CombatStar) //TODO collision made with star do anything here or resolve on the server handle? prob resolve on server handle
       }
     } else if(e is Goblin){
       if(!(this is Goblin)){
-        this.inCombat = true;
-        e.inCombat = true;
+
       }
     }
   }

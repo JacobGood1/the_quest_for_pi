@@ -9,8 +9,12 @@ abstract class Movement implements Collision_AABB{
   void moveLeft(){
     velocity.x = -movementSpeed;
   }
-  void moveUp(){
-    velocity.y = -movementSpeed;
+  void moveUp([double speed]){
+    if(speed == null){
+      velocity.y = -movementSpeed;
+    } else{
+      velocity.y = -speed;
+    }
   }
   void moveDown(){
     velocity.y = movementSpeed;

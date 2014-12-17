@@ -2,6 +2,7 @@ part of server_game_world;
 
 
 class CombatGameWorld extends GameWorldContainer{
+  CombatStar exitPortal;
   final Vector _playerPositionConstantCombatGameWorld = new Vector(800.0, 775.0);
   final Vector _entityPositionConstantCombatGameWorld = new Vector(400.0, 775.0);
   Vector _offsetCombatGoblinGameWorld = new Vector(0.0, 0.0);
@@ -10,22 +11,21 @@ class CombatGameWorld extends GameWorldContainer{
       _alternateGoblinCombatGameWorld = 1;
 
 
-  CombatGameWorld(List playerEntities, List entities) : super(playerEntities, entities){  //TODO should only be on entity that enters but check to see
-    entities.forEach((Entity ent) => ent.inInstance = true);
-    playerEntities.forEach((Player player) {
-      player.inInstance = true;
-    });
+  CombatGameWorld(List playerEntities, List entities) : super(playerEntities, entities){
+    playerEntities.clear();
+    entities.clear();
+    type = 'CombatWorld';
   }
 
 
-  void positionEntity(Entity ent){
+  void _positionEntity(Entity ent){
     if(ent is Player){
-      if(playerEntities.length == 1){
+      if(_playerCounterCombatWorld == 1){
         ent.position = _playerPositionConstantCombatGameWorld.copy();
         ent.currentAnimationState = 'idle_combat';
         ent.currentAnimationFrame = 0;
       } else{
-        if(playerEntities.length.isEven){
+        if(_playerCounterCombatWorld.isEven){
           _offsetCombatPlayerGameWorld += new Vector(0.0,50.0);
         }
         ent.position = _playerPositionConstantCombatGameWorld.copy() + _offsetCombatPlayerGameWorld * _alternatePlayerCombatGameWorld;
@@ -35,37 +35,76 @@ class CombatGameWorld extends GameWorldContainer{
       }
     }
     if(ent is Goblin){
-      if(entities.length == 1){
+      if(_goblinCounterCombatWorld == 1){
         ent.position = _entityPositionConstantCombatGameWorld.copy();
-        ent.currentAnimationState = 'idle_combat';
-        ent.currentAnimationFrame = 0;
+        if(!ent.isGoblinAttackingGoblinCombatAI){
+          ent.currentAnimationState = 'idle_combat';
+          ent.currentAnimationFrame = 0;
+        }
       } else{
-        if(entities.length.isEven){
+        if(_goblinCounterCombatWorld.isEven){
           _offsetCombatGoblinGameWorld += new Vector(0.0,50.0);
         }
         ent.position = _entityPositionConstantCombatGameWorld.copy() + _offsetCombatGoblinGameWorld * _alternateGoblinCombatGameWorld;
         _alternateGoblinCombatGameWorld *= -1;
-        ent.currentAnimationState = 'idle_combat';
-        ent.currentAnimationFrame = 0;
+        if(!ent.isGoblinAttackingGoblinCombatAI){
+          ent.currentAnimationState = 'idle_combat';
+          ent.currentAnimationFrame = 0;
+        }
       }
     }
   }
-  Map toJson(){
-    if(playerEntities.isNotEmpty && entities.isEmpty){
-      return{
-          'playerEntities' :  playerEntities.map((Entity e) => e.toJson()).toList(),
-          'entities'       :  []
-      };
-    } else if(playerEntities.isEmpty && entities.isNotEmpty){
-      return{
-          'playerEntities' :  [],
-          'entities'       :  entities.map((e) => e.toJson()).toList()
-      };
-    }else{
-      return{
-          'playerEntities' :  playerEntities.map((Entity e) => e.toJson()).toList(),
-          'entities'       :  entities.map((e) => e.toJson()).toList()
-      };
+  var _goblinCounterCombatWorld = 0;
+  void addEntity(Entity e){
+    if(e is Goblin){
+      _goblinCounterCombatWorld++;
     }
+    _positionEntity(e);
+    entitiesToAdd.add(e);
+    e.inWhatInstance.entitiesToRemove.add(e);
+    e.inWhatInstance = this;
+    stageAddChild(e);
   }
+  var _playerCounterCombatWorld = 0;
+  void addPlayer(Entity e){
+    _playerCounterCombatWorld++;
+    _positionEntity(e);
+    playersToAdd.add(e);
+    e.inWhatInstance.playersToRemove.add(e);
+    e.inWhatInstance = this;
+    stageAddChild(e);
+  }
+  void removeEntity(Entity e){
+    entitiesToRemove.add(e);
+
+  }
+  void removePlayer(Entity e){
+    playersToRemove.add(e);
+
+  }
+  void stageAddChild(e){}
+
+
+  Map toJson(){
+    Map toReturn = {
+          'type'             : type,
+          'playerEntities'   :  _handleEmptyEnts(playerEntities),
+          'entities'         :  _handleEmptyEnts(entities),
+          'entitiesToAdd'    : _handleEmptyEnts(entitiesToAdd),
+          'playersToAdd'     : _handleEmptyEnts(playersToAdd),
+          'entitiesToRemove' : _handleEmptyEnts(entitiesToRemove),
+          'playersToRemove'  : _handleEmptyEnts(playersToRemove)
+    };
+    return toReturn;
+  }
+
+  _handleEmptyEnts(List<Entity> ents){
+    if(ents.isNotEmpty){
+      return ents.map((e) => e.toJson()).toList();
+    }
+    return [];
+  }
+
+
+
 }

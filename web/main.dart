@@ -1,8 +1,9 @@
 library client;
 
-import 'dart:async';
+
 import 'dart:html';
 import 'dart:convert';
+import 'package:stagexl/stagexl.dart' show Color, TextFormat, TextField;
 import 'package:the_quest_for_pi/globals.dart';
 import 'game_world/game_world_container.dart' ;
 

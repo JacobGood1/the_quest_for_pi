@@ -11,6 +11,7 @@ class GameWorld extends GameWorldContainer{
     initGameWorld(messageFromServerData, (){
       generateObjectsFromServerEntities(messageFromServerData);
     });
+    new InputManager(stage);
   }
 
   void updateEntities(List<Map>serverEntities, List<Map>serverPlayers, num dt){
@@ -19,10 +20,6 @@ class GameWorld extends GameWorldContainer{
       for(Entity entity in entities){
         if(entity.ID == se['ID']){
           entity.extractData(se); //this will mutate the clients to reflect the server objects
-          if(entity.isDead){
-            entities.remove(entity);  //TODO might not work alters a list while looping make an add to dead list cleanup
-            break;
-          }
           entity.updateAllComponents(dt);
           break;
         }
@@ -53,6 +50,10 @@ class GameWorld extends GameWorldContainer{
         break;
       }
     }
+  }
+  void removeEntity(Entity e){
+    entities.remove(e);
+    stage.removeChild(e);
   }
   void clearEntities(){
     if(stage.numChildren != 0){

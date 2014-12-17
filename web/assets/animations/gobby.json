@@ -1,7 +1,7 @@
 {"frames": [
 
 {
-	"filename": "green gnome attack e0000.bmp",
+	"filename": "attack e0000.bmp",
 	"frame": {"x":2,"y":2,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -10,7 +10,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack e0001.bmp",
+	"filename": "attack e0001.bmp",
 	"frame": {"x":2,"y":100,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -19,7 +19,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack e0002.bmp",
+	"filename": "attack e0002.bmp",
 	"frame": {"x":2,"y":198,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -28,7 +28,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack e0003.bmp",
+	"filename": "attack e0003.bmp",
 	"frame": {"x":2,"y":296,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -37,7 +37,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack e0004.bmp",
+	"filename": "attack e0004.bmp",
 	"frame": {"x":2,"y":394,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -46,7 +46,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack e0005.bmp",
+	"filename": "attack e0005.bmp",
 	"frame": {"x":2,"y":492,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -55,7 +55,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack e0006.bmp",
+	"filename": "attack e0006.bmp",
 	"frame": {"x":2,"y":590,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -64,7 +64,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack e0007.bmp",
+	"filename": "attack e0007.bmp",
 	"frame": {"x":2,"y":688,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -73,7 +73,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack e0008.bmp",
+	"filename": "attack e0008.bmp",
 	"frame": {"x":2,"y":786,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -82,7 +82,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack e0009.bmp",
+	"filename": "attack e0009.bmp",
 	"frame": {"x":2,"y":884,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -91,7 +91,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack n0000.bmp",
+	"filename": "attack n0000.bmp",
 	"frame": {"x":2,"y":982,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -100,7 +100,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack n0001.bmp",
+	"filename": "attack n0001.bmp",
 	"frame": {"x":2,"y":1080,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -109,7 +109,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack n0002.bmp",
+	"filename": "attack n0002.bmp",
 	"frame": {"x":2,"y":1178,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -118,7 +118,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack n0003.bmp",
+	"filename": "attack n0003.bmp",
 	"frame": {"x":2,"y":1276,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -127,7 +127,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack n0004.bmp",
+	"filename": "attack n0004.bmp",
 	"frame": {"x":2,"y":1374,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -136,7 +136,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack n0005.bmp",
+	"filename": "attack n0005.bmp",
 	"frame": {"x":2,"y":1472,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -145,7 +145,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack n0006.bmp",
+	"filename": "attack n0006.bmp",
 	"frame": {"x":2,"y":1570,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -154,7 +154,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack n0007.bmp",
+	"filename": "attack n0007.bmp",
 	"frame": {"x":2,"y":1668,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -163,7 +163,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack n0008.bmp",
+	"filename": "attack n0008.bmp",
 	"frame": {"x":100,"y":2,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -172,7 +172,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack n0009.bmp",
+	"filename": "attack n0009.bmp",
 	"frame": {"x":100,"y":100,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -181,7 +181,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack ne0000.bmp",
+	"filename": "attack ne0000.bmp",
 	"frame": {"x":100,"y":198,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -190,7 +190,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack ne0001.bmp",
+	"filename": "attack ne0001.bmp",
 	"frame": {"x":100,"y":296,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -199,7 +199,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack ne0002.bmp",
+	"filename": "attack ne0002.bmp",
 	"frame": {"x":100,"y":394,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -208,7 +208,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack ne0003.bmp",
+	"filename": "attack ne0003.bmp",
 	"frame": {"x":100,"y":492,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -217,7 +217,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack ne0004.bmp",
+	"filename": "attack ne0004.bmp",
 	"frame": {"x":100,"y":590,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -226,7 +226,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack ne0005.bmp",
+	"filename": "attack ne0005.bmp",
 	"frame": {"x":100,"y":688,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -235,7 +235,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack ne0006.bmp",
+	"filename": "attack ne0006.bmp",
 	"frame": {"x":100,"y":786,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -244,7 +244,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack ne0007.bmp",
+	"filename": "attack ne0007.bmp",
 	"frame": {"x":100,"y":884,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -253,7 +253,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack ne0008.bmp",
+	"filename": "attack ne0008.bmp",
 	"frame": {"x":100,"y":982,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -262,7 +262,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack ne0009.bmp",
+	"filename": "attack ne0009.bmp",
 	"frame": {"x":100,"y":1080,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -271,7 +271,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack nw0000.bmp",
+	"filename": "attack nw0000.bmp",
 	"frame": {"x":100,"y":1178,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -280,7 +280,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack nw0001.bmp",
+	"filename": "attack nw0001.bmp",
 	"frame": {"x":100,"y":1276,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -289,7 +289,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack nw0002.bmp",
+	"filename": "attack nw0002.bmp",
 	"frame": {"x":100,"y":1374,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -298,7 +298,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack nw0003.bmp",
+	"filename": "attack nw0003.bmp",
 	"frame": {"x":100,"y":1472,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -307,7 +307,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack nw0004.bmp",
+	"filename": "attack nw0004.bmp",
 	"frame": {"x":100,"y":1570,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -316,7 +316,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack nw0005.bmp",
+	"filename": "attack nw0005.bmp",
 	"frame": {"x":100,"y":1668,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -325,7 +325,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack nw0006.bmp",
+	"filename": "attack nw0006.bmp",
 	"frame": {"x":198,"y":2,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -334,7 +334,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack nw0007.bmp",
+	"filename": "attack nw0007.bmp",
 	"frame": {"x":198,"y":100,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -343,7 +343,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack nw0008.bmp",
+	"filename": "attack nw0008.bmp",
 	"frame": {"x":198,"y":198,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -352,7 +352,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack nw0009.bmp",
+	"filename": "attack nw0009.bmp",
 	"frame": {"x":198,"y":296,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -361,7 +361,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack s0000.bmp",
+	"filename": "attack s0000.bmp",
 	"frame": {"x":198,"y":394,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -370,7 +370,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack s0001.bmp",
+	"filename": "attack s0001.bmp",
 	"frame": {"x":198,"y":492,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -379,7 +379,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack s0002.bmp",
+	"filename": "attack s0002.bmp",
 	"frame": {"x":198,"y":590,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -388,7 +388,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack s0003.bmp",
+	"filename": "attack s0003.bmp",
 	"frame": {"x":198,"y":688,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -397,7 +397,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack s0004.bmp",
+	"filename": "attack s0004.bmp",
 	"frame": {"x":198,"y":786,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -406,7 +406,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack s0005.bmp",
+	"filename": "attack s0005.bmp",
 	"frame": {"x":198,"y":884,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -415,7 +415,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack s0006.bmp",
+	"filename": "attack s0006.bmp",
 	"frame": {"x":198,"y":982,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -424,7 +424,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack s0007.bmp",
+	"filename": "attack s0007.bmp",
 	"frame": {"x":198,"y":1080,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -433,7 +433,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack s0008.bmp",
+	"filename": "attack s0008.bmp",
 	"frame": {"x":198,"y":1178,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -442,7 +442,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack s0009.bmp",
+	"filename": "attack s0009.bmp",
 	"frame": {"x":198,"y":1276,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -451,7 +451,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack se0000.bmp",
+	"filename": "attack se0000.bmp",
 	"frame": {"x":198,"y":1374,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -460,7 +460,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack se0001.bmp",
+	"filename": "attack se0001.bmp",
 	"frame": {"x":198,"y":1472,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -469,7 +469,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack se0002.bmp",
+	"filename": "attack se0002.bmp",
 	"frame": {"x":198,"y":1570,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -478,7 +478,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack se0003.bmp",
+	"filename": "attack se0003.bmp",
 	"frame": {"x":198,"y":1668,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -487,7 +487,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack se0004.bmp",
+	"filename": "attack se0004.bmp",
 	"frame": {"x":296,"y":2,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -496,7 +496,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack se0005.bmp",
+	"filename": "attack se0005.bmp",
 	"frame": {"x":394,"y":2,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -505,7 +505,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack se0006.bmp",
+	"filename": "attack se0006.bmp",
 	"frame": {"x":492,"y":2,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -514,7 +514,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack se0007.bmp",
+	"filename": "attack se0007.bmp",
 	"frame": {"x":590,"y":2,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -523,7 +523,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack se0008.bmp",
+	"filename": "attack se0008.bmp",
 	"frame": {"x":688,"y":2,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -532,7 +532,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack se0009.bmp",
+	"filename": "attack se0009.bmp",
 	"frame": {"x":786,"y":2,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -541,7 +541,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack sw0000.bmp",
+	"filename": "attack sw0000.bmp",
 	"frame": {"x":884,"y":2,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -550,7 +550,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack sw0001.bmp",
+	"filename": "attack sw0001.bmp",
 	"frame": {"x":982,"y":2,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -559,7 +559,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack sw0002.bmp",
+	"filename": "attack sw0002.bmp",
 	"frame": {"x":1080,"y":2,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -568,7 +568,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack sw0003.bmp",
+	"filename": "attack sw0003.bmp",
 	"frame": {"x":1178,"y":2,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -577,7 +577,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack sw0004.bmp",
+	"filename": "attack sw0004.bmp",
 	"frame": {"x":1276,"y":2,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -586,7 +586,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack sw0005.bmp",
+	"filename": "attack sw0005.bmp",
 	"frame": {"x":1374,"y":2,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -595,7 +595,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack sw0006.bmp",
+	"filename": "attack sw0006.bmp",
 	"frame": {"x":1472,"y":2,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -604,7 +604,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack sw0007.bmp",
+	"filename": "attack sw0007.bmp",
 	"frame": {"x":1570,"y":2,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -613,7 +613,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack sw0008.bmp",
+	"filename": "attack sw0008.bmp",
 	"frame": {"x":1668,"y":2,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -622,7 +622,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack sw0009.bmp",
+	"filename": "attack sw0009.bmp",
 	"frame": {"x":1766,"y":2,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -631,7 +631,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack w0000.bmp",
+	"filename": "attack w0000.bmp",
 	"frame": {"x":1864,"y":2,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -640,7 +640,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack w0001.bmp",
+	"filename": "attack w0001.bmp",
 	"frame": {"x":296,"y":100,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -649,7 +649,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack w0002.bmp",
+	"filename": "attack w0002.bmp",
 	"frame": {"x":296,"y":198,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -658,7 +658,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack w0003.bmp",
+	"filename": "attack w0003.bmp",
 	"frame": {"x":296,"y":296,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -667,7 +667,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack w0004.bmp",
+	"filename": "attack w0004.bmp",
 	"frame": {"x":296,"y":394,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -676,7 +676,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack w0005.bmp",
+	"filename": "attack w0005.bmp",
 	"frame": {"x":296,"y":492,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -685,7 +685,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack w0006.bmp",
+	"filename": "attack w0006.bmp",
 	"frame": {"x":296,"y":590,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -694,7 +694,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack w0007.bmp",
+	"filename": "attack w0007.bmp",
 	"frame": {"x":296,"y":688,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -703,7 +703,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack w0008.bmp",
+	"filename": "attack w0008.bmp",
 	"frame": {"x":296,"y":786,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
@@ -712,7 +712,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "green gnome attack w0009.bmp",
+	"filename": "attack w0009.bmp",
 	"frame": {"x":296,"y":884,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,

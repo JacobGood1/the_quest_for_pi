@@ -1,7 +1,8 @@
 library game_world_client;
 
 import '../entities/entity.dart';
-import 'dart:html';
+import 'dart:math' as math;
+import 'dart:html' as html;
 import 'package:stagexl/stagexl.dart'
   show
     Stage,
@@ -12,16 +13,22 @@ import 'package:stagexl/stagexl.dart'
     RenderLoop,
     FlipBook,
     Shape,
-    Color;
-import '../main.dart';
+    Color,
+    SimpleButton,
+    Sprite,
+    Rectangle,
+    MouseEvent,
+    TextField,
+    TextFormat, GlowFilter, HtmlObject;
+import '../main.dart' as main;
 import 'input_manager.dart';
 import 'package:the_quest_for_pi/globals.dart' as g;
 import 'dart:async' show Timer;
-
+import 'dart:convert';
 part 'combat_world.dart';
 part 'main_game_world.dart';
 
-CanvasElement canvas = (querySelector('#stage') as CanvasElement)
+html.CanvasElement canvas = (html.querySelector('#stage') as html.CanvasElement)
   ..width = g.canvasWidth
   ..height = g.canvasHeight;
 
@@ -31,18 +38,28 @@ ResourceManager rm = new ResourceManager()
   ..addTextureAtlas('goblin', 'assets/animations/gobby.json', TextureAtlasFormat.JSONARRAY)
   ..addSound('footstep', 'assets/sounds/footstep.wav')
   ..addBitmapData('Bush', 'assets/images/bush.png')
+  ..addBitmapData('Spear', 'assets/images/goblin_spear.png')
   ..addBitmapData('Bat', 'assets/images/bat.png')
   ..addBitmapData('Goblin', 'assets/images/goblin.png')
   ..addBitmapData('Player', 'assets/images/black_mage.png')
   ..addBitmapData('CombatStar', 'assets/images/combatStartedWorld.png')
-  ..addBitmapData('backGroundCombat', 'assets/images/background_Combat.png');
+  ..addBitmapData('backGroundCombat', 'assets/images/background_Combat.png')
+  ..addBitmapData('spell_hotbar', 'assets/images/UI_hotbar.png')
+  ..addBitmapData('UI_fireball', 'assets/images/UI_fireball.png')
+  ..addBitmapData('UI_fireball_downstate', 'assets/images/UI_fireball_downstate.png')
+  ..addBitmapData('UI_fireball_upstate', 'assets/images/UI_fireball_upstate.png');
 
 
 class GameLoop extends Animatable{
   bool advanceTime (num time) {
-    if(currentGameWorld != null){
-      if(currentGameWorld.isGameWorldReady) {
-        clientHandler.outgoingMessage(g.MessageTypes.CLIENT_INPUT, InputManager.currentActiveKeys.toString());
+    if(main.currentGameWorld != null){
+      if(main.currentGameWorld is GameWorld){
+        if(main.currentGameWorld.isGameWorldReady) {
+          main.clientHandler.outgoingMessage(g.MessageTypes.CLIENT_INPUT, InputManager.currentActiveKeys.toString());
+        }
+      }
+      else if(main.currentGameWorld is CombatGameWorld){
+        main.clientHandler.outgoingMessage(g.MessageTypes.CLIENT_ANSWER, InputManager.answerFromClient);
       }
     }
     return true;
@@ -65,6 +82,7 @@ abstract class GameWorldContainer{
   void addPlayerEntity(Entity e);
   void removePlayer(String id);
   void addEntity(Entity e);
+  void removeEntity(Entity e);
   void updateEntities(List<Map>serverEntities, List<Map>serverPlayers, num dt);
   Shape healthLine = new Shape();
   bool _hasAddedHealthBarGameWorldContainer = false;
@@ -74,7 +92,6 @@ abstract class GameWorldContainer{
     loop = new RenderLoop();
     gameLoop = new GameLoop();
     resourceManager = rm;
-    new InputManager(stage);
     stage.focus=stage;
     loop.addStage(stage);
     stage.juggler.add(gameLoop);
@@ -87,13 +104,13 @@ abstract class GameWorldContainer{
     }
     healthLine.graphics.clear();
     entities.forEach((Entity ent) {
-      if(ent is Goblin){
+      if(!(ent is Bush) && !(ent is CombatStar)){
         Goblin gobby = ent;
         healthLine.graphics
           ..beginPath()
           ..moveTo(gobby.position.x + 10,gobby.position.y - 5)
           ..fillColor(Color.Red)
-          ..lineTo(gobby.position.x + gobby.health / 2, gobby.position.y - 5)
+          ..lineTo(gobby.position.x + 10 + gobby.health / 3, gobby.position.y - 5)
           ..strokeColor(Color.Red)
           ..closePath();
       }
@@ -104,7 +121,7 @@ abstract class GameWorldContainer{
         ..beginPath()
         ..moveTo(player.position.x + 10,player.position.y - 5)
         ..fillColor(Color.Red)
-        ..lineTo(player.position.x + player.health / 2, player.position.y - 5)
+        ..lineTo(player.position.x + 10 + player.health / 3, player.position.y - 5)
         ..strokeColor(Color.Red)
         ..closePath();
     });

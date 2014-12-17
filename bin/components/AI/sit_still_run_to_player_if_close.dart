@@ -10,7 +10,7 @@ abstract class SitStillRunToPlayerIfCloseOrStar implements Movement, Entity{
       double closestDistanceToPlayer, closestDistanceToFight;
       var currentlyMoving = false;
       //determine the player that is closest to the ai
-      gameWorld.playerEntities.forEach((Player player) {
+      inWhatInstance.playerEntities.forEach((Player player) {
         double distance = distanceTo(this, player);
         if(closestPlayer == null){
           closestPlayer = player;
@@ -22,7 +22,7 @@ abstract class SitStillRunToPlayerIfCloseOrStar implements Movement, Entity{
       });
 
       //search the map for current fights and join them if they are close enough
-      gameWorld.entities.forEach((Entity entity) {
+      inWhatInstance.entities.forEach((Entity entity) {
         if(entity is CombatStar){
           double distance = distanceTo(this, entity);
           if(closestFight == null){

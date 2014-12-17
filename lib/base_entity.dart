@@ -49,7 +49,7 @@ abstract class BaseEntity{
       componentCombatModeFunctionList[i](time);
     }
   }
-
+  get isNotDead => !isDead;
   void updatePositionsClient(){}
 }
 

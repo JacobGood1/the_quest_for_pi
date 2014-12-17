@@ -9,7 +9,7 @@ class SlowPrint{
   double speed = 0.0;
   slowPrint(message,dt){
     speed += dt;
-    if(speed >= 0.500){
+    if(speed >= 1){
       print(message);
       speed = 0.0;
     }
@@ -17,6 +17,7 @@ class SlowPrint{
 }
 
 class MessageTypes{
+  static String CLIENT_ANSWER = 'clientAnswer';
   static String NEW_INSTANCE = 'newInstance';
   static String COMBAT_SYNC_STATE = 'combatSyncState';
   static String PLAYERS_ENTERED_INSTANCE = 'players_entered_instance';
@@ -41,6 +42,12 @@ class MessageTypes{
 
   static bool isNEW_INSTANCE(Map message){
     if(message['type'] == 'newInstance'){
+      return true;
+    }
+    return false;
+  }
+  static bool isCLIENT_ANSWER(Map message){
+    if(message['type'] == 'clientAnswer'){
       return true;
     }
     return false;

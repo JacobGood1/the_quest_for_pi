@@ -91,11 +91,14 @@ abstract class WizardAnimation implements Sprite, Entity{
   }
 }
 
+
+
 abstract class GoblinAnimation implements Sprite, Entity{
   static final TextureAtlas
   _textureAtlas = main.currentGameWorld.resourceManager.getTextureAtlas('goblin');
 
   static final List<BitmapData>
+  _attackRightGoblin = _textureAtlas.getBitmapDatas('attack e000'),
   _walkSouthBitmapData = _textureAtlas.getBitmapDatas('goblin walk s00'),
   _walkEastBitmapData = _textureAtlas.getBitmapDatas('goblin walk e00'),
   _walkNorthBitmapData = _textureAtlas.getBitmapDatas('goblin walk n00'),
@@ -104,6 +107,7 @@ abstract class GoblinAnimation implements Sprite, Entity{
   _idleGoblinCombatAnimation = _textureAtlas.getBitmapDatas('green gnome treffer e000');
 
   final FlipBook
+  flipBookGoblinAttackRight         = new FlipBook(_attackRightGoblin),
   flipBookGoblinAnimationIdle       = new FlipBook(_idleGoblinAnimation),
   flipBookGoblinAnimationIdleCombat = new FlipBook(_idleGoblinCombatAnimation),
   flipBookGoblinAnimationWalkSouth  = new FlipBook(_walkSouthBitmapData),
@@ -118,8 +122,10 @@ abstract class GoblinAnimation implements Sprite, Entity{
   }
 
   updateGoblinAnimation(num time){
-
     switch (currentAnimationState){
+      case 'attacking':
+        _goblinAttack();
+        break;
       case 'walking_s':
         _goblinWalkSouth();
         break;
@@ -141,6 +147,9 @@ abstract class GoblinAnimation implements Sprite, Entity{
     }
   }
 
+  void _goblinAttack() {
+    _handleAnimation(flipBookGoblinAttackRight);
+  }
   void _goblinIdle() {
     _handleAnimation(flipBookGoblinAnimationIdle);
   }

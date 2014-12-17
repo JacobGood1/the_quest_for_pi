@@ -1,0 +1,5 @@
+TODO multiple instances may not work correctly, only sending 1 two three etc no real identity
+
+
+2. Goblin attacks damage players outside of instance, check out goblin ai see if its update has been added to the wrong comp list?
+3. still playing double sounds on feet

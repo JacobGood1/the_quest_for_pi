@@ -4,7 +4,7 @@ import 'package:stagexl/stagexl.dart' show Sprite, Bitmap, TextureAtlas;
 import '../components/component.dart';
 import 'package:the_quest_for_pi/base_entity.dart' as e show BaseEntity;
 import 'package:the_quest_for_pi/globals.dart' as g;
-import '../main.dart' show currentGameWorld;
+import '../main.dart' as main show currentGameWorld, ID;
 
 //player
 part '../entities/player.dart';
@@ -23,6 +23,9 @@ part 'goblins/goblin.dart';
 //props
 part 'props/combat_star.dart';
 
+//weapons
+part 'weapons/spear.dart';
+
 abstract class Entity extends Sprite with e.BaseEntity{  //must be instantiated after the resource manager is done loading!
   Bitmap idleStillPic;
   Entity(String type, double posX, double posY, String ID){
@@ -32,14 +35,14 @@ abstract class Entity extends Sprite with e.BaseEntity{  //must be instantiated 
     y = position.y;
     this.type = type;
     this.ID = ID;
-    idleStillPic = new Bitmap(currentGameWorld.resourceManager.getBitmapData(type));
+    idleStillPic = new Bitmap(main.currentGameWorld.resourceManager.getBitmapData(type));
     addChild(idleStillPic);
   }
   @override
   void updatePositionsClient(){
     this..x = position.x ..y = position.y;
   }
-  get entityManager => currentGameWorld.entities;
+  get entityManager => main.currentGameWorld.entities;
 
   void extractData(Map entity){
     this

@@ -16,7 +16,7 @@ PhysicsState ps;
 //ServerState ss;
 
 StreamController pingClients = new StreamController.broadcast();
-GameWorld gameWorld = new GameWorld([],[]);
+final GameWorld MAIN_WORLD = new GameWorld([],[]);
 
 class Game extends Vane {
   @Route("/ws")

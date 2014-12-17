@@ -3,8 +3,7 @@ library server_component;
 import 'dart:math';
 import '../entities/entity.dart';
 import 'package:the_quest_for_pi/globals.dart';
-import '../game_world/game_world.dart' show GameWorld;
-import '../server.dart' show PhysicsState, pingClients, gameWorld;
+import '../server.dart' show PhysicsState, pingClients, MAIN_WORLD, worlds;
 
 //physics
 part 'physics/collision_AABB.dart';
@@ -27,6 +26,7 @@ part 'AI/goblin_combat.dart';
 
 //Combat
 part 'combat/health_bar.dart';
+part 'combat/combat.dart';
 
 
 double distanceTo(Entity entity, Entity otherEntity){
