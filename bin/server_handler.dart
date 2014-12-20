@@ -129,10 +129,6 @@ class PhysicsState{
           }
         });
 
-
-
-
-        //TODO syncstate as a single message to the clients, i send all the worlds the client figures out what effing world it needs to go to!
         webSocketSendToClients(pingClients, MessageTypes.SYNC_STATE, makeWorldsIntoJSON(physicsLoop.dt)); //TODO get client to handle the new syncstate, sends multiplae states!
         MAIN_WORLD.entities.forEach((Entity e) {
           if (e is CombatStar) {
@@ -235,20 +231,10 @@ class ServerHandler{
       if(currentPlayer.attackTarget != null) {
         if(currentPlayer.spellReserve >= 1){
           currentPlayer.castFireBall();
+          currentPlayer.spellReserve--;
         }
 
       }
-      /*if(currentPlayer.spellReserve >= 1){
-        if(currentPlayer.attackTarget != null){
-          combatWorld.entities.forEach((e) {  //TODO might need tweaking?
-            if(e == currentPlayer.attackTarget){
-              currentPlayer
-                ..castFireBall(e)
-                ..spellReserve-=1;
-            }
-          });
-        }
-      }*/
     }
 
   }
@@ -283,8 +269,6 @@ class ServerHandler{
       }
     }
     clients.remove(conn);
-    //webSocketSendToClients(pingClients, MessageTypes.CLOSE_CONNECTION,{MessageTypes.CLIENT_ID : player.ID});
-    //TODO should be able to remove player since it is now in the remove player que, check to see if true
     close();
   }
 }

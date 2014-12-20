@@ -27,7 +27,7 @@ class Player extends Entity with PlayerMovement, Movement, Collision_AABB, Walki
     }
   }
 
-  _updateGenProblem(num time){ //NOW once the client solves the problem come back here and update this crap
+  _updateGenProblem(num time){
     //print('currentProblem: ' + currentProblem + ' solution: ' + '${problemSolution}');
     if(problemSolved){
       generateRandomProblemAndAnswer();

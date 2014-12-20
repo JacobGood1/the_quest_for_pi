@@ -139,7 +139,7 @@ class CombatGameWorld extends GameWorldContainer{
     }
     if(!selectionMade){
       entityLocations.forEach((k,v) {
-        var hitbox = new Rectangle(v.x,v.y + 170,45,80);
+        var hitbox = new Rectangle(v.x,v.y,45,80);
         if(hitbox.containsPoint(mouse)){
           if(hitbox.containsPoint(stageMouse)){
             rectBox.graphics..clear()..rect(v.x + 10,v.y,45,45)..fillColor(Color.Red);
