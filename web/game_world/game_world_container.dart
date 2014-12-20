@@ -24,7 +24,6 @@ import '../main.dart' as main;
 import 'input_manager.dart';
 import 'package:the_quest_for_pi/globals.dart' as g;
 import 'dart:async' show Timer;
-import 'dart:convert';
 part 'combat_world.dart';
 part 'main_game_world.dart';
 
@@ -36,6 +35,9 @@ ResourceManager rm = new ResourceManager()
   ..addTextureAtlas('mageAnimation0', 'assets/animations/wizard0.json', TextureAtlasFormat.JSONARRAY)
   ..addTextureAtlas('mageAnimation1', 'assets/animations/wizard1.json', TextureAtlasFormat.JSONARRAY)
   ..addTextureAtlas('goblin', 'assets/animations/gobby.json', TextureAtlasFormat.JSONARRAY)
+  ..addTextureAtlas('fireball_explosion', 'assets/animations/fireball/explosion/explosion.json', TextureAtlasFormat.JSONARRAY)
+  ..addTextureAtlas('fireball_loop', 'assets/animations/fireball/loop/loop.json', TextureAtlasFormat.JSONARRAY)
+  ..addTextureAtlas('fireball_start', 'assets/animations/fireball/start/start.json', TextureAtlasFormat.JSONARRAY)
   ..addSound('footstep', 'assets/sounds/footstep.wav')
   ..addBitmapData('Bush', 'assets/images/bush.png')
   ..addBitmapData('Spear', 'assets/images/goblin_spear.png')
@@ -104,7 +106,7 @@ abstract class GameWorldContainer{
     }
     healthLine.graphics.clear();
     entities.forEach((Entity ent) {
-      if(!(ent is Bush) && !(ent is CombatStar)){
+      if(ent is Goblin){
         Goblin gobby = ent;
         healthLine.graphics
           ..beginPath()

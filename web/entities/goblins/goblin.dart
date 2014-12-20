@@ -1,6 +1,6 @@
 part of client_entity;
 
-class Goblin extends Entity with GoblinAnimation, FootStep, HealthBar{
+class Goblin extends Entity with GoblinAnimation, FootStep, HealthBar, Combat{
   Goblin(String ID, x, y, int animeFrame, String animeState, String soundState):super('Goblin',x,y, ID) {
     componentInitFunctionList.addAll([initGoblinAnimation]);
     initAllComponents();
@@ -10,5 +10,18 @@ class Goblin extends Entity with GoblinAnimation, FootStep, HealthBar{
     currentAnimationFrame = animeFrame;
     currentAnimationState = animeState;
     currentSoundState = soundState;
+  }
+
+  void extractData(Map entity){
+    this
+      ..ID = entity['ID']
+      ..position.x = entity['positionX']
+      ..position.y = entity['positionY']
+      ..currentAnimationFrame = entity['currentAnimationFrame']
+      ..currentAnimationState = entity['currentAnimationState']
+      ..currentSoundState = entity['currentSoundState']
+      ..isDead = entity['isDead']
+      ..inCombat = entity['inCombat']
+      ..health = entity['health'];
   }
 }

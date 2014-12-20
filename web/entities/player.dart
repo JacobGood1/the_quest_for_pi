@@ -3,7 +3,7 @@ part of client_entity;
 class Player extends Entity with WizardAnimation, FootStep, Combat, HealthBar{
   String currentProblem, problemSolution;
   int spellReserve = 0;
-  Player(String ID, double x, double y, int animeFrame, String animeState, String soundState):super('Player',x,y, ID){
+  Player(String ID, double x, double y, int animeFrame, String animeState, String soundState):super('Player', x, y, ID){
     componentInitFunctionList.addAll([initWizardAnimation, initCombat]);
     initAllComponents();
     componentCombatModeFunctionList.addAll([updateWizard]);

@@ -22,6 +22,9 @@ class PhysicsState{
   PhysicsState() {
     if (MAIN_WORLD != null) {
       physicsLoop.onUpdate = ((physicsLoop) {
+        while(MAIN_WORLD.countGobbyPop() != 3){
+          MAIN_WORLD.generateNewEnemies(1);
+        }
         MAIN_WORLD.playerEntities.forEach((Player player) {
           player.updateAllComponents(physicsLoop.dt);
           if (player.collidingWith.length >= 1) {
@@ -39,6 +42,16 @@ class PhysicsState{
               //make adjustments to GameWorld
               MAIN_WORLD.addCombatStar(combatStar);
 
+            } else if(collidesWith(collisions, 'CombatStar')){
+              CombatStar cs = collisions.where((e) => e is CombatStar).first;
+              cs.combatGameWorld.addPlayer(player);
+              //remove then add all the players and goblins back, this hack sucks im just trying to get this done
+              cs.combatGameWorld.playerEntities.forEach((Player p) {
+                cs.combatGameWorld.playersToAdd.add(p);
+              });
+              cs.combatGameWorld.entities.forEach((Entity e) {
+                cs.combatGameWorld.entitiesToAdd.add(e);
+              });
             }
           }
         });
@@ -63,7 +76,7 @@ class PhysicsState{
           }
           else if (entity is CombatStar) {
               CombatStar combatStar = entity;
-              var allPlayersDead = true, allEntitiesDead = false;
+              var allPlayersDead = true, allGoblinsDead = true;
 
               combatStar.combatGameWorld.playerEntities.forEach((Player player) {
                 if(player.isNotDead){
@@ -71,17 +84,30 @@ class PhysicsState{
                   player.updateAllCombatModeComponents(physicsLoop.dt);
                 }
               });
-              combatStar.combatGameWorld.entities.forEach((Entity ent) {
-                if(allPlayersDead){
-                  MAIN_WORLD.addEntity(ent);
-                  ent.position = combatStar.position.copy();
-                }
-                else{
+              if(allPlayersDead){
+                combatStar.combatGameWorld.entities.forEach((Entity ent) {
+                  if(ent is Goblin){
+                    MAIN_WORLD.addEntity(ent);
+                    ent.position = combatStar.position.copy();
+                  }
+                });
+              } else{
+                combatStar.combatGameWorld.entities.forEach((Entity ent) {
+                  if(ent is Goblin){
+                    if(ent.isNotDead){
+                      allGoblinsDead = false;
+                    }
+                  }
                   ent.updateAllCombatModeComponents(physicsLoop.dt);
+                });
+                if(allGoblinsDead){
+                  combatStar.combatGameWorld.playerEntities.forEach((Player p){
+                    MAIN_WORLD.addPlayer(p);
+                    p.position = combatStar.position.copy();
+                  });
                 }
-
-              });
-              if(allEntitiesDead || allPlayersDead){
+              }
+              if(allGoblinsDead || allPlayersDead){
                 MAIN_WORLD.removeEntity(combatStar);
               }
             }
@@ -173,15 +199,75 @@ class ServerHandler{
           });
         }
       }
-    }
-    else if(MessageTypes.isCLIENT_INPUT(message)){
+    } else if(MessageTypes.isCLIENT_INPUT(message)){
       String keysFromClient = MessageTypes.getData(message);
       for(Player player in MAIN_WORLD.playerEntities){
         if(MessageTypes.getID(message) == player.ID){
           List matches = keyCipher.allMatches(keysFromClient).toList(),
-               currentKeys = new List.generate(matches.length,(i) => matches[i][0]);
+          currentKeys = new List.generate(matches.length,(i) => matches[i][0]);
           player.currentActiveKeys = currentKeys;
         }
+      }
+    } else if(MessageTypes.isCLIENT_TARGET(message)){
+      for(Entity e in MAIN_WORLD.entities){
+        if(e is CombatStar){
+          CombatGameWorld combatWorld = e.combatGameWorld;
+          var currentPlayer;
+          for(Player player in combatWorld.playerEntities){
+            if(player.ID == message['clientID']){
+              currentPlayer = player;
+              break;
+            }
+          }
+          var temp = combatWorld.entities
+                                .where((ent) => ent.ID == message['data']);
+          //if temp is empty no entity was found with the id so the player must have targetted another player
+          if(temp.isNotEmpty){
+            currentPlayer.attackTarget = temp.first;
+          } else{
+            currentPlayer.attackTarget = combatWorld.playerEntities.where((player) => player.ID == message['data']).first;
+          }
+        }
+      }
+    }else if(MessageTypes.isCLIENT_FIREBALL(message)) {
+      List worldAndPlayer = findPlayerInCombat(message);
+      Player currentPlayer = worldAndPlayer[0]; CombatGameWorld combatWorld = worldAndPlayer[1];
+      if(currentPlayer.attackTarget != null) {
+        if(currentPlayer.spellReserve >= 1){
+          currentPlayer.castFireBall();
+        }
+
+      }
+      /*if(currentPlayer.spellReserve >= 1){
+        if(currentPlayer.attackTarget != null){
+          combatWorld.entities.forEach((e) {  //TODO might need tweaking?
+            if(e == currentPlayer.attackTarget){
+              currentPlayer
+                ..castFireBall(e)
+                ..spellReserve-=1;
+            }
+          });
+        }
+      }*/
+    }
+
+  }
+
+  //returns both the current player and the instance they are in
+  List findPlayerInCombat(message){
+    var currentPlayer, combatWorld;
+    for (Entity e in MAIN_WORLD.entities) {
+      if (e is CombatStar) {
+        combatWorld = e.combatGameWorld;
+        for (Player player in combatWorld.playerEntities) {
+          if (player.ID == message['clientID']) {
+            currentPlayer = player;
+            break;
+          }
+        }
+      }
+      if(currentPlayer != null){
+        return [currentPlayer, combatWorld];
       }
     }
   }

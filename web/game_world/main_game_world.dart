@@ -79,7 +79,8 @@ class GameWorld extends GameWorldContainer{
     stage.addChild(e);
   }
   Map toJson() {
-    return {'playerEntities' : playerEntities.map((e) => e.toJson).toList(),
+    return {
+        'playerEntities' : playerEntities.map((e) => e.toJson).toList(),
         'entityManager'  : entities.map((e) => e.toJson).toList()};
   }
 }
@@ -113,5 +114,11 @@ makeNewObjectFromJSON(Map entity){
         id,
         posX,
         posY);
+  }else if(type == 'FireBall'){
+    return new FireBall(
+        posX,
+        posY,
+        id
+    );
   }
 }

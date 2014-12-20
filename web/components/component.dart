@@ -4,7 +4,7 @@ import 'dart:math';
 import '../entities/entity.dart';
 import '../game_world/input_manager.dart';
 import '../main.dart' as main show ID, currentGameWorld;
-import 'package:stagexl/stagexl.dart';
+import 'package:stagexl/stagexl.dart' as stage;
 
 //physics
 part 'physics/collision_AABB.dart';

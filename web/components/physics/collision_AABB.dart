@@ -4,7 +4,7 @@ part of client_component;
 //TODO revise code to work with new system TRAVIS
 
 abstract class EntityData{
-  Vector position;
+  stage.Vector position;
   double size;
   var collidingWith;
   bool isColliding;
@@ -12,7 +12,7 @@ abstract class EntityData{
 }
 
 abstract class Collision_AABB implements EntityData{
-  Shape debugShape = new Shape();
+  stage.Shape debugShape = new stage.Shape();
 
   Rectangle collider = new Rectangle(0.0, 0.0, 0.0, 0.0);
   double direction_x = 0.0;
@@ -22,8 +22,8 @@ abstract class Collision_AABB implements EntityData{
   debugDrawCollider(){
     //debugShape.graphics.clear();
     debugShape.graphics.rect(collider.topLeft.x, collider.topLeft.y, collider.width, collider.height);
-    debugShape.graphics.strokeColor(Color.Red);
-    stage.addChild(debugShape);
+    debugShape.graphics.strokeColor(stage.Color.Red);
+    main.currentGameWorld.stage.addChild(debugShape);
   }
 
 

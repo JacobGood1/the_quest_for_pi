@@ -23,6 +23,7 @@ part 'humanoids/goblins/goblin.dart';
 
 //props
 part 'props/combat_star.dart';
+part 'props/fireball.dart';
 
 //weapons
 part 'weapons/goblin_spear.dart';

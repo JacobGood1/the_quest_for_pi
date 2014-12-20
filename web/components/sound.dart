@@ -7,8 +7,8 @@ class SoundStates{
 
 
 abstract class FootStep implements Entity{ //TODO footstep is playing multiple sounds
-  final Sound _soundFootStep = main.currentGameWorld.resourceManager.getSound("footstep");
-  final SoundTransform soundTransform = new SoundTransform(0.6);
+  final stage.Sound _soundFootStep = main.currentGameWorld.resourceManager.getSound("footstep");
+  final stage.SoundTransform soundTransform = new stage.SoundTransform(0.6);
   Stopwatch timeFootStep = new Stopwatch();
   void updateFootStep(num time){
       if(currentSoundState == SoundStates.FOOTSTEP){

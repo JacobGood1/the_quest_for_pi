@@ -62,10 +62,21 @@ class GameWorld extends GameWorldContainer{
    GameWorld(playerEntities, entities):super(playerEntities, entities){
      type = 'GameWorld';
      buildWorld();
-     generateEnemies(3);  //TODO make more enemies
+     generateEnemies(3);
    }
 
-
+   int countGobbyPop(){
+     List<CombatStar> collectInstances = entities.where((e) => e is CombatStar).toList();
+     var gobsInInstances = () {
+       var gobs = collectInstances.map((e) => e.combatGameWorld.entities.where((e) => e is Goblin).length);
+       if(gobs.isEmpty){
+         return 0;
+       } else{
+         return gobs.reduce((p, n) => p + n);
+       }
+     };
+     return entities.where((Entity e) => e is Goblin).length + entitiesToAdd.where((Entity e) => e is Goblin).length + gobsInInstances();
+   }
 
    Map mapSymbols = {'#': 'BUSH',
       //'@': (double x, double y){return new Bat(x, y);}, //bat for testing, this will be the icon for 'Next Screen'
@@ -95,6 +106,14 @@ class GameWorld extends GameWorldContainer{
       entities.add(new Goblin(x + offset.toDouble(),y + offset.toDouble(), this));
     }
   }
+   generateNewEnemies(num numberOfEnemies){
+     var x,y, offset = 500;
+     for(var i = 0; i < numberOfEnemies; i++){
+       x = rng.nextInt(300);
+       y = rng.nextInt(300);
+       entitiesToAdd.add(new Goblin(x + offset.toDouble(),y + offset.toDouble(), this));
+     }
+   }
 
   void updateEntities(num time){
    entities.forEach((BaseEntity entity) => entity.updateAllComponents(time));

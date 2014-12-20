@@ -1,8 +1,12 @@
 part of server_entity;
 
+RegExp findSolutionInteger = new RegExp(r'mode\=display\"\>(-?[0-9]+)\<\/script\>'),
+       findSolutionRatio = new RegExp(r'data\-output\-repr\=\"(-?[0-9]+\/[0-9]+)\"');
+
 class Player extends Entity with PlayerMovement, Movement, Collision_AABB, WalkingAnimation, FootStep, HealthBar, Combat{
 
   String currentProblem, problemSolutionAttempt, problemSolution;
+  Entity attackTarget;
   String currentKey = '';
   List<String> currentActiveKeys = [];
   Map _keyDecipher = new Map.fromIterables(new List.generate(26, (int index) => index + 65), "abcdefghijklmnopqrstuvwxyz".split(""));
@@ -24,20 +28,26 @@ class Player extends Entity with PlayerMovement, Movement, Collision_AABB, Walki
   }
 
   _updateGenProblem(num time){ //NOW once the client solves the problem come back here and update this crap
+    //print('currentProblem: ' + currentProblem + ' solution: ' + '${problemSolution}');
     if(problemSolved){
       generateRandomProblemAndAnswer();
       problemSolved = false;
-      problemSolutionAttempt = null;
-    }
-    if(problemSolution != null && problemSolutionAttempt != null){
-      if(_doAnswersMatch(problemSolution, problemSolutionAttempt)){
-        print('you solved it!');
-        problemSolved = true;
-        spellReserve++;
-        print(spellReserve);
+    } else{
+      if(problemSolution != null && problemSolutionAttempt != null){
+        if(_doAnswersMatch(problemSolution, problemSolutionAttempt)){
+          problemSolved = true;
+          spellReserve++;
+          problemSolution = null;
+          problemSolutionAttempt = null;
+        }
       }
     }
   }
+
+  void castFireBall(){  //TODO cast a fireball toward an entity
+    inWhatInstance.addEntity(new FireBall(position.x,position.y,inWhatInstance, attackTarget));
+  }
+
   bool _doAnswersMatch(String doesThis, String matchThis){
     var whiteStrip1 = doesThis.split(' ').where((e) => e != '').fold('', (e, s) => e + s),
         whiteStrip2 = matchThis.split(' ').where((e) => e != '').fold('', (e, s) => e + s);
@@ -75,7 +85,7 @@ class Player extends Entity with PlayerMovement, Movement, Collision_AABB, Walki
   }
 
   //crappy code that gets the job done for demonstration sake
-  void generateRandomProblemAndAnswer(){
+  /*void generateRandomProblemAndAnswer(){
     String equationToReturn = '';
     List<String> ops = '*+-'.split(''); //TODO add division back in
     Function randomOps = () => ops[rng.nextInt(ops.length)];
@@ -98,64 +108,82 @@ class Player extends Entity with PlayerMovement, Movement, Collision_AABB, Walki
     }).toString();
 
 
+  }*/
+
+  generateRandomProblemAndAnswer(){
+    currentProblem = generateRandomProblem();
+    solveProblem(currentProblem);
   }
 
-
-  //this code was telling wolfram alpha to solve the problem, i had to majorly downgrade the system
-  static var randomNum = ( )=> 1;
-  var comment = '''
-  RegExp findSolution = new RegExp(r'\"mOutput\"\: \"\{\{x == (-?[0-9]*[\/]?[0-9]+)');
-  solveProblem(String currentProblem){
-    Uri u = new Uri.http('wolframalpha.com', '/input/', {'i' : currentProblem});
-    var url = u.toString();
-    http.get(url).then((response) {
-      while(problemSolution == null){
-        problemSolution = findSolution.allMatches(response.body).toList()[0][1];
-      }
-    });
-  }
-
-  String generateRandomProblem(){
+  generateRandomProblem(){
     String equationToReturn = '';
     List<String> ops = '*/+-'.split('');
     Function randomOps = () => ops[rng.nextInt(ops.length)];
     var randop = randomOps();
-    Function randomNum = () => (rng.nextInt(100) + 1).toString();
-    int equationLengthMin = rng.nextInt(2) + 1;
-    int equationLengthMax = rng.nextInt(2) + equationLengthMin + 1;
+    Function randomNum = () => (rng.nextInt(8) + 1).toString();
     String typeOfEquation = randomOps();
-    int insertionPoint = rng.nextInt(equationLengthMax);
-    while(insertionPoint < equationLengthMin){
-      insertionPoint = rng.nextInt(equationLengthMax);
-    }
 
-    for(var i = equationLengthMin; i < equationLengthMax; i++){
-
-      if(i == insertionPoint){
-        if(typeOfEquation == '*'){
-          equationToReturn = equationToReturn + ' ${randomNum()}x ' + randomOps();
-        }
-        else if(typeOfEquation == '+'){
-          equationToReturn = equationToReturn + ' ${randomNum()} + x ' + randomOps();
-        }
-        else if(typeOfEquation == '-'){
-            equationToReturn = equationToReturn + ' ${randomNum()} - x ' + randomOps();
-          }
-          else if(typeOfEquation == '/'){
-              equationToReturn = equationToReturn + ' ${randomNum()}\/x ' + randomOps();
-            }
-
-      } else{
-        equationToReturn = equationToReturn + ' ' + randomNum() + ' ' + randomOps();
+    var nums = new List.generate(3,(i) => i);
+    for(int i = 0; i < nums.length; i++){
+      var num = rng.nextInt(9) + 1;
+      while(nums.contains(num)){
+        num = rng.nextInt(9) + 1;
       }
-
+      nums[i] = num;
     }
-    equationToReturn = equationToReturn + ' ' + randomNum();
-    equationToReturn = equationToReturn + ' = ${randomNum()}';
+
+    equationToReturn = equationToReturn +
+    '${nums[0]} ${randomOps()} ${nums[1]} = ${nums[2]}';
+
+    var insertionPoint =
+    equationToReturn
+    .split(' ')
+    .where((e)=> !'+-/=*'.contains(e))
+    .toList()[rng.nextInt(3)];
+
+    var format = equationToReturn
+    .split(' ')
+    .map((e) {
+      if(e == insertionPoint){
+        if(typeOfEquation == '*'){
+          return '${e}x';
+        } else if(typeOfEquation == '+'){
+          return '${e} + x';
+        } else if(typeOfEquation == '-'){
+          return '${e} - x';
+        } else{
+          return '${e}\/x';
+        }
+        return e + 'x';
+      } else{
+        return e;
+      }
+    })
+    .toList();
+
+
+    equationToReturn = format.reduce((start, elm) => '${start} ${elm}');
 
     return equationToReturn;
   }
-''';
+
+
+  void solveProblem(String equation){
+
+    String leftSide = equation.split(' ').takeWhile((c) => c != '=').reduce((start, ele) => start + ele);
+    String rightSide = equation.split(' ').skipWhile((c) => c != '=').skip(1).reduce((start, ele) => start + ele);
+    String url = new Uri.http('www.sympygamma.com', '/input/', {'i' : 'solve(Eq(${leftSide},${rightSide}),x)'}).toString();
+
+    http.get(url).then((response) {
+      try {
+        problemSolution = findSolutionInteger.allMatches(response.body).toList()[0][1];
+      } catch(e) {
+        problemSolution = findSolutionRatio.allMatches(response.body).toList()[0][1];
+      }
+    });
+  }
+
+
 
   Map toJson(){
     return

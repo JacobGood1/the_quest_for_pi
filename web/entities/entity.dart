@@ -1,6 +1,6 @@
 library client_entity;
 
-import 'package:stagexl/stagexl.dart' show Sprite, Bitmap, TextureAtlas;
+import 'package:stagexl/stagexl.dart' show Sprite, Bitmap, TextureAtlas, FlipBook;
 import '../components/component.dart';
 import 'package:the_quest_for_pi/base_entity.dart' as e show BaseEntity;
 import 'package:the_quest_for_pi/globals.dart' as g;
@@ -22,6 +22,7 @@ part 'goblins/goblin.dart';
 
 //props
 part 'props/combat_star.dart';
+part 'props/fireball.dart';
 
 //weapons
 part 'weapons/spear.dart';
@@ -35,8 +36,10 @@ abstract class Entity extends Sprite with e.BaseEntity{  //must be instantiated 
     y = position.y;
     this.type = type;
     this.ID = ID;
-    idleStillPic = new Bitmap(main.currentGameWorld.resourceManager.getBitmapData(type));
-    addChild(idleStillPic);
+    if(!(type == 'FireBall')){
+      idleStillPic = new Bitmap(main.currentGameWorld.resourceManager.getBitmapData(type));
+      addChild(idleStillPic);
+    }
   }
   @override
   void updatePositionsClient(){

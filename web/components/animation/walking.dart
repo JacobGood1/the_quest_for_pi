@@ -1,13 +1,13 @@
 part of client_component;
 
-abstract class WizardAnimation implements Sprite, Entity{
-  static final TextureAtlas
+abstract class WizardAnimation implements stage.Sprite, Entity{
+  static final stage.TextureAtlas
     _textureAtlas1 = main.currentGameWorld.resourceManager.getTextureAtlas('mageAnimation0');
 
-  static final TextureAtlas
+  static final stage.TextureAtlas
     _textureAtlas2 = main.currentGameWorld.resourceManager.getTextureAtlas('mageAnimation1');
 
-  static final List<BitmapData>
+  static final List<stage.BitmapData>
     _walkSouthBitmapData = _textureAtlas1.getBitmapDatas('walking s000'),
     _walkEastBitmapData = _textureAtlas1.getBitmapDatas('walking e000'),
     _walkNorthBitmapData = _textureAtlas1.getBitmapDatas('walking n000'),
@@ -15,13 +15,13 @@ abstract class WizardAnimation implements Sprite, Entity{
     _idleWizardAnimation = _textureAtlas1.getBitmapDatas('idle 000'),  //TODO turn back to IDLE when done
     _idleWizardCombatAnimation = _textureAtlas1.getBitmapDatas('idle 0002');
 
-  final FlipBook
-  flipBookWizardAnimationIdle       = new FlipBook(_idleWizardAnimation),
-  flipBookWizardAnimationIdleCombat = new FlipBook(_idleWizardCombatAnimation),
-  flipBookWizardAnimationWalkSouth  = new FlipBook(_walkSouthBitmapData),
-  flipBookWizardAnimationWalkNorth  = new FlipBook(_walkNorthBitmapData),
-  flipBookWizardAnimationWalkEast   = new FlipBook(_walkEastBitmapData),
-  flipBookWizardAnimationWalkWest   = new FlipBook(_walkWestBitmapData);
+  final stage.FlipBook
+  flipBookWizardAnimationIdle       = new stage.FlipBook(_idleWizardAnimation),
+  flipBookWizardAnimationIdleCombat = new stage.FlipBook(_idleWizardCombatAnimation),
+  flipBookWizardAnimationWalkSouth  = new stage.FlipBook(_walkSouthBitmapData),
+  flipBookWizardAnimationWalkNorth  = new stage.FlipBook(_walkNorthBitmapData),
+  flipBookWizardAnimationWalkEast   = new stage.FlipBook(_walkEastBitmapData),
+  flipBookWizardAnimationWalkWest   = new stage.FlipBook(_walkWestBitmapData);
 
 
 
@@ -75,11 +75,11 @@ abstract class WizardAnimation implements Sprite, Entity{
     _handleAnimation(flipBookWizardAnimationWalkNorth);
   }
 
-  void _handleAnimation(FlipBook anime){  //TODO if you ever add another display object to this sprite this will explode DONT FORGET
+  void _handleAnimation(stage.FlipBook anime){  //TODO if you ever add another display object to this sprite this will explode DONT FORGET
     if(!this.contains(anime)){
       if(this.numChildren > 0){
         for(var i = 0; i < this.numChildren; i++){
-          if(this.getChildAt(i) is FlipBook){
+          if(this.getChildAt(i) is stage.FlipBook){
             this.removeChildAt(i);
           }
         }
@@ -93,11 +93,11 @@ abstract class WizardAnimation implements Sprite, Entity{
 
 
 
-abstract class GoblinAnimation implements Sprite, Entity{
-  static final TextureAtlas
+abstract class GoblinAnimation implements stage.Sprite, Entity{
+  static final stage.TextureAtlas
   _textureAtlas = main.currentGameWorld.resourceManager.getTextureAtlas('goblin');
 
-  static final List<BitmapData>
+  static final List<stage.BitmapData>
   _attackRightGoblin = _textureAtlas.getBitmapDatas('attack e000'),
   _walkSouthBitmapData = _textureAtlas.getBitmapDatas('goblin walk s00'),
   _walkEastBitmapData = _textureAtlas.getBitmapDatas('goblin walk e00'),
@@ -106,14 +106,14 @@ abstract class GoblinAnimation implements Sprite, Entity{
   _idleGoblinAnimation = _textureAtlas.getBitmapDatas('green gnome treffer s000'),
   _idleGoblinCombatAnimation = _textureAtlas.getBitmapDatas('green gnome treffer e000');
 
-  final FlipBook
-  flipBookGoblinAttackRight         = new FlipBook(_attackRightGoblin),
-  flipBookGoblinAnimationIdle       = new FlipBook(_idleGoblinAnimation),
-  flipBookGoblinAnimationIdleCombat = new FlipBook(_idleGoblinCombatAnimation),
-  flipBookGoblinAnimationWalkSouth  = new FlipBook(_walkSouthBitmapData),
-  flipBookGoblinAnimationWalkNorth  = new FlipBook(_walkNorthBitmapData),
-  flipBookGoblinAnimationWalkEast   = new FlipBook(_walkEastBitmapData),
-  flipBookGoblinAnimationWalkWest   = new FlipBook(_walkWestBitmapData);
+  final stage.FlipBook
+  flipBookGoblinAttackRight         = new stage.FlipBook(_attackRightGoblin),
+  flipBookGoblinAnimationIdle       = new stage.FlipBook(_idleGoblinAnimation),
+  flipBookGoblinAnimationIdleCombat = new stage.FlipBook(_idleGoblinCombatAnimation),
+  flipBookGoblinAnimationWalkSouth  = new stage.FlipBook(_walkSouthBitmapData),
+  flipBookGoblinAnimationWalkNorth  = new stage.FlipBook(_walkNorthBitmapData),
+  flipBookGoblinAnimationWalkEast   = new stage.FlipBook(_walkEastBitmapData),
+  flipBookGoblinAnimationWalkWest   = new stage.FlipBook(_walkWestBitmapData);
 
 
 
@@ -172,11 +172,11 @@ abstract class GoblinAnimation implements Sprite, Entity{
     _handleAnimation(flipBookGoblinAnimationIdleCombat);
   }
 
-  void _handleAnimation(FlipBook anime){  //TODO if you ever add another display object to this sprite this will explode DONT FORGET
+  void _handleAnimation(stage.FlipBook anime){  //TODO if you ever add another display object to this sprite this will explode DONT FORGET
     if(!this.contains(anime)){
       if(this.numChildren > 0){
         for(var i = 0; i < this.numChildren; i++){
-          if(this.getChildAt(i) is FlipBook){
+          if(this.getChildAt(i) is stage.FlipBook){
             this.removeChildAt(i);
           }
         }

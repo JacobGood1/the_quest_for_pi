@@ -25,7 +25,13 @@ abstract class GoblinCombatAI implements HealthBar, Entity{
           currentAnimationFrame++;
           if(currentAnimationFrame == 9){
             currentAnimationFrame = 0;
-            inWhatInstance.playerEntities.forEach((Player player) {player.reduceHealth(10);} );  //DELETE was testing code
+            Player weakestPlayer = inWhatInstance.playerEntities.first;
+            inWhatInstance.playerEntities.forEach((Player player) {
+              if(player.health <= weakestPlayer.health){
+                weakestPlayer = player;
+              }
+            });
+            weakestPlayer.reduceHealth(10);
             isGoblinAttackingGoblinCombatAI = false;
           }
         }

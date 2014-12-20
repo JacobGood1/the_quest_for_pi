@@ -15,10 +15,9 @@ class CombatGameWorld extends GameWorldContainer{
   Shape rectBox = new Shape();
   math.Point stageMouse = new math.Point(0.0,0.0);
   bool selectionMade = false, fireBallButtonPressed = false;
-  String entityToAttack, currentProblem, displayManaAmount;
+  String entityToAttack, currentProblem, displayManaAmount = 'MANA';
+  TextField mana = new TextField();
   CombatGameWorld(Map messageData){
-
-
     CombatGameWorld.backGround = new Bitmap(resourceManager.getBitmapData('backGroundCombat'))
       ..scaleX = 2
       ..scaleY = 2;
@@ -36,18 +35,26 @@ class CombatGameWorld extends GameWorldContainer{
         new Bitmap(resourceManager.getBitmapData('UI_fireball_upstate')),
         new Bitmap(resourceManager.getBitmapData('UI_fireball_downstate')),
         new Bitmap(resourceManager.getBitmapData('UI_fireball')),
-        new Bitmap(resourceManager.getBitmapData('UI_fireball_downstate'))); //TODO tweak the x and y more fireball is suckage for now
+        new Bitmap(resourceManager.getBitmapData('UI_fireball_downstate'))..y = 210..x = -15..height = 100);
 
-
-    hotbar.addChild(fireBallButton..x += 25..y += 25);
+    hotbar.addChild(
+        fireBallButton
+          ..x += 25
+          ..y += 25
+    );
+    fireBallButton.onMouseDown.listen((e) {
+      g.webSocketSendToServer(main.webSocket, g.MessageTypes.CLIENT_FIREBALL, '', main.ID);
+    });
 
     stage.addChild(hotbar);
     stage.addChild(rectBox);
 
-    stage.onMouseClick.listen((MouseEvent e) => stageMouse = new math.Point(e.stageX, e.stageY));
-
-
-
+    stage.onMouseClick.listen((MouseEvent e) {
+      stageMouse = new math.Point(e.stageX, e.stageY);
+      if(entityToAttack != null){
+        g.webSocketSendToServer(main.webSocket, g.MessageTypes.CLIENT_TARGET, entityToAttack, main.ID);
+      }
+    });
 
     currentDisplayedProblem
       ..defaultTextFormat = new TextFormat('Spicy Rice', 30, Color.White)
@@ -56,29 +63,26 @@ class CombatGameWorld extends GameWorldContainer{
       ..width = 1000
       ..height = 50
       ..wordWrap = true;
-    stage.addChild(currentDisplayedProblem..filters = [new GlowFilter(Color.Yellow, 0, 0)]);
 
-    stage.addChild( //TODO add mana tracker to stage get it displaying properly
-        new TextField()
+    html.InputElement inputFromUser = (html.querySelector("#htmlObject") as html.InputElement);
+    var htmlObject = new HtmlObject(inputFromUser)
+      ..x = 323
+      ..y = 430;
+
+    stage
+      ..addChild(htmlObject)
+      ..addChild(currentDisplayedProblem..filters = [new GlowFilter(Color.Yellow, 0, 0)])
+      ..addChild(
+        mana
           ..defaultTextFormat = new TextFormat('Spicy Rice', 30, Color.White)
-          ..x = 100
-          ..y = 100
+          ..text = displayManaAmount
+          ..x = stage.width / 2 + 100
+          ..y = 850
           ..width = 500
           ..height = 50
           ..wordWrap = true
     );
-
-
-    html.InputElement inputFromUser = (html.querySelector("#htmlObject") as html.InputElement);
-
-    var htmlObject = new HtmlObject(inputFromUser)
-      ..x = 323
-      ..y = 430;
-    stage.addChild(htmlObject);
-
     new InputManager.combatWorld(inputFromUser);
-
-
   }
 
   String getCurrentProblemFromServer(){
@@ -125,9 +129,8 @@ class CombatGameWorld extends GameWorldContainer{
             break;
           }
           player.updateAllCombatModeComponents(dt);
-          String hasMana = player.calcCurrentMana();
-          if(hasMana != null){
-            displayManaAmount = hasMana;
+          if(player.calcCurrentMana() != null){
+            mana.text = player.calcCurrentMana();
           }
           entityLocations[player.ID] = player.position;
           break;
@@ -145,12 +148,9 @@ class CombatGameWorld extends GameWorldContainer{
         }
       });
     }
-
-
   }
 
   void positionEntities(num time){
-    //Vector positionOffSet = new Vector()
     playerEntities.forEach((Player player) {
 
       player.updateAllCombatModeComponents(time);
@@ -167,6 +167,18 @@ class CombatGameWorld extends GameWorldContainer{
       }
     }
   }
+  void removeEntity(Entity entity){
+    if(entity is FireBall){
+      (entity as FireBall)
+        ..fireball_explosion.removeFromParent()
+        ..fireball_loop.removeFromParent()
+        ..fireball_start.removeFromParent();
+      entities.remove(entity);
+    }
+  }
+
+
+
   void clearEntities(){
     if(stage.numChildren != 0){
       stage.removeChildren(0,stage.numChildren - 1);
@@ -183,7 +195,6 @@ class CombatGameWorld extends GameWorldContainer{
   }
 
   void addEntity(Entity e){
-
     entities.add(e);
     stage.addChild(e);
   }

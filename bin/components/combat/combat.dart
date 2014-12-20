@@ -8,6 +8,8 @@ abstract class Combat implements HealthBar, Entity{
   _updateCombat(num time){
     if(health <= 0){
       this.isDead = true;
+      componentCollisionCheckFunctionList.clear();
+
     }
   }
 }

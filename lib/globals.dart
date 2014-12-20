@@ -17,6 +17,9 @@ class SlowPrint{
 }
 
 class MessageTypes{
+  static String CLIENT_FIREBALL = 'clientFireBall';
+  static String CLIENT_TARGET = 'clientTarget';
+  static String CLIENT_ATTACK = 'clientAttack';
   static String CLIENT_ANSWER = 'clientAnswer';
   static String NEW_INSTANCE = 'newInstance';
   static String COMBAT_SYNC_STATE = 'combatSyncState';
@@ -40,6 +43,25 @@ class MessageTypes{
     return message['clientID'];
   }
 
+  static bool isCLIENT_FIREBALL(Map message){
+    if(message['type'] == 'clientFireBall'){
+      return true;
+    }
+    return false;
+  }
+
+  static bool isCLIENT_TARGET(Map message){
+    if(message['type'] == 'clientTarget'){
+      return true;
+    }
+    return false;
+  }
+  static bool isCLIENT_ATTACK(Map message){
+    if(message['type'] == 'clientAttack'){
+      return true;
+    }
+    return false;
+  }
   static bool isNEW_INSTANCE(Map message){
     if(message['type'] == 'newInstance'){
       return true;

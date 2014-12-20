@@ -14,6 +14,7 @@ class InputManager {
     inputFromUser.onKeyPress.listen((html.KeyboardEvent e) {
       if(e.keyCode == 13){
         answerFromClient = inputFromUser.value;
+        inputFromUser.value = '';
       }
     });
   }

@@ -59,11 +59,16 @@ class CombatGameWorld extends GameWorldContainer{
     if(e is Goblin){
       _goblinCounterCombatWorld++;
     }
-    _positionEntity(e);
-    entitiesToAdd.add(e);
-    e.inWhatInstance.entitiesToRemove.add(e);
-    e.inWhatInstance = this;
-    stageAddChild(e);
+    if(e is FireBall){
+      entitiesToAdd.add(e);
+      e.inWhatInstance = this;
+    } else{
+      _positionEntity(e);
+      entitiesToAdd.add(e);
+      e.inWhatInstance.entitiesToRemove.add(e);
+      e.inWhatInstance = this;
+      stageAddChild(e);
+    }
   }
   var _playerCounterCombatWorld = 0;
   void addPlayer(Entity e){
